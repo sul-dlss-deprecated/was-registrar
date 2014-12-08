@@ -1,0 +1,62 @@
+<script>
+	$().ready(function() {
+		$("#admin-navbar").addClass("active");
+		$("#seedt_lists").DataTable();
+
+		$(".toggle_btn").click(function() {
+			$("#source_xml_div_" + $(this).attr('value')).toggleClass('hidden');
+			return false;
+		});
+
+	}); 
+</script>
+
+<!-- DataTables CSS -->
+<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.4/css/jquery.dataTables.css">
+
+<!-- DataTables -->
+<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.4/js/jquery.dataTables.js"></script>
+
+<%= form_tag({controller: "admin", action: "register"}, method: "get") do %>
+	
+	<%= submit_tag("Register", class:"btn btn-default") %>
+	<table id="seedt_lists">
+		<thead>
+			<tr>
+				<th>Check</th>
+				<th>Druid</th>
+				<th>Uri</th>
+				<th>Collection</th>
+				<th>Embargo</th>
+				<th width="400px">Source XML</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @seeds.each_with_index do |seed, seed_id| %>
+				<tr>
+					<td>
+						<% if seed.druid_id.nil? or seed.druid_id.blank? then%>	
+						 <%= check_box_tag "seeds[]", seed.id %> 
+						<% end %>
+					</td>
+					<td><%= seed.druid_id%></td>
+					<td><%= seed.uri%></td>
+					<td><%= seed.collection_id%></td>
+					<td><%= seed.embargo%></td>
+					<td> 
+					<% unless seed.source_xml.blank? then %> 
+						<a class="toggle_btn" value="<%= seed_id%>" href="#"> Show </a>
+						<div id="source_xml_div_<%= seed_id%>"  class="hidden">
+						<pre>
+			      			<%= Nokogiri::XML(seed.source_xml).to_xml %>
+			      			</pre>
+						</div> 
+					<%	end %>
+					</td>
+		
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
+
+<% end %>
