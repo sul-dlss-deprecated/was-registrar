@@ -177,7 +177,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  capistrano (~> 3.0)
+  capistrano
   capistrano-bundler
   capistrano-rails
   coffee-rails (~> 4.0.0)

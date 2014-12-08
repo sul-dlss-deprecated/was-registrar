@@ -45,7 +45,7 @@ gem 'rspec-rails'
 gem 'rest-client'
 # DLSS gems
 group :deployment do
-  gem 'capistrano', '~> 3.0'
+  gem 'capistrano'
   gem 'capistrano-bundler'
   gem 'capistrano-rails'
   gem 'lyberteam-capistrano-devel', '3.1.0'
