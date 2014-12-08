@@ -12,7 +12,8 @@ gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .js.coffee assets and views
 gem 'coffee-rails', '~> 4.0.0'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-# gem 'therubyracer',  platforms: :ruby
+gem 'therubyracer',  platforms: :ruby
+gem 'execjs'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -43,10 +44,12 @@ gem "rspec"
 gem 'rspec-xml'
 gem 'rspec-rails'
 gem 'rest-client'
-# DLSS gems
+
+
 group :deployment do
-  gem 'capistrano'
+  gem 'capistrano', '~> 3.0'
+  gem 'capistrano-rvm'
   gem 'capistrano-bundler'
   gem 'capistrano-rails'
-  gem 'lyberteam-capistrano-devel', '3.1.0'
+  gem 'lyberteam-capistrano-devel'
 end
