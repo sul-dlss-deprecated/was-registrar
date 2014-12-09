@@ -40,7 +40,7 @@ module Was
             :object_type  => 'item', #It needs an update to Dor.registered_classes
         #    :content_type => 'webarchiving-seed',
             :admin_policy => Rails.configuration.apo,
-            :source_id    => "seed_item_hash['source_id']#{Time.now.to_i}",
+            :source_id    => "#{seed_item_hash['source_id']}#{Time.now.to_i}",
             :label        => seed_item_hash['title'].blank? ? seed_item_hash['uri'] : seed_item_hash['title'],
             :collection   => seed_item_hash['collection_id'],
             :initiate_workflow => "wasSeedPreassemblyWF",

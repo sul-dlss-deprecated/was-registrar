@@ -36,7 +36,7 @@ module Was
           end
             
           doc = Nokogiri::XML(staging_xml.to_xml) 
-          doc.root.last_element_child.after("source_xml>"+seed_hash['source_xml']+"</source_xml>")
+          doc.root.last_element_child.after("<source_xml>"+seed_hash['source_xml']+"</source_xml>")
           
           return doc.to_xml
       end
