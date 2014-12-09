@@ -22,16 +22,21 @@ class AdminController < ApplicationController
         @seed_list.push(seed_item)
         
         registrar = Was::Registrar::RegisterSeedObject.new  
-        druid = registrar.register seed_item.serializable_hash
         
-        unless druid.nil? then
-          #update the seeditem with druid id
-          #return theses results back
-          seed_item.update(druid_id: "#{druid}")
-          writer.write_xml_output seed_item.serializable_hash
-        else
-           
-        end 
+        begin
+          druid = registrar.register seed_item.serializable_hash
+        
+          unless druid.nil? then
+            #update the seeditem with druid id
+            #return theses results back
+            seed_item.update(druid_id: "#{druid}")
+            writer.write_xml_output seed_item.serializable_hash
+          end
+        
+        rescue Exception => e
+          
+        end
+             
       end
     end
   end

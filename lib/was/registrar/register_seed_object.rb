@@ -24,6 +24,7 @@ module Was
         return druid
       end
       
+      
       def is_valid? params
         if  params[:source_id].nil? or params[:source_id].blank? or
             params[:collection].nil? or params[:collection].blank? or
@@ -42,10 +43,14 @@ module Was
             :source_id    => seed_item_hash['source_id'],
             :label        => seed_item_hash['title'].blank? ? seed_item_hash['uri'] : seed_item_hash['title'],
             :collection   => seed_item_hash['collection_id'],
+            :initiate_workflow => "wasSeedPreassemblyWF",
+
           }
           
-        unless seed_item_hash['rights'].nil? and seed_item_hash['rights'].blank? then
+        if seed_item_hash['rights'].nil? or seed_item_hash['rights'].blank? then
           params[:rights] = nil
+        else 
+           params[:rights] =seed_item_hash['rights']
         end
         return params
       end
