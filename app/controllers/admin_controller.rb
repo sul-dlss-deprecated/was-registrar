@@ -30,7 +30,7 @@ class AdminController < ApplicationController
             #update the seeditem with druid id
             #return theses results back
             seed_item.update(druid_id: "#{druid}")
-            writer.write_xml_output seed_item.serializable_hash
+            writer.write_xml seed_item.serializable_hash
           end
         
         rescue Exception => e

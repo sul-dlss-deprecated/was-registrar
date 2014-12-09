@@ -12,9 +12,9 @@ module Was
 
         staging_xml = build_xml seed_hash
         
-        staging_file_path = File.join( location_path, seed_hash['druid_id']+".xml") 
+        staging_file_path = File.join( @location_path, seed_hash['druid_id']+".xml") 
         f = File.open(staging_file_path,'w'); 
-        f.write(metadata_content); 
+        f.write(staging_xml); 
         f.close          
 
       end
@@ -25,7 +25,6 @@ module Was
          seed_hash['embargo'] = seed_hash['embargo'].nil? ? False : seed_hash['embargo']
           
          staging_xml = Nokogiri::XML::Builder.new do
-            root {
               item {
                 druid_id      seed_hash['druid_id']
                 collection_id seed_hash['collection_id']
@@ -33,11 +32,13 @@ module Was
                 uri           seed_hash['uri']
                 source        seed_hash['source']
                 embargo       seed_hash['embargo']
-                source_xml    seed_hash['source_xml']
               }
-            }
           end
-          return staging_xml.to_xml
+            
+          doc = Nokogiri::XML(staging_xml.to_xml) 
+          doc.root.last_element_child.after("source_xml>"+seed_hash['source_xml']+"</source_xml>")
+          
+          return doc.to_xml
       end
     end
   end
