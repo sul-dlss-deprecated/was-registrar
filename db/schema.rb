@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141201214718) do
+ActiveRecord::Schema.define(version: 20141209181026) do
 
   create_table "seed_items", force: true do |t|
     t.string   "druid_id"
@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 20141201214718) do
     t.datetime "updated_at"
     t.boolean  "verified"
     t.string   "source_id"
+    t.string   "rights"
   end
 
 end
