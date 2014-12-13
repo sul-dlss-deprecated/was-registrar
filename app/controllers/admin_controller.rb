@@ -40,7 +40,7 @@ class AdminController < ApplicationController
           @seed_list.push(seed_item)
         end
       end
-      render(register)
+      render(:register)
   end
   
   def register_one_item
