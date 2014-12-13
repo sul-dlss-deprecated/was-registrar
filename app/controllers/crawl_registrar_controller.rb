@@ -1,10 +1,14 @@
 class CrawlRegistrarController < ApplicationController
   def index
     jobs_directory = "#{Rails.configuration.crawl_stage}"
-    @jobs_list = Dir.glob('#{jobs_directory}*/*/') # {|f| File.directory? f} 
+    all_dir_list = Dir.glob("#{jobs_directory}*/2*/") # {|f| File.directory? f} 
+    @jobs_list=[]
+    all_dir_list.each do | job_dir |
+      @jobs_list.push(job_dir.sub(jobs_directory,""))
+    end
     @collections_list = get_collections_list
-   # respond_with({:jobs=>@jobs_list, :collections=>@collections_list})
-  end
+
+ end
 
 
   def register( )
