@@ -1,0 +1,2 @@
+module CrawlRegistrarHelper
+end

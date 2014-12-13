@@ -28,5 +28,6 @@ module WasRegistrar
     # Enable the asset pipeline
     # Precompile additional assets
     config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif *.eot *.svg *.ttf *.otf *.woff app/assets/stylesheets/**/* app/assets/fonts/*)
+    
   end
 end

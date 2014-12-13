@@ -1,33 +1,117 @@
-<script>
-$(  ).ready(function() {
-  $( "#admin-navbar" ).addClass("active")
-});
+<style>
+.glyphicon-refresh-animate {
+    -animation: spin 1s infinite linear;
+    -webkit-animation: spin2 1s infinite linear;
+}
 
+@-webkit-keyframes spin2 {
+    from { -webkit-transform: rotate(0deg);}
+    to { -webkit-transform: rotate(360deg);}
+}
+
+@keyframes spin {
+    from { transform: scale(1) rotate(0deg);}
+    to { transform: scale(1) rotate(360deg);}
+}
+
+</style>
+<script>
+$().ready(function(){$("#hiddenspan").hide();});
+
+var q = $.ajaxMultiQueue(1); 
+<% @seed_list.each do |seed_item|%>
+$("#register_status_<%=seed_item.id%>").ready(function(){
+	register_item(<%= seed_item.id %>);
+});
+<%end%>
+
+function register_item(id) {
+	
+		q.queue({
+ 			async: true,
+			type : "GET",
+			url : "/admin/register_one_item",
+			data : {
+				seed_id : id,
+				format : "json"
+			},
+
+ 			timeout:60000,
+			dataType : "json",
+
+			beforeSend: function(  ) {
+		    	console.log('ajax start for id '+id)
+		    	register_status_id = "register_status_"+id;
+		 		$('#'+register_status_id).addClass("glyphicon glyphicon-refresh glyphicon-refresh-animate") 
+		 	//	$('#'+register_status_id).show();
+				
+		    },
+		    success: function( result ) {
+		      	console.log('ajax success for id '+id+' results '+result)
+				register_status_id = "register_status_"+id;
+				
+				if(result.status=='true'){
+			 		$('#'+register_status_id).removeClass("glyphicon glyphicon-refresh glyphicon-refresh-animate") 
+			 		$('#'+register_status_id).addClass("glyphicon glyphicon-ok text-success") 
+	
+					druid_span_id = "druid_span_"+id;
+					druid_link = "<a href='<%= Rails.configuration.argo_catalog%>"+result.druid+"' target='_blank' >"+result.druid+"</a>";
+					$('#'+druid_span_id).html(  druid_link);
+				} else{
+					register_status_id = "register_status_"+id;
+			 		$('#'+register_status_id).removeClass("glyphicon glyphicon-refresh glyphicon-refresh-animate") 
+			 		$('#'+register_status_id).addClass("glyphicon glyphicon-remove text-danger") 
+			 		$('#message_'+id).parent().removeClass('hidden');
+			 		$('#message_'+id).html(status.message);
+				}
+				
+
+		    },
+		 
+		    error: function( xhr, status, errorThrown ) {
+		 		console.log('ajax fail for id '+id)
+		 		register_status_id = "register_status_"+id;
+		 		$('#'+register_status_id).removeClass("glyphicon glyphicon-refresh glyphicon-refresh-animate") 
+		 		$('#'+register_status_id).addClass("glyphicon glyphicon-remove text-danger") 
+		 		$('#message_'+id).parent().removeClass('hidden');
+		 		$('#message_'+id).html(errorThrown);
+		    },
+		 
+		    complete: function( xhr, status ) {
+				console.log('ajax done for id '+id)
+		    }
+		});
+}
 </script>
-<div class="panel panel-default">
+
+<span id="hiddenspan" class="glyphicon glyphicon-refresh glyphicon-refresh-animate"  > </span>
+<div class="panel panel-primary" id="results_panel">
 	<!-- Default panel contents -->
 	<div class="panel-heading">
-		Number of requested records for register <%=  @seed_list.length %>
+		Number of requested records for register <%= @seed_list.length %>
 	</div>
 	<div class="panel-body">
-		<!-- Table -->
 		<% if @seed_list.length > 0 then %>
-		
+
 		<table class="table">
-			<% @seed_list.each do | seed | %>
-			<tr>
-				<td>  
-					<% if seed.druid_id.nil? then %>
-						<span class="glyphicon glyphicon-remove text-danger" ></span>
-					<% else %>
-						<span class="glyphicon glyphicon-ok text-success" ></span>
-					<% end %>
-					</td>
-				<td> <%= seed.druid_id %> </td>
-				<td> <%= seed.uri %> </td>
+			<tr ></tr>
+			<tr style="border-top: solid #999">
+				<td>Status</td>
+				<td>Druid</td>
+				<td>Uri</td>
 			</tr>
+			<% @seed_list.each do | seed_item | %>
+			<tr style="border-top: solid #999">
+				<td><span class="register_status" value="<%= seed_item.id%>" id="register_status_<%= seed_item.id%>" > </span></td>
+				<td><span id="druid_span_<%= seed_item.id%>"> </span></td>
+				<td> <%= seed_item.uri%> </td>
+			</tr>
+			<tr class="hidden"> <td  colspan=3 id="message_<%= seed_item.id%>"> </td></tr>
 			<%end%>
+			<tr style="border-top: solid #999"><td colspan=3></td></tr>
+
 		</table>
 		<% end %>
 	</div>
 </div>
+<div align="right"><a href="/admin/index">Return to admin page</div>

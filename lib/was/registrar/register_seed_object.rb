@@ -1,25 +1,21 @@
+require 'was/registrar/register_object.rb'
+
 module Was
   module Registrar
-    class RegisterSeedObject
-  
+    class RegisterSeedObject < RegisterObject
       def initalize
       end
- 
+      
+      #It will raise an exception if anything happenes during the registration process
       def register seed_item_hash
         druid = nil
 
         params = convert_column_to_params( seed_item_hash )
         
         if is_valid?(params) then
-          begin
-            druid = register_object_using_web_service params
-          rescue  Exception => e  
-            puts e.message  
-            puts e.backtrace.inspect  
-            puts 'Error in registring the object'  
-          end 
+          druid = register_object_using_web_service params
         else
-          puts "Missing required parameters #{params}"
+          raise "Missing required parameters #{params}"
         end
         return druid
       end
@@ -44,6 +40,7 @@ module Was
             :label        => seed_item_hash['title'].blank? ? seed_item_hash['uri'] : seed_item_hash['title'],
             :collection   => seed_item_hash['collection_id'],
             :initiate_workflow => "wasSeedPreassemblyWF",
+            
 
           }
           
@@ -55,19 +52,6 @@ module Was
         return params
       end
       
-      def register_object_using_web_service params
-        puts params
-        response=RestClient.post Rails.configuration.service_root,  params, :timeout => 60, :open_timeout => 60
-        code = response.code
-
-        if code == 201 then
-          druid = response.body
-          return druid
-        else
-          raise "Error in registring the object"  
-        end
-      end
     end
-
   end
 end

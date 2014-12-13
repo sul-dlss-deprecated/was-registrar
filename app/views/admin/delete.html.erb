@@ -1,0 +1,36 @@
+<script>
+$(  ).ready(function() {
+  $( "#admin-navbar" ).addClass("active")
+});
+
+</script>
+<div class="panel panel-primary">
+	<!-- Default panel contents -->
+	<div class="panel-heading">
+		Number of requested records for deleting <%=  @delete_status_list.length %>
+	</div>
+	<div class="panel-body">
+		<!-- Table -->
+		<% if @delete_status_list.length > 0 then %>
+		
+		<table class="table">
+			<% @delete_status_list.each do | delete_status | %>
+			<tr>
+				<td>  
+					<% if delete_status['status']==true then %>
+						<span class="glyphicon glyphicon-ok text-success" ></span>
+					<% else %>
+						<span class="glyphicon glyphicon-remove text-danger" ></span>
+						<span><%=delete_status['message']%></span>
+					<% end %>
+					</td>
+				<td> <%= delete_status['uri'] %> </td>
+			</tr>
+			<%end%>
+		</table>
+		<% end %>
+	</div>
+</div>
+
+
+<div align="right"><a href="/admin/index">Return to admin page</div>
