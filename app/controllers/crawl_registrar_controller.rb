@@ -1,27 +1,51 @@
+require 'was/utilities/dor_utilities.rb' 
+require 'was/registrar/sync_crawl_object.rb' 
+
 class CrawlRegistrarController < ApplicationController
+ 
+  layout 'application'
+
   def index
-    jobs_directory = "#{Rails.configuration.crawl_stage}"
-    all_dir_list = Dir.glob("#{jobs_directory}*/2*/") # {|f| File.directory? f} 
-    @jobs_list=[]
-    all_dir_list.each do | job_dir |
-      @jobs_list.push(job_dir.sub(jobs_directory,""))
+    @crawls=CrawlItem.all
+    
+    collections_list_hash = Was::Utilities::DorUtilities.get_collections_list
+    
+    @collections_list = []
+    collections_list_hash.each do | collection|
+        result = [collection[:title],collection[:druid]]
+        @collections_list.push(result)
     end
-    @collections_list = get_collections_list
+  end
+  
+  def do_action
+    crawl_ids =  params["crawls"]
+    action_type = params['action_list']
+    
+    case action_type
+    when 'Register'
+      puts crawl_ids
+      register( crawl_ids)
+ #   when 'Delete'
+ #     puts seed_ids
+ #     delete( seed_ids)
+    else
+      puts 'error'
+    end
+    
+  end
 
- end
-
-
-  def register( )
-      @seed_list = []
+  def register crawl_ids
+    
+      @crawl_list = []
       
-      unless seed_ids.nil? then 
-        seed_ids.each do | id |
+      unless crawl_ids.nil? then 
+        crawl_ids.each do | id |
           begin
-            seed_item =  SeedItem.find id
+            crawl_item =  CrawlItem.find id
           rescue ActiveRecord::RecordNotFound => e
-            seed_item =  SeedItem.new(id:id)
+            crawl_item =  CrawlItem.new(id:id)
           end
-          @seed_list.push(seed_item)
+          @crawl_list.push(CrawlItem)
         end
       end
       render(register)
@@ -47,23 +71,10 @@ class CrawlRegistrarController < ApplicationController
     respond_with(@register_status)
   end
   
-  def get_collections_list
-    begin
-      response=RestClient.get("#{Rails.configuration.collection_list_call}#{Rails.configuration.apo}",  :timeout => 60, :open_timeout => 60)
-      rescue Exception=> e
-        puts "Error in registring the object. "+e.message 
-        return ""
-      end
-      puts response.body
-      collection_list= response.body
-      collections_list=[]
-      data = JSON.parse(collection_list)
-      collection_json = data['collections']
-      collection_json.each do | collection|
-        result = [collection['title'],collection['druid']]
-        collections_list.push(result)
-      end
-      return collections_list
-      
+
+  def sync
+    sync_service = Was::Registrar::SyncCrawlObject.new
+    sync_service.sync_all
+    redirect_to("/crawl_registrar/index")
   end
 end

@@ -1,0 +1,15 @@
+SeedUrl,SeedStatus,Docs,Data
+http://www.epa.gov/,Crawled,173377,101680079263
+http://www.gao.gov/,Crawled,368223,27072205673
+http://naca.central.cranfield.ac.uk/,Crawled,15363,11269296176
+http://www.nauticalcharts.noaa.gov/,Crawled,3474,4177841678
+http://www.globalchange.gov/,Crawled,54748,2133686508
+http://www.noaa.gov/deepwaterhorizon/,Crawled,1086,933533147
+http://www.albany.edu/sourcebook/index.html,Crawled,7447,114812315
+http://www.state.gov/s/l/treaty/tias/index.htm,Crawled,889,65038028
+http://www.census.gov/manufacturing/cir/index.html,Crawled,488,57777715
+http://www.census.gov/prod/www/abs/cffr.html,Crawled (HTTP error 404),185,8167287
+http://www.ustr.gov/about-us/press-office/reports-and-publications/,Crawled,157,2824740
+http://www.sigir.mil/index.html,Crawled,25,347624
+http://www.nationalatlas.gov/,Redirected,38,127538
+http://www.albany.edu/sourcebook/,Crawled,19,126974
