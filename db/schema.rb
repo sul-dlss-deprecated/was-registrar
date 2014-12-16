@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141215182822) do
+ActiveRecord::Schema.define(version: 20141216182720) do
 
   create_table "crawl_items", force: true do |t|
     t.string   "druid_id"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 20141215182822) do
     t.date     "registered_datetime"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "source_id"
   end
 
   create_table "seed_items", force: true do |t|

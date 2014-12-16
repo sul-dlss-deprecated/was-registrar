@@ -1,68 +1,180 @@
 <script>
-	$(document).ready(function() {
-		$("#crawl-navbar").addClass("active");
-		$("#crawl_jobs").DataTable();
-		
-		
-	/*	
-    $.ajax({
-    	
-        url: "/crawl_registrar/collection_list",
-        type: 'get',
-        data: $(this).serialize()
-    }).done(function (data) {
-        change_select(data);
-    });
-
-*/
-		
-	}); 
+$(document).ready(function() {
+	$("#crawl-navbar").addClass("active");
+	$("#crawl_items_table").DataTable();
+	$(".save_crawl_source_id").hide();
+	$(".cancel_crawl_source_id").hide();
 	
-function change_select(data) {
-   // var json = jQuery.parseJSON(data);
-    var options = [];
-    var collection_json = data['collections']
-    //$("#collection_test").append($("<option></option>").attr("value","aaa").text("eeee"));
-    	count = 1
-        $(".collection_dropdown").each(function( index ) {
+	$(".collection_dropdown").change(function(){
+		id = $(this).attr('id').replace("collection_list_","");
 
-		    for( collection_item in collection_json ) {
-		      //  options.push({text: collection_item['title'], value: collection_item['druid']});
-			        console.log(index);//+" "+collection_item['druid']);
-			        $(this).hide();
-			  		$(this).append($("<option></option>").attr("value",collection_json[collection_item].druid).text(collection_item['druid']));
-		$(this).show();
-		    }
-		});
+    	$("#save_"+id).removeClass();
 
- //    $(".collection_dropdown").replaceOptions(options);
-};
+		if( $("#collection_list_"+id).val()==null || $("#collection_list_"+id).val().length==0){
+			$("#save_"+id).addClass('save_collection');
+	    } else {
+			$("#save_"+id).addClass('glyphicon glyphicon-floppy-save save_collection');
+		}
+	
+	});
+	
+	$(".save_collection").click(function (){
+		id = $(this).attr('id').replace("save_","");
+		collection_id = $("#collection_list_"+id).val();
+		
+		$.ajax({
+	    	
+	        url: "/crawl_registrar/update_collection",
+	        type: 'get',
+			data : {
+				id : id,
+				format : "json",
+				collection_id : collection_id
+			},
+			success : function (result) {
+		   		$("#save_"+id).removeClass();
+	
+		    	if(result.status==true){
+		    		$("#save_"+id).addClass('glyphicon glyphicon-floppy-saved text-success save_collection');
+		    	} else {
+		    		$("#save_"+id).addClass('glyphicon glyphicon-floppy-saved text-danger save_collection');
+		    	}
+		    },
+		    error:function (results){   		   		
+		    	$("#save_"+id).removeClass();
+		    	$("#save_"+id).addClass('glyphicon glyphicon-floppy-saved text-danger save_collection');
+	    	}
+	    });
+	});
+
+	$("#crawls_form").submit(function(){
+		$(".collection_dropdown").attr('disabled',true);
+		$(".crawl_source_id_input").attr('disabled',true);
+				
+		return true;	
+	});
+
+
+	$('.crawl_source_id_input').keypress(function(e){
+    	if ( e.which == 13 ){
+    		e.preventDefault();
+    		id = $(this).attr('id').replace("crawl_source_id_","");
+			$("#save_crawl_source_id_"+id).click();
+    	} 
+	});
+
+	$(".edit_crawl_source_id").click(function (){
+		id = $(this).attr('id').replace("edit_crawl_source_id_","");
+
+		$(this).hide();
+		$("#crawl_source_id_"+id).attr('readonly',false);
+		$("#save_crawl_source_id_"+id).show();
+		$("#cancel_crawl_source_id_"+id).show();
+	});
+	
+	$(".cancel_crawl_source_id").click(function (){
+		id = $(this).attr('id').replace("cancel_crawl_source_id_","");
+		
+		$("#crawl_source_id_"+id).val( $("#crawl_original_source_id_"+id).val());
+		reset_source_ids_controls(id);
+	});
+	
+	$(".save_crawl_source_id").click(function (){
+		id = $(this).attr('id').replace("save_crawl_source_id_","");
+		new_source_id_val = $("#crawl_source_id_"+id).val().trim();
+		
+		if(new_source_id_val.length==0 || new_source_id_val.indexOf(' ')>-1){
+			$("#crawl_source_id_"+id).tooltip("Source id can't be empty");
+			return;
+		}
+		
+		console.log(new_source_id_val);
+		$.ajax({
+	    	
+	        url: "/crawl_registrar/update_source_id",
+	        type: 'get',
+			data : {
+				id : id,
+				format : "json",
+				source_id : new_source_id_val
+			},
+			success : function (result) {
+	
+		    	if(result.status==true){
+		    		$("#crawl_source_id_"+id).val( new_source_id_val);
+    				$("#crawl_original_source_id_"+id).val( new_source_id_val);
+					reset_source_ids_controls(id);
+		    	} else {
+					$("#crawl_source_id_"+id).val( $("#crawl_original_source_id_"+id).val());
+		    	}
+		    },
+		    error:function (results){   		   		
+				$("#crawl_source_id_"+id).val( $("#crawl_original_source_id_"+id).val());
+			}
+	    });
+	});
+}); 
+
+function reset_source_ids_controls(id){
+	$("#crawl_source_id_"+id).attr('readonly',true);
+	$("#edit_crawl_source_id_"+id).show();
+	$("#save_crawl_source_id_"+id).hide();
+	$("#cancel_crawl_source_id_"+id).hide();
+}
 
 </script>
 
+<div ><a href="/crawl_registrar/sync">Sync</a></div>
 
-<%= form_tag({controller: "crawl_registrar", action: "register"}, method: "get") do %>
+<%= form_tag({controller: "crawl_registrar", action: "do_action", }, method: "get", id: 'crawls_form') do %>
 	
 <div class="panel panel-primary">
   <div class="panel-body">
- 	<table id="crawl_jobs">
+ 	<table id="crawl_items_table">
 		<thead>
 			<tr>
 				<th>Check</th>
-				
+				<th>Druid</th>
 				<th>Job directory</th>
+				<th>Source Id</th>
 				<th>Collection</th>
 			</tr>
 		</thead>
 		<tbody>
-			<% @jobs_list.each_with_index do |job_directory, job_directory_id| %>
+			<% @crawls.each_with_index do |crawl_item, crawl_item_id| %>
 				<tr>
 					<td>
-				 		<%= check_box_tag "jobs[]", job_directory_id %> 
+						<% if crawl_item.druid_id.nil? or crawl_item.druid_id.blank? then%>	
+						 <%= check_box_tag "crawls[]", crawl_item.id %> 
+						<% end %>
 					</td>
-					<td><%=job_directory%></td>
+					<td>
+						<% unless crawl_item.druid_id.nil? and crawl_item.druid_id.blank? then%>
+					 	<a href='<%= Rails.configuration.argo_catalog%><%= crawl_item.druid_id%>' target='_blank' ><%= crawl_item.druid_id%></a>
+						<%end%>
+					</td>
+					
+					<td><%=crawl_item.job_directory%> </td>
+					
+					<td>
+						<div>
+						<%= text_field_tag "crawl_source_id_#{crawl_item.id}", "#{crawl_item.source_id}",  class: "crawl_source_id_input form-control", readonly:true, style:"display:inline-block; width:80%"%>
+						<%= text_field_tag "crawl_original_source_id_#{crawl_item.id}", "#{crawl_item.source_id}",  class: "crawl_source_id_input hidden"%>
+						<span class="glyphicon glyphicon-pencil edit_crawl_source_id" id="edit_crawl_source_id_<%=crawl_item.id%>" ></span>
+						<span class="glyphicon glyphicon-ok text-success save_crawl_source_id" id="save_crawl_source_id_<%=crawl_item.id%>" ></span>
+						<span class="glyphicon glyphicon-remove text-danger cancel_crawl_source_id" id="cancel_crawl_source_id_<%=crawl_item.id%>" ></span>
+						</div>
+					</td>
+					
 					<td >
-						<%= select_tag(:collection_list, options_for_select(@collections_list), class:"collection_dropdown") %>
+						<% if crawl_item.druid_id.nil? or crawl_item.druid_id.blank? then%>	
+							<%= select_tag("collection_list_#{crawl_item.id}", options_for_select(@collections_list, crawl_item.collection_id), class:"collection_dropdown", :prompt => "Please select") %>
+							<span>
+							<span id="save_<%=crawl_item.id%>"  class="save_collection" />
+							</span>
+						<% else %>
+							<%= crawl_item.collection_id %>
+						<% end %>						
 					</td>
 				</tr>
 			<% end %>
@@ -70,7 +182,8 @@ function change_select(data) {
 	</table> 
 	</div>
 </div>
-<%= submit_tag("Register", class:"btn btn-default") %>
+<%= select_tag(:action_list, options_for_select(['Register']), class:"btn btn-default  dropdown-toggle") %>
+<%= submit_tag("Go", class:"btn btn-default") %>
 
 <% end %>
 

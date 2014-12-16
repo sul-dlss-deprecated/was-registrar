@@ -6,22 +6,30 @@ module Was
       def initalize
       end
       
-      def register
-        
+      def register crawl_item_hash
+
+        druid = nil
+        params = convert_column_to_params( crawl_item_hash )
+        druid = register_object_using_web_service params
+        return druid
+
       end
       
-      def prepare_crawl_object_params job_label, collection_id
+      def convert_column_to_params crawl_item_hash
+    
         params= {
             :object_type  => 'item', 
             :admin_policy => Rails.configuration.apo,
-            :source_id    => "#{Time.now.to_i}",
-            :label        => job_label,
-            :collection   => collection_id,
+            :source_id    => crawl_item_hash['source_id'],
+            :label        => crawl_item_hash['label'],
+            :collection   => crawl_item_hash['collection_id'],
             :initiate_workflow => "wasCrawlPreassemblyWF",
-            :rights       => 'none',
-        }
+            :rights       => "none",
+          }
+
         return params
       end
+ 
     end
   end
 end

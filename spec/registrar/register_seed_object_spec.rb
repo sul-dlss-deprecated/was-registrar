@@ -49,8 +49,8 @@ describe Was::Registrar::RegisterSeedObject do
     it "should register object with valid params" do
         params=      {
             :object_type  => 'item', #It needs an update to Dor.registered_classes
-            :admin_policy => Rails.configuration.apo,
-            :source_id   => 'was:b',
+            :admin_policy => 'druid:ns945xs1455', #Rails.configuration.apo,
+            :source_id   => 'was:baa',
             :label        => "registrar_test",
             :collection   => "druid:gz033bg3146",
             :initiate_workflow => "wasSeedPreassemblyWF",

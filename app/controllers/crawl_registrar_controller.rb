@@ -10,11 +10,11 @@ class CrawlRegistrarController < ApplicationController
     
     collections_list_hash = Was::Utilities::DorUtilities.get_collections_list
     
-    @collections_list = []
-    collections_list_hash.each do | collection|
-        result = [collection[:title],collection[:druid]]
-        @collections_list.push(result)
-    end
+    @collections_list = [["aaa","aaa"],["bbb","bbb"]]
+   # collections_list_hash.each do | collection|
+   #     result = [collection[:title],collection[:druid]]
+   #     @collections_list.push(result)
+   # end
   end
   
   def do_action
@@ -34,7 +34,7 @@ class CrawlRegistrarController < ApplicationController
     
   end
 
-  def register crawl_ids
+  def register( crawl_ids)
     
       @crawl_list = []
       
@@ -48,7 +48,7 @@ class CrawlRegistrarController < ApplicationController
           @crawl_list.push(CrawlItem)
         end
       end
-      render(register)
+      render(:register)
   end
   
   def register_one_item(label, collection_id)
@@ -77,4 +77,33 @@ class CrawlRegistrarController < ApplicationController
     sync_service.sync_all
     redirect_to("/crawl_registrar/index")
   end
+
+  def update_collection
+    id = params['id']
+    collection_id = params['collection_id'].sub("%3A",":")
+    
+    begin
+      crawl_item = CrawlItem.find id
+      crawl_item.update(:collection_id=> collection_id)
+      @status=true
+    rescue
+      @status=false
+    end
+    
+  end
+  def update_source_id
+    id = params['id']
+    source_id = params['source_id']
+    
+    begin
+      crawl_item = CrawlItem.find id
+      crawl_item.update(:source_id=> source_id)
+      @status=true
+    rescue
+      @status=false
+    end
+  end
+
+
+
 end
