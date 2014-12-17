@@ -40,7 +40,7 @@ module Was
           crawl_item = CrawlItem.find_by job_directory: item[:title]
           puts item[:title]
           unless crawl_item.nil?
-            crawl_item.update(:druid => item[:druid])
+            crawl_item.update(:druid_id => item[:druid])
           end
            
         end    
