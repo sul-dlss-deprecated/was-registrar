@@ -17,13 +17,15 @@
 </style>
 
 <script>
-$().ready(function(){$("#hiddenspan").hide();});
+$().ready(function(){
+	$("#hiddenspan").hide();
+	$("#crawl-navbar").addClass("active");
+
+});
 
 var q = $.ajaxMultiQueue(1); 
 
-<% @crawl_list.each do |crawl_item|
-puts "regsiter #{@crawl_list}"
-%>
+<% @crawl_list.each do |crawl_item|%>
 $("#register_status_<%=crawl_item.id%>").ready(function(){
 	register_item(<%= crawl_item.id %>,'crawl');
 });
@@ -33,3 +35,4 @@ $("#register_status_<%=crawl_item.id%>").ready(function(){
 
 
 <%= render partial: "shared/register", locals: {object_list: @crawl_list} %>
+<div align="right"><a href="/crawl_registrar/index">Return to admin page</div>

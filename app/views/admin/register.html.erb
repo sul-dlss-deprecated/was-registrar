@@ -17,7 +17,11 @@
 </style>
 
 <script>
-$().ready(function(){$("#hiddenspan").hide();});
+$().ready(function(){
+	$("#hiddenspan").hide();
+	$("#admin-navbar").addClass("active");
+
+});
 
 var q = $.ajaxMultiQueue(1); 
 
@@ -31,3 +35,4 @@ $("#register_status_<%=seed_item.id%>").ready(function(){
 
 
 <%= render partial: "shared/register", locals: {object_list: @seed_list} %>
+<div align="right"><a href="/admin/index">Return to admin page</div>
