@@ -47,7 +47,7 @@ class AdminController < ApplicationController
     sleep(5)
     writer = Was::Registrar::SourceXmlWriter.new   Rails.configuration.staging_path
 
-    seed_id = params["seed_id"]
+    seed_id = params["id"]
     seed_item =  SeedItem.find seed_id
 
     registrar = Was::Registrar::RegisterSeedObject.new  

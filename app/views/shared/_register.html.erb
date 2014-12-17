@@ -1,0 +1,33 @@
+
+<span id="hiddenspan" class="glyphicon glyphicon-refresh glyphicon-refresh-animate"  > </span>
+<div class="panel panel-primary" id="results_panel">
+	<!-- Default panel contents -->
+	<div class="panel-heading">
+		Number of requested records for register <%= object_list.length %>
+	</div>
+	<div class="panel-body">
+		<% if object_list.length > 0 then %>
+
+		<table class="table">
+			<tr ></tr>
+			<tr style="border-top: solid #999">
+				<td>Status</td>
+				<td>Druid</td>
+				<td>Label</td>
+			</tr>
+			<% object_list.each do | object_item | %>
+			<tr style="border-top: solid #999">
+				<td><span class="register_status" value="<%= object_item.id%>" id="register_status_<%= object_item.id%>" > </span></td>
+				<td><span id="druid_span_<%= object_item.id%>"> </span></td>
+				<td> <%= (defined?(object_item.uri).nil?) ?  object_item.job_directory : object_item.uri
+				%> </td>
+			</tr>
+			<tr class="hidden"> <td  colspan=3 id="message_<%= object_item.id%>"> </td></tr>
+			<%end%>
+			<tr style="border-top: solid #999"><td colspan=3></td></tr>
+
+		</table>
+		<% end %>
+	</div>
+</div>
+<div align="right"><a href="/admin/index">Return to admin page</div>

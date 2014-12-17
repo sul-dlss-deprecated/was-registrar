@@ -40,8 +40,6 @@ module Was
             :label        => seed_item_hash['title'].blank? ? seed_item_hash['uri'] : seed_item_hash['title'],
             :collection   => seed_item_hash['collection_id'],
             :initiate_workflow => "wasSeedPreassemblyWF",
-            
-
           }
           
         if seed_item_hash['rights'].nil? or seed_item_hash['rights'].blank? then

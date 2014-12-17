@@ -1,0 +1,56 @@
+
+function register_item(id,type) {
+	
+		if(type == "seed"){
+			url = "/admin/register_one_item";
+		} else if(type == "crawl"){
+			url = "/crawl_registrar/register_one_item"
+		}
+		q.queue({
+ 			async: true,
+			type : "GET",
+			url : url,
+			data : {
+				id : id,
+				format : "json"
+			},
+
+ 			timeout:60000,
+			dataType : "json",
+
+			beforeSend: function(  ) {
+		    	register_status_id = "register_status_"+id;
+		 		$('#'+register_status_id).addClass("glyphicon glyphicon-refresh glyphicon-refresh-animate") 
+		    },
+		    success: function( result ) {
+				register_status_id = "register_status_"+id;
+				
+				if(result.status=='true'){
+			 		$('#'+register_status_id).removeClass("glyphicon glyphicon-refresh glyphicon-refresh-animate") 
+			 		$('#'+register_status_id).addClass("glyphicon glyphicon-ok text-success") 
+	
+					druid_span_id = "druid_span_"+id;
+					druid_link = "<a href='<%= Rails.configuration.argo_catalog%>"+result.druid+"' target='_blank' >"+result.druid+"</a>";
+					$('#'+druid_span_id).html(  druid_link);
+				} else{
+					register_status_id = "register_status_"+id;
+			 		$('#'+register_status_id).removeClass("glyphicon glyphicon-refresh glyphicon-refresh-animate") 
+			 		$('#'+register_status_id).addClass("glyphicon glyphicon-remove text-danger") 
+			 		$('#message_'+id).parent().removeClass('hidden');
+			 		$('#message_'+id).html(result.message);
+				}
+		    },
+		 
+		    error: function( xhr, status, errorThrown ) {
+		 		console.log('ajax fail for id '+id)
+		 		register_status_id = "register_status_"+id;
+		 		$('#'+register_status_id).removeClass("glyphicon glyphicon-refresh glyphicon-refresh-animate") 
+		 		$('#'+register_status_id).addClass("glyphicon glyphicon-remove text-danger") 
+		 		$('#message_'+id).parent().removeClass('hidden');
+		 		$('#message_'+id).html(errorThrown);
+		    },
+		    complete: function( xhr, status ) {
+				console.log('ajax done for id '+id)
+		    }
+		});
+}

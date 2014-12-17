@@ -10,6 +10,12 @@ describe Was::Registrar::RegisterSeedObject do
   end
 
   describe ".register" do
+    it "should register a seed object" do
+      registrar = Was::Registrar::RegisterSeedObject.new
+      hash = {"source_id"=>"aaa", "collection_id"=>"druid:gz033bg3146","uri"=>"http://www.slac.stanford.edu","rights"=>"world"}
+      registrar.register hash
+
+    end
   end
 
   describe ".is_valid" do

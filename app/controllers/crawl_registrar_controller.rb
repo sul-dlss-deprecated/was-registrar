@@ -1,20 +1,24 @@
 require 'was/utilities/dor_utilities.rb' 
 require 'was/registrar/sync_crawl_object.rb' 
+require 'was/registrar/register_crawl_object.rb' 
 
 class CrawlRegistrarController < ApplicationController
  
-  layout 'application'
+  layout 'application'   
+  respond_to :html, :json
+
 
   def index
     @crawls=CrawlItem.all
     
     collections_list_hash = Was::Utilities::DorUtilities.get_collections_list
     
-    @collections_list = [["aaa","aaa"],["bbb","bbb"]]
-   # collections_list_hash.each do | collection|
-   #     result = [collection[:title],collection[:druid]]
-   #     @collections_list.push(result)
-   # end
+   # @collections_list = [["aaa","aaa"],["bbb","bbb"]]
+   @collections_list=[]
+    collections_list_hash.each do | collection|
+        result = [collection[:title],collection[:druid]]
+        @collections_list.push(result)
+    end
   end
   
   def do_action
@@ -37,6 +41,7 @@ class CrawlRegistrarController < ApplicationController
   def register( crawl_ids)
     
       @crawl_list = []
+      puts crawl_ids
       
       unless crawl_ids.nil? then 
         crawl_ids.each do | id |
@@ -45,26 +50,28 @@ class CrawlRegistrarController < ApplicationController
           rescue ActiveRecord::RecordNotFound => e
             crawl_item =  CrawlItem.new(id:id)
           end
-          @crawl_list.push(CrawlItem)
+          @crawl_list.push(crawl_item)
         end
       end
       render(:register)
   end
   
-  def register_one_item(label, collection_id)
-    sleep(5)
-    writer = Was::Registrar::SourceXmlWriter.new   Rails.configuration.staging_path
+  def register_one_item 
 
+    crawl_id = params["id"]
+    crawl_item =  CrawlItem.find crawl_id
+         
     registrar = Was::Registrar::RegisterCrawlObject.new  
     @register_status = {}
     
     begin
-      druid = registrar.register label, collection_id
-      writer.write_xml seed_item.serializable_hash
-      @register_status['druid']= seed_item.druid_id
+      druid = registrar.register crawl_item.serializable_hash
+      crawl_item.update(druid_id: "#{druid}")
+      @register_status['druid']= crawl_item.druid_id
       @register_status['status'] = true
     
     rescue Exception => e
+      puts e
       @register_status['status'] = false
       @register_status['message'] = e.message  
     end
