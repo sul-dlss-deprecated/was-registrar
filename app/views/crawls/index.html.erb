@@ -41,7 +41,7 @@ function reset_datatable_controls(){
 			
 			$.ajax({
 		    	
-		        url: "/crawl_registrar/update_collection",
+		        url: "/crawls/update_collection",
 		        type: 'get',
 				data : {
 					id : id,
@@ -102,7 +102,7 @@ function reset_datatable_controls(){
 			console.log(new_source_id_val);
 			$.ajax({
 		    	
-		        url: "/crawl_registrar/update_source_id",
+		        url: "/crawls/update_source_id",
 		        type: 'get',
 				data : {
 					id : id,
@@ -135,9 +135,9 @@ function reset_source_ids_controls(id){
 }
 
 </script>
-<div ><a href="/crawl_registrar/sync">Sync</a></div>
+<div ><a href="/crawls/sync">Sync</a></div>
 
-<%= form_tag({controller: "crawl_registrar", action: "do_action", }, method: "get", id: 'crawls_form') do %>
+<%= form_tag({controller: "crawls", action: "do_action", }, method: "get", id: 'crawls_form') do %>
 	
 <div class="panel panel-primary">
   <div class="panel-body">
@@ -171,9 +171,11 @@ function reset_source_ids_controls(id){
 						<div>
 						<%= text_field_tag "crawl_source_id_#{crawl_item.id}", "#{crawl_item.source_id}",  class: "crawl_source_id_input form-control", readonly:true, style:"display:inline-block; width:80%"%>
 						<%= text_field_tag "crawl_original_source_id_#{crawl_item.id}", "#{crawl_item.source_id}",  class: "crawl_source_id_input hidden"%>
-						<span class="glyphicon glyphicon-pencil edit_crawl_source_id" id="edit_crawl_source_id_<%=crawl_item.id%>" ></span>
-						<span class="glyphicon glyphicon-ok text-success save_crawl_source_id" style="display:none;" id="save_crawl_source_id_<%=crawl_item.id%>" ></span>
-						<span class="glyphicon glyphicon-remove text-danger cancel_crawl_source_id" style="display:none;" id="cancel_crawl_source_id_<%=crawl_item.id%>" ></span>
+						<% if crawl_item.druid_id.nil? or crawl_item.druid_id.blank? then%>
+							<span class="glyphicon glyphicon-pencil edit_crawl_source_id" id="edit_crawl_source_id_<%=crawl_item.id%>" ></span>
+							<span class="glyphicon glyphicon-ok text-success save_crawl_source_id" style="display:none;" id="save_crawl_source_id_<%=crawl_item.id%>" ></span>
+							<span class="glyphicon glyphicon-remove text-danger cancel_crawl_source_id" style="display:none;" id="cancel_crawl_source_id_<%=crawl_item.id%>" ></span>
+						<% end %>
 						</div>
 					</td>
 					

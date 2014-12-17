@@ -4,7 +4,7 @@ function register_item(id,type) {
 		if(type == "seed"){
 			url = "/admin/register_one_item";
 		} else if(type == "crawl"){
-			url = "/crawl_registrar/register_one_item"
+			url = "/crawls/register_one_item"
 		}
 		q.queue({
  			async: true,
