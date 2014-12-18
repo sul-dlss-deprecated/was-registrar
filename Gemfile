@@ -39,7 +39,7 @@ gem 'spring',        group: :development
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 gem 'nokogiri'
-
+#gem 'rest_in_place'
 gem "rspec"
 gem 'rspec-xml'
 gem 'rspec-rails'

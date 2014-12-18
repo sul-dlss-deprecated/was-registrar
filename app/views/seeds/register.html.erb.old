@@ -1,6 +1,6 @@
 <script>
 $(  ).ready(function() {
-  $( "#admin-navbar" ).addClass("active")
+  $( "#seeds-navbar" ).addClass("active")
 });
 
 </script>

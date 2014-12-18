@@ -135,7 +135,11 @@ function reset_source_ids_controls(id){
 }
 
 </script>
-<div ><a href="/crawls/sync">Sync</a></div>
+
+<div align="right">
+<a href="/crawls/sync" class="btn btn-default"  >Sync</a>
+</div>
+<br/>
 
 <%= form_tag({controller: "crawls", action: "do_action", }, method: "get", id: 'crawls_form') do %>
 	

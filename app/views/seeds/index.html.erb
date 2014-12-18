@@ -1,6 +1,6 @@
 <script>
 	$().ready(function() {
-		$("#admin-navbar").addClass("active");
+		$("#seeds-navbar").addClass("active");
 		$("#seedt_lists").DataTable();
 
 		$(".toggle_btn").click(function() {
@@ -11,8 +11,11 @@
 	}); 
 </script>
 
-
-<%= form_tag({controller: "admin", action: "do_action"}, method: "get") do %>
+<div align="right">
+<a href="/importer/index" class="btn btn-default"  >Import data</a>
+</div>
+<br/>
+<%= form_tag({controller: "seeds", action: "do_action"}, method: "get") do %>
 	
 <div class="panel panel-primary">
   <div class="panel-body">

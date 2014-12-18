@@ -1,7 +1,7 @@
 require 'was/registrar/register_seed_object.rb' 
 require 'was/registrar/source_xml_writer.rb' 
 
-class AdminController < ApplicationController
+class SeedsController < ApplicationController
   
   layout 'application'
   respond_to :html, :json

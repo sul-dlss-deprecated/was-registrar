@@ -19,7 +19,7 @@
 <script>
 $().ready(function(){
 	$("#hiddenspan").hide();
-	$("#admin-navbar").addClass("active");
+	$("#seeds-navbar").addClass("active");
 
 });
 
@@ -35,4 +35,4 @@ $("#register_status_<%=seed_item.id%>").ready(function(){
 
 
 <%= render partial: "shared/register", locals: {object_list: @seed_list} %>
-<div align="right"><a href="/admin/index">Return to admin page</div>
+<div align="right"><a href="/seeds/index">Return to admin page</div>
