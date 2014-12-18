@@ -160,8 +160,8 @@ function reset_source_ids_controls(id){
 						<% end %>
 					</td>
 					<td>
-						<% unless crawl_item.druid_id.nil? and crawl_item.druid_id.blank? then%>
-					 	<a href='<%= Rails.configuration.argo_catalog%><%= crawl_item.druid_id%>' target='_blank' ><%= crawl_item.druid_id%></a>
+						<% unless crawl_item.druid_id.nil? or crawl_item.druid_id.blank? then%>
+					 	<a href='<%= format_druid(crawl_item.druid_id) %>' target='_blank' ><%= crawl_item.druid_id%></a>
 						<%end%>
 					</td>
 					
@@ -186,7 +186,7 @@ function reset_source_ids_controls(id){
 							<span id="save_<%=crawl_item.id%>"  class="save_collection" />
 							</span>
 						<% else %>
-							<%= crawl_item.collection_id %>
+							<%= raw format_collection(crawl_item.collection_id, @collections_list) %>
 						<% end %>						
 					</td>
 				</tr>
