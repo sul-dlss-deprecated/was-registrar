@@ -1,3 +1,4 @@
+require 'was/registrar/register_object.rb'
 
 
 module Was
