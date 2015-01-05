@@ -28,7 +28,7 @@ set :deploy_to, '/home/lyberadmin/was-registrar'
 # set :linked_files, %w{config/database.yml}
 
 # Default value for linked_dirs is []
-set :linked_dirs, %w{bin log tmp/pids tmp/cache config/environments tmp/sockets vendor/bundle public/system db}
+set :linked_dirs, %w{bin log config/environments  vendor/bundle public/system }
 
 # Default value for default_env is {}
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
@@ -42,7 +42,7 @@ namespace :deploy do
   task :restart do
     on roles(:app), in: :sequence, wait: 5 do
       # Your restart mechanism here, for example:
-      # execute :touch, release_path.join('tmp/restart.txt')
+      execute :touch, release_path.join('tmp/restart.txt')
     end
   end
 
