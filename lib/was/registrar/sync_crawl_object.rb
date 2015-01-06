@@ -1,5 +1,7 @@
 module Was
   module Registrar
+    
+    # makes syncronization between the available crawl jobs, database, and DOR repo.
     class SyncCrawlObject 
 
       def sync_all
@@ -7,6 +9,7 @@ module Was
         sync_dor
       end
       
+      # Reads the job directories from the staging mount
       def sync_staging
         
         get_jobs_directories.each do | job_dir |
@@ -32,7 +35,7 @@ module Was
         return short_job_dir_list
       end
       
-      
+      # Reads the crawl objects from DOR
       def sync_dor
         items_list = Was::Utilities::DorUtilities.get_items_list
 

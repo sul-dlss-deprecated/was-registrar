@@ -7,8 +7,6 @@ module ApplicationHelper
     end 
   end
   
-     # @collections_list = [["aaa","value"],["bbb","bbb"]]
-
   def format_collection(collection_id, collections_list)
     
     if collection_id.nil? or collection_id.blank? then

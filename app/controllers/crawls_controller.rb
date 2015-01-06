@@ -13,8 +13,7 @@ class CrawlsController < ApplicationController
     
     collections_list_hash = Was::Utilities::DorUtilities.get_collections_list
     
-   # @collections_list = [["aaa","aaa"],["bbb","bbb"]]
-   @collections_list=[]
+    @collections_list=[]
     collections_list_hash.each do | collection|
         result = [collection[:title],collection[:druid]]
         @collections_list.push(result)

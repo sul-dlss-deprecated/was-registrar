@@ -3,10 +3,16 @@ require 'was/registrar/register_object.rb'
 
 module Was
   module Registrar
+    
+    # Registers crawl object
     class RegisterCrawlObject < RegisterObject
       def initalize
       end
       
+      # Registers crawl object based on crawl item record
+      # @param [Hash] crawl_item_hash is a hash that represents the crawl item
+      # @raise [Error] if there is a missing parameters
+      # @return [String] the druid id as retruned from the registering object
       def register crawl_item_hash
 
         params = convert_column_to_params( crawl_item_hash )
@@ -19,6 +25,7 @@ module Was
 
       end
       
+      # @return [Boolean] true if the required parameters exist
       def is_valid? params
         if  params[:source_id].nil? or params[:source_id].blank? or
             params[:label].nil? or params[:label].blank? or
@@ -28,9 +35,8 @@ module Was
         return true        
       end
       
+      # Converts the database columns into params that could be passed to the registration service   
       def convert_column_to_params crawl_item_hash
-    
-        
         params= {
             :object_type  => 'item', 
             :admin_policy => Rails.configuration.apo,

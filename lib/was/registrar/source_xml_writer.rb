@@ -2,6 +2,8 @@ require 'nokogiri'
 
 module Was
   module Registrar
+    
+    # Writes the XML file that represents the seed object, this XML will be read later by wasSeedPreassemblyWF
     class SourceXmlWriter
   
       def initialize( location_path)

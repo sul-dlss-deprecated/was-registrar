@@ -6,8 +6,11 @@ module Was
       def initalize
       end
       
-      #It will raise an exception if anything happenes during the registration process
-      def register seed_item_hash
+      # Registers crawl object based on crawl item record
+      # @param [Hash] crawl_item_hash is a hash that represents the crawl item
+      # @raise [Error] if there is a missing parameters
+      # @return [String] the druid id as retruned from the registering object
+       def register seed_item_hash
         druid = nil
 
         params = convert_column_to_params( seed_item_hash )
@@ -20,7 +23,7 @@ module Was
         return druid
       end
       
-      
+      # @return [Boolean] true if the required parameters exist
       def is_valid? params
         if  params[:source_id].nil? or params[:source_id].blank? or
             params[:collection].nil? or params[:collection].blank? or
@@ -29,7 +32,8 @@ module Was
         end
         return true        
       end
-    
+      
+      # Converts the database columns into params that could be passed to the registration service   
       def convert_column_to_params seed_item_hash
     
         params= {
