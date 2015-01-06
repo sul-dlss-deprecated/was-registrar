@@ -7,7 +7,6 @@ module Was
       
       
       def register_object_using_web_service params
-        puts params
         
         begin
          response=RestClient.post(Rails.configuration.service_root,  params, :timeout => 60, :open_timeout => 60)
@@ -16,6 +15,7 @@ module Was
         rescue Exception=> e
           raise "Error in registring the object. "+e.message 
         end
+        
         puts response.body
         druid = response.body
         if valid_druid?(druid)
