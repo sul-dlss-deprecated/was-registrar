@@ -1,4 +1,4 @@
-require 'was/registrar/register_object.rb'
+require 'was/registrar/register_object'
 
 
 module Was
@@ -16,7 +16,7 @@ module Was
       def register crawl_item_hash
 
         params = convert_column_to_params( crawl_item_hash )
-        if is_valid?(params) then
+        if is_valid?(params)
           druid = register_object_using_web_service params
         else
           raise "Missing required parameters #{params}"
@@ -27,12 +27,13 @@ module Was
       
       # @return [Boolean] true if the required parameters exist
       def is_valid? params
-        if  params[:source_id].nil? or params[:source_id].blank? or
-            params[:label].nil? or params[:label].blank? or
-            params[:collection].nil? or params[:collection].blank? then
-            return false
+        if  params[:source_id].present? &&
+            params[:label].present? &&
+            params[:collection].present?
+            then
+            return true
         end
-        return true        
+        return false        
       end
       
       # Converts the database columns into params that could be passed to the registration service   
@@ -46,7 +47,6 @@ module Was
             :initiate_workflow => "wasCrawlPreassemblyWF",
             :rights       => "none",
           }
-
         return params
       end
  

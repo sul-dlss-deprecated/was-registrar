@@ -15,7 +15,7 @@ module Was
         get_jobs_directories.each do | job_dir |
           crawl_item = CrawlItem.find_by job_directory: job_dir
           
-          if crawl_item.nil? then
+          if crawl_item.nil?
             CrawlItem.create({:job_directory=>job_dir, :on_disk=> true })
           else
             crawl_item.update(:on_disk=>true)
@@ -41,11 +41,9 @@ module Was
 
         items_list.each do |item|
           crawl_item = CrawlItem.find_by job_directory: item[:title]
-          puts item[:title]
           unless crawl_item.nil?
             crawl_item.update(:druid_id => item[:druid])
           end
-           
         end    
       end
 

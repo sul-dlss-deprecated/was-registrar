@@ -1,8 +1,9 @@
-require 'was/registrar/register_object.rb'
+require 'was/registrar/register_object'
 
 module Was
   module Registrar
     class RegisterSeedObject < RegisterObject
+      
       def initalize
       end
       
@@ -13,7 +14,7 @@ module Was
        def register seed_item_hash
         druid = nil
 
-        params = convert_column_to_params( seed_item_hash )
+        params = convert_column_to_params(seed_item_hash)
         
         if is_valid?(params) then
           druid = register_object_using_web_service params
@@ -25,12 +26,13 @@ module Was
       
       # @return [Boolean] true if the required parameters exist
       def is_valid? params
-        if  params[:source_id].nil? or params[:source_id].blank? or
-            params[:collection].nil? or params[:collection].blank? or
-            params[:label].nil? or params[:label].blank? then
-            return false
+        if  params[:source_id].present? &&
+            params[:collection].present? &&
+            params[:label].present? 
+            then
+            return true
         end
-        return true        
+        return false        
       end
       
       # Converts the database columns into params that could be passed to the registration service   
@@ -44,12 +46,8 @@ module Was
             :collection   => seed_item_hash['collection_id'],
             :initiate_workflow => "wasSeedPreassemblyWF",
           }
-          
-        if seed_item_hash['rights'].nil? or seed_item_hash['rights'].blank? then
-          params[:rights] = nil
-        else 
-           params[:rights] =seed_item_hash['rights']
-        end
+        params[:rights] = seed_item_hash['rights'].present? ? seed_item_hash['rights'] : nil
+
         return params
       end
       

@@ -1,5 +1,5 @@
-require 'was/importer/data_importer_from_text.rb' 
-require 'was/importer/data_importer_results.rb'
+require 'was/importer/data_importer_from_text' 
+require 'was/importer/data_importer_results'
 
 class ImporterController < ApplicationController
   
@@ -17,6 +17,5 @@ class ImporterController < ApplicationController
 
     data_importer = Was::Importer::DataImporterFromText.new(seed_file_text, metadata_file_text)
     @result_list = data_importer.load()
-  end
-  
+  end  
 end

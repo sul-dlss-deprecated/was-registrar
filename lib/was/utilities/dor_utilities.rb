@@ -38,9 +38,6 @@ module Was
           end
           return items_list
       end
-         
-      
-      
     end
   end
 end
