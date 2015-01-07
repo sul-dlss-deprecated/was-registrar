@@ -1,3 +1,5 @@
+[![Build Status](https://api.travis-ci.org/sul-dlss/was-registrar.svg)](https://travis-ci.org/sul-dlss/was-registrar)
+
 == README
 WAS Registrar is responsible of faciltating the web archiving service object registration process. It has two main parts
 
@@ -6,3 +8,6 @@ It reads the available crawl jobs and gives the service manager the ability to r
 
 === Seed registration
 It reads two files that represents the main seed URI list and its related XML metadata. It gives the service manager the ability to register the seed object.
+
+== Requirement
+The project is build and tested using Rubt 2.1.4 and Rails 4.1.4
