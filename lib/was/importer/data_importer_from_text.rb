@@ -72,7 +72,6 @@ module Was
         end
       
         def extract_source_xml(uri)
-          puts "In the extract #{@source_metadata_xml_doc}"
           unless @source_metadata_xml_doc.nil? then     
             return @source_metadata_xml_doc.xpath("//seed[url=\"#{uri}\"]")
           end

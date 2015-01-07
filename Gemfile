@@ -41,10 +41,10 @@ gem 'spring',        group: :development
 gem 'nokogiri'
 #gem 'rest_in_place'
 gem "rspec"
-gem 'rspec-xml'
+#gem 'rspec-xml'
 gem 'rspec-rails'
 gem 'rest-client'
-
+gem 'equivalent-xml'
 
 group :deployment do
   gem 'capistrano', '~> 3.0'

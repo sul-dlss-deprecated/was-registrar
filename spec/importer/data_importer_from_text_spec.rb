@@ -1,10 +1,10 @@
 require 'spec_helper'
  
-describe WAS::DataImporterFromText do
+describe Was::Importer::DataImporterFromText do
 
   before :all do
     @epa_uri = "http://www.epa.gov/"
-    collection_2361_metadata_file = "spec/data/collectionFeed_2361.xml"
+    collection_2361_metadata_file = "spec/fixtures/collectionFeed_2361.xml"
     @collection_xml = Nokogiri::XML(File.read(collection_2361_metadata_file))
   end
 
@@ -19,34 +19,34 @@ describe WAS::DataImporterFromText do
         
           text = "head1\thead2\thead3\na\tb\t3\n"
         
-          data_importer = WAS::DataImporterFromText.new text
+          data_importer = Was::Importer::DataImporterFromText.new text
           data_importer.load()
       end
       
       it "should create seed_item for each record" do
-        
       end
   end
 
 
   describe ".extract_source_xml" do
-    it "return the valid xml for an existent URI" do
-      data_importer = WAS::DataImporterFromText.new '' 
+    it "should return the valid xml for an existent URI" do
+      data_importer = Was::Importer::DataImporterFromText.new '' 
       data_importer.instance_variable_set(:@source_metadata_xml_doc,@collection_xml)
       xml_element = data_importer.extract_source_xml(@epa_uri)
-      expect(xml_element.to_s).to eq(@epa_xml) 
+      
+      expect(Nokogiri::XML(xml_element.to_s) ).to be_equivalent_to(Nokogiri::XML(@epa_xml) )
     end
     
-    it "returns empty string for non-existent URI" do
-      data_importer = WAS::DataImporterFromText.new '' 
+    it "should return empty string for non-existent URI" do
+      data_importer = Was::Importer::DataImporterFromText.new '' 
       data_importer.instance_variable_set(:@source_metadata_xml_doc,@collection_xml)
       xml_element= data_importer.extract_source_xml('http://non-exitent-uri.non')
       expect(xml_element.to_s).to eq('')
     end
   end
   
-  it "returns empty string for null xml doc" do
-      data_importer = WAS::DataImporterFromText.new '' 
+  it "should return empty string for null xml doc" do
+      data_importer = Was::Importer::DataImporterFromText.new '' 
       xml_element= data_importer.extract_source_xml(@epa_uri)
       expect(xml_element.to_s).to eq('')
   end
