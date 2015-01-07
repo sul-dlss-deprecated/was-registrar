@@ -1,4 +1,4 @@
-[![Build Status](https://api.travis-ci.org/sul-dlss/was-registrar.svg)](https://travis-ci.org/sul-dlss/was-registrar)
+[![Build Status](https://travis-ci.org/sul-dlss/was-registrar.svg?branch=master)](https://travis-ci.org/sul-dlss/was-registrar)
 
 == README
 WAS Registrar is responsible of faciltating the web archiving service object registration process. It has two main parts
