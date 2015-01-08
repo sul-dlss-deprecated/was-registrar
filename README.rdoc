@@ -2,7 +2,7 @@
 {<img src="https://travis-ci.org/sul-dlss/was-registrar.svg?branch=master" alt="Build Status" />}[https://travis-ci.org/sul-dlss/was-registrar]
 
 
-== README
+== Description
 WAS Registrar is responsible of faciltating the web archiving service object registration process. It has two main parts
 
 === Crawl registration
@@ -12,4 +12,10 @@ It reads the available crawl jobs and gives the service manager the ability to r
 It reads two files that represents the main seed URI list and its related XML metadata. It gives the service manager the ability to register the seed object.
 
 == Requirement
-The project is build and tested using Rubt 2.1.4 and Rails 4.1.4
+The project is built and tested using Ruby 2.1.4 and Rails 4.1.4. The current version uses a simple sqlite 3 database, it may be replaced by MySql database for production deployment.
+
+== Deployment
+The project can be deployed using Capistrano. The project should be deployed on the machine that has an access to Web Archiving Staging mount "/web-archiving-stage/". Was-Registrar reads/writes data to this mount to be accessible to the wasSeedPreassemblyWF and wasCrawlPreassemblyWF.
+
+== Operation
+The detailed operations guide will be available to the service manager on protected Consul wiki.
