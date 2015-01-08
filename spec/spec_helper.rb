@@ -1,3 +1,6 @@
+require 'coveralls'
+Coveralls.wear!
+
 require_relative '../lib/was/importer/data_importer'
 require_relative '../lib/was/importer/data_importer_results'
 require_relative '../lib/was/importer/data_importer_from_text'
@@ -10,6 +13,7 @@ require_relative '../lib/was/utilities/dor_utilities'
 require 'rspec/matchers'
 require 'equivalent-xml'
 require 'nokogiri'
+
 
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 ENV["RAILS_ENV"] ||= 'development'

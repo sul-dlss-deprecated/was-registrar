@@ -45,7 +45,7 @@ gem "rspec"
 gem 'rspec-rails'
 gem 'rest-client'
 gem 'equivalent-xml'
-
+gem 'coveralls', require: false
 group :deployment do
   gem 'capistrano', '~> 3.0'
   gem 'capistrano-rvm'
