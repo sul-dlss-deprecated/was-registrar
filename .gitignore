@@ -1,1 +1,2 @@
 config/environments/development.rb
+config/database.yml
