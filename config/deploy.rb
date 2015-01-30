@@ -1,7 +1,7 @@
 # config valid only for Capistrano 3.1
-lock '3.3.3'
+#lock '3.3.3'
 
-set :rvm_ruby_string, 'ruby-2.0.0'
+set :rvm_ruby_string, 'ruby-2.1.4'
 
 set :application, 'was-registrar'
 set :repo_url, 'https://github.com/sul-dlss/was-registrar.git'
@@ -10,7 +10,7 @@ set :repo_url, 'https://github.com/sul-dlss/was-registrar.git'
 # ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }.call
 
 # Default deploy_to directory is /var/www/my_app
-set :deploy_to, '/home/lyberadmin/was-registrar'
+set :deploy_to, '/opt/app/was/was-registrar'
 
 # Default value for :scm is :git
 # set :scm, :git
@@ -28,7 +28,7 @@ set :deploy_to, '/home/lyberadmin/was-registrar'
 # set :linked_files, %w{config/database.yml}
 
 # Default value for linked_dirs is []
-set :linked_dirs, %w{bin log config/environments  vendor/bundle public/system }
+set :linked_dirs, %w{bin log config  vendor/bundle public/system }
 
 # Default value for default_env is {}
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
@@ -38,6 +38,10 @@ set :linked_dirs, %w{bin log config/environments  vendor/bundle public/system }
 
 namespace :deploy do
 
+  task :start do
+    bundle exec cap setup
+  end
+  
   desc 'Restart application'
   task :restart do
     on roles(:app), in: :sequence, wait: 5 do
