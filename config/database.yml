@@ -4,7 +4,7 @@ default: &default
   timeout: 5000
 
 test:
-  adapter: sqllite3
-  database: was-registrar
-  username: travis
+  adapter: mysql2
+  database: was_registrar
+  username: root
   encoding: utf8
