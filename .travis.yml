@@ -5,4 +5,5 @@ rvm:
 language: ruby
 
 before_script:
+  - mysql -e 'create database was-registrar;'
   - "bundle exec rake db:migrate"
