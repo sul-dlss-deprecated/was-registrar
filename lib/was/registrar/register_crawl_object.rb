@@ -15,21 +15,21 @@ module Was
       # @return [String] the druid id as retruned from the registering object
       def register crawl_item_hash
 
-        params = convert_column_to_params( crawl_item_hash )
-        if is_valid?(params)
-          druid = register_object_using_web_service params
+        register_params = convert_column_to_params( crawl_item_hash )
+        if is_valid?(register_params)
+          druid = register_object_using_web_service register_params
         else
-          raise "Missing required parameters #{params}"
+          raise "Missing required parameters #{register_params}"
         end
         return druid
 
       end
       
       # @return [Boolean] true if the required parameters exist
-      def is_valid? params
-        if  params[:source_id].present? &&
-            params[:label].present? &&
-            params[:collection].present?
+      def is_valid? register_params
+        if  register_params[:source_id].present? &&
+            register_params[:label].present? &&
+            register_params[:collection].present?
             then
             return true
         end
@@ -38,7 +38,7 @@ module Was
       
       # Converts the database columns into params that could be passed to the registration service   
       def convert_column_to_params crawl_item_hash
-        params= {
+        register_params= {
             :object_type  => 'item', 
             :admin_policy => Rails.configuration.apo,
             :source_id    => crawl_item_hash['source_id'],
@@ -47,7 +47,7 @@ module Was
             :initiate_workflow => "wasCrawlPreassemblyWF",
             :rights       => "none",
           }
-        return params
+        return register_params
       end
  
     end

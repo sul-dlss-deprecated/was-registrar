@@ -14,21 +14,21 @@ module Was
        def register seed_item_hash
         druid = nil
 
-        params = convert_column_to_params(seed_item_hash)
+        register_params = convert_column_to_params(seed_item_hash)
         
-        if is_valid?(params) then
-          druid = register_object_using_web_service params
+        if is_valid?(register_params) then
+          druid = register_object_using_web_service register_params
         else
-          raise "Missing required parameters #{params}"
+          raise "Missing required parameters #{register_params}"
         end
         return druid
       end
       
       # @return [Boolean] true if the required parameters exist
-      def is_valid? params
-        if  params[:source_id].present? &&
-            params[:collection].present? &&
-            params[:label].present? 
+      def is_valid? register_params
+        if  register_params[:source_id].present? &&
+            register_params[:collection].present? &&
+            register_params[:label].present? 
             then
             return true
         end
@@ -38,7 +38,7 @@ module Was
       # Converts the database columns into params that could be passed to the registration service   
       def convert_column_to_params seed_item_hash
     
-        params= {
+        register_params= {
             :object_type  => 'item',
             :admin_policy => Rails.configuration.apo,
             :source_id    => "#{seed_item_hash['source_id']}", #{Time.now.to_i}",
@@ -46,9 +46,9 @@ module Was
             :collection   => seed_item_hash['collection_id'],
             :initiate_workflow => "wasSeedPreassemblyWF",
           }
-        params[:rights] = seed_item_hash['rights'].present? ? seed_item_hash['rights'] : nil
+        register_params[:rights] = seed_item_hash['rights'].present? ? seed_item_hash['rights'] : nil
 
-        return params
+        return register_params
       end
       
     end
