@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 20141216182720) do
     t.boolean  "embargo"
     t.string   "source"
     t.string   "collection_id"
-    t.text     "source_xml",    limit: 255
+    t.text     "source_xml"
     t.string   "source_file"
     t.date     "import_date"
     t.datetime "created_at"
