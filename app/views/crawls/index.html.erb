@@ -137,72 +137,64 @@ function reset_source_ids_controls(id){
 </script>
 
 <div align="right">
-<a href="/crawls/sync" class="btn btn-default"  >Sync</a>
+	<a href="/crawls/sync" class="btn btn-default"  >Sync</a>
 </div>
 <br/>
 
 <%= form_tag({controller: "crawls", action: "do_action", }, method: "get", id: 'crawls_form') do %>
-	
+
 <div class="panel panel-primary">
-  <div class="panel-body">
- 	<table id="crawl_items_table">
-		<thead>
-			<tr>
-				<th>Check</th>
-				<th>Druid</th>
-				<th>Job directory</th>
-				<th>Source Id</th>
-				<th>Collection</th>
-			</tr>
-		</thead>
-		<tbody>
-			<% @crawls.each_with_index do |crawl_item, crawl_item_id| %>
+	<div class="panel-body">
+		<table id="crawl_items_table">
+			<thead>
 				<tr>
-					<td>
-						<% if crawl_item.druid_id.nil? or crawl_item.druid_id.blank? then%>	
-						 <%= check_box_tag "crawls[]", crawl_item.id %> 
-						<% end %>
+					<th>Check</th>
+					<th>Druid</th>
+					<th>Job directory</th>
+					<th>Source Id</th>
+					<th>Collection</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% @crawls.each_with_index do |crawl_item, crawl_item_id| %>
+				<tr>
+					<td> <% if crawl_item.druid_id.nil? or crawl_item.druid_id.blank? then%>
+					<%= check_box_tag "crawls[]", crawl_item.id %>
+					<% end %> </td>
+					<td> <% unless crawl_item.druid_id.nil? or crawl_item.druid_id.blank? then%> 
+						<a href='<%= format_druid(crawl_item.druid_id) %>' target='_blank' ><%= crawl_item.druid_id%></a> 
+						<%end%> 
 					</td>
+
+					<td><%= format_job_directory(crawl_item.job_directory)%> </td>
+
 					<td>
-						<% unless crawl_item.druid_id.nil? or crawl_item.druid_id.blank? then%>
-					 	<a href='<%= format_druid(crawl_item.druid_id) %>' target='_blank' ><%= crawl_item.druid_id%></a>
-						<%end%>
-					</td>
-					
-					<td><%=format_job_directory(crawl_item.job_directory)%> </td>
-					
-					<td>
-						<div>
+					<div>
 						<%= text_field_tag "crawl_source_id_#{crawl_item.id}", "#{crawl_item.source_id}",  class: "crawl_source_id_input form-control", readonly:true, style:"display:inline-block; width:80%"%>
 						<%= text_field_tag "crawl_original_source_id_#{crawl_item.id}", "#{crawl_item.source_id}",  class: "crawl_source_id_input hidden"%>
 						<% if crawl_item.druid_id.nil? or crawl_item.druid_id.blank? then%>
-							<span class="glyphicon glyphicon-pencil edit_crawl_source_id" id="edit_crawl_source_id_<%=crawl_item.id%>" ></span>
-							<span class="glyphicon glyphicon-ok text-success save_crawl_source_id" style="display:none;" id="save_crawl_source_id_<%=crawl_item.id%>" ></span>
-							<span class="glyphicon glyphicon-remove text-danger cancel_crawl_source_id" style="display:none;" id="cancel_crawl_source_id_<%=crawl_item.id%>" ></span>
+							<span class="glyphicon glyphicon-pencil edit_crawl_source_id" id="edit_crawl_source_id_<%= crawl_item.id%>" ></span>
+							<span class="glyphicon glyphicon-ok text-success save_crawl_source_id" style="display:none;" id="save_crawl_source_id_<%= crawl_item.id%>" ></span>
+							<span class="glyphicon glyphicon-remove text-danger cancel_crawl_source_id" style="display:none;" id="cancel_crawl_source_id_<%= crawl_item.id%>" ></span>
 						<% end %>
-						</div>
-					</td>
-					
-					<td >
-						<% if crawl_item.druid_id.nil? or crawl_item.druid_id.blank? then%>	
-							<%= select_tag("collection_list_#{crawl_item.id}", options_for_select(@collections_list, crawl_item.collection_id), class:"collection_dropdown", :prompt => "Please select") %>
-							<span>
-							<span id="save_<%=crawl_item.id%>"  class="save_collection" />
-							</span>
+					</div></td>
+
+					<td> 
+						<% if crawl_item.druid_id.nil? or crawl_item.druid_id.blank? then%>
+							<%= select_tag("collection_list_#{crawl_item.id}", options_for_select(@collections_list, crawl_item.collection_id), class:"collection_dropdown", :prompt => "Please select") %> 
+							<span> <span id="save_<%= crawl_item.id%>"  class="save_collection" /> </span> 
 						<% else %>
 							<%= raw format_collection(crawl_item.collection_id, @collections_list) %>
-						<% end %>						
+						<% end %> 
 					</td>
 				</tr>
-			<% end %>
-		</tbody>
-	</table> 
+				<% end %>
+			</tbody>
+		</table>
 	</div>
 </div>
 <%= select_tag(:action_list, options_for_select(['Register']), class:"btn btn-default  dropdown-toggle") %>
 <%= submit_tag("Go", class:"btn btn-default") %>
 
 <% end %>
-
-
 

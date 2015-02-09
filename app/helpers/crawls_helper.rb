@@ -1,6 +1,5 @@
 require 'time'
 
-
 module CrawlsHelper
    def format_job_directory job_directory
      
