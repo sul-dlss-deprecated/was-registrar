@@ -15,8 +15,10 @@ module Was
           collections_list=[]
           data = JSON.parse(collection_list)
           collection_json = data['collections']
-          collection_json.each do | collection|
-            collections_list.push({:title=>collection['title'], :druid=>collection['druid']})
+          unless collection_json.nil? then
+            collection_json.each do | collection|
+              collections_list.push({:title=>collection['title'], :druid=>collection['druid']})
+            end
           end
           return collections_list
           
@@ -33,8 +35,10 @@ module Was
           items_list=[]
           data = JSON.parse(response.body)
           items_json = data['items']
-          items_json.each do | item|
-            items_list.push({:title=>item['title'], :druid=>item['druid']})
+          unless items_json.nil? then
+            items_json.each do | item|
+              items_list.push({:title=>item['title'], :druid=>item['druid']})
+            end
           end
           return items_list
       end
