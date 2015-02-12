@@ -29,7 +29,7 @@ module Was
         
         short_job_dir_list = []
         absoulte_job_dir_list.each do | absoulte_job_dir |
-          short_job_dir_list.append( absoulte_job_dir.sub(jobs_directory,"") )
+          short_job_dir_list.append( absoulte_job_dir.sub(jobs_directory,"")[0..-2] )
         end
         
         return short_job_dir_list

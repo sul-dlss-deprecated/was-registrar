@@ -8,7 +8,7 @@ module Was
         begin
           response=RestClient.get("#{Rails.configuration.apo_list_call}#{Rails.configuration.apo}",  :timeout => 60, :open_timeout => 60)
           rescue Exception=> e
-            puts "Error in registring the object. "+e.message 
+            puts "Error in reading collectin list. "+e.message 
             return []
           end
           collection_list= response.body
@@ -21,8 +21,6 @@ module Was
             end
           end
           return collections_list
-          
-          
       end
           
       def self.get_items_list
