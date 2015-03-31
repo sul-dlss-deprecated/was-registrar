@@ -45,7 +45,7 @@ module Was
             :label        => crawl_item_hash['job_directory'],
             :collection   => crawl_item_hash['collection_id'],
             :initiate_workflow => "wasCrawlPreassemblyWF",
-            :rights       => "none",
+            :rights       => "dark",
           }
         return register_params
       end

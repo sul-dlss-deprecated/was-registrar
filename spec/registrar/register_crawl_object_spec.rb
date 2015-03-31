@@ -39,7 +39,7 @@ describe Was::Registrar::RegisterCrawlObject do
   
   describe ".is_valid?" do
     it "should return true if all the required fields appear" do
-      params = {:object_type=>"item", :admin_policy=>"druid:gv121gk7467", :source_id=>"aaa", :label=>"job/directory", :collection=>"druid:gz033bg3146", :initiate_workflow=>"wasCrawlPreassemblyWF", :rights=>"none"}
+      params = {:object_type=>"item", :admin_policy=>"druid:gv121gk7467", :source_id=>"aaa", :label=>"job/directory", :collection=>"druid:gz033bg3146", :initiate_workflow=>"wasCrawlPreassemblyWF", :rights=>"dark"}
       registrar = Was::Registrar::RegisterCrawlObject.new
 
       expect(registrar.is_valid?(params)).to be true
@@ -47,20 +47,20 @@ describe Was::Registrar::RegisterCrawlObject do
     end
     
     it "should return false if source_id is missing" do
-      params = {:object_type=>"item", :admin_policy=>"druid:gv121gk7467",  :label=>"job/directory", :collection=>"druid:gz033bg3146", :initiate_workflow=>"wasCrawlPreassemblyWF", :rights=>"none"}
+      params = {:object_type=>"item", :admin_policy=>"druid:gv121gk7467",  :label=>"job/directory", :collection=>"druid:gz033bg3146", :initiate_workflow=>"wasCrawlPreassemblyWF", :rights=>"dark"}
       registrar = Was::Registrar::RegisterCrawlObject.new
 
       expect(registrar.is_valid?(params)).to be false
     end
     it "should return false if source_id is nil" do
-      params = {:object_type=>"item", :admin_policy=>"druid:gv121gk7467",  :source_id=>nil, :label=>"job/directory", :collection=>"druid:gz033bg3146", :initiate_workflow=>"wasCrawlPreassemblyWF", :rights=>"none"}
+      params = {:object_type=>"item", :admin_policy=>"druid:gv121gk7467",  :source_id=>nil, :label=>"job/directory", :collection=>"druid:gz033bg3146", :initiate_workflow=>"wasCrawlPreassemblyWF", :rights=>"dark"}
       registrar = Was::Registrar::RegisterCrawlObject.new
 
       expect(registrar.is_valid?(params)).to be false
     end
 
    it "should return false if source_id is blank" do
-      params = {:object_type=>"item", :admin_policy=>"druid:gv121gk7467",  :source_id=>"", :label=>"job/directory", :collection=>"druid:gz033bg3146", :initiate_workflow=>"wasCrawlPreassemblyWF", :rights=>"none"}
+      params = {:object_type=>"item", :admin_policy=>"druid:gv121gk7467",  :source_id=>"", :label=>"job/directory", :collection=>"druid:gz033bg3146", :initiate_workflow=>"wasCrawlPreassemblyWF", :rights=>"dark"}
       registrar = Was::Registrar::RegisterCrawlObject.new
 
       expect(registrar.is_valid?(params)).to be false
@@ -68,40 +68,40 @@ describe Was::Registrar::RegisterCrawlObject do
 
 
     it "should return false if collection is missing" do
-      params = {:object_type=>"item", :admin_policy=>"druid:gv121gk7467", :source_id=>"aaa", :label=>"job/directory",  :initiate_workflow=>"wasCrawlPreassemblyWF", :rights=>"none"}
+      params = {:object_type=>"item", :admin_policy=>"druid:gv121gk7467", :source_id=>"aaa", :label=>"job/directory",  :initiate_workflow=>"wasCrawlPreassemblyWF", :rights=>"dark"}
       registrar = Was::Registrar::RegisterCrawlObject.new
 
       expect(registrar.is_valid?(params)).to be false
     end
     it "should return false if collection is nil" do
-      params = {:object_type=>"item", :admin_policy=>"druid:gv121gk7467",  :source_id=>"aaa", :label=>"job/directory", :collection=>nil, :initiate_workflow=>"wasCrawlPreassemblyWF", :rights=>"none"}
+      params = {:object_type=>"item", :admin_policy=>"druid:gv121gk7467",  :source_id=>"aaa", :label=>"job/directory", :collection=>nil, :initiate_workflow=>"wasCrawlPreassemblyWF", :rights=>"dark"}
       registrar = Was::Registrar::RegisterCrawlObject.new
 
       expect(registrar.is_valid?(params)).to be false
     end
 
    it "should return false if collection is blank" do
-      params = {:object_type=>"item", :admin_policy=>"druid:gv121gk7467",  :source_id=>"aaa", :label=>"job/directory", :collection=>"", :initiate_workflow=>"wasCrawlPreassemblyWF", :rights=>"none"}
+      params = {:object_type=>"item", :admin_policy=>"druid:gv121gk7467",  :source_id=>"aaa", :label=>"job/directory", :collection=>"", :initiate_workflow=>"wasCrawlPreassemblyWF", :rights=>"dark"}
       registrar = Was::Registrar::RegisterCrawlObject.new
 
       expect(registrar.is_valid?(params)).to be false
     end
 
    it "should return false if label is missing" do
-      params = {:object_type=>"item", :admin_policy=>"druid:gv121gk7467",  :source_id=>"aaa",  :collection=>"druid:gz033bg3146", :initiate_workflow=>"wasCrawlPreassemblyWF", :rights=>"none"}
+      params = {:object_type=>"item", :admin_policy=>"druid:gv121gk7467",  :source_id=>"aaa",  :collection=>"druid:gz033bg3146", :initiate_workflow=>"wasCrawlPreassemblyWF", :rights=>"dark"}
       registrar = Was::Registrar::RegisterCrawlObject.new
 
       expect(registrar.is_valid?(params)).to be false
     end
     it "should return false if label is nil" do
-      params = {:object_type=>"item", :admin_policy=>"druid:gv121gk7467",  :source_id=>"aaa",  :label=>nil, :collection=>"druid:gz033bg3146", :initiate_workflow=>"wasCrawlPreassemblyWF", :rights=>"none"}
+      params = {:object_type=>"item", :admin_policy=>"druid:gv121gk7467",  :source_id=>"aaa",  :label=>nil, :collection=>"druid:gz033bg3146", :initiate_workflow=>"wasCrawlPreassemblyWF", :rights=>"dark"}
       registrar = Was::Registrar::RegisterCrawlObject.new
 
       expect(registrar.is_valid?(params)).to be false
     end
 
    it "should return false if label is blank" do
-      params = {:object_type=>"item", :admin_policy=>"druid:gv121gk7467",  :source_id=>"aaa",  :label=>"", :collection=>"druid:gz033bg3146", :initiate_workflow=>"wasCrawlPreassemblyWF", :rights=>"none"}
+      params = {:object_type=>"item", :admin_policy=>"druid:gv121gk7467",  :source_id=>"aaa",  :label=>"", :collection=>"druid:gz033bg3146", :initiate_workflow=>"wasCrawlPreassemblyWF", :rights=>"dark"}
       registrar = Was::Registrar::RegisterCrawlObject.new
 
       expect(registrar.is_valid?(params)).to be false
@@ -119,7 +119,7 @@ describe Was::Registrar::RegisterCrawlObject do
       expect(params[:collection]).to eq("druid:gz033bg3146")
       expect(params[:label]).to eq("jobs/directory")
       expect(params[:initiate_workflow]).to eq("wasCrawlPreassemblyWF")
-      expect(params[:rights]).to eq("none")
+      expect(params[:rights]).to eq("dark")
       
     end
     
@@ -132,7 +132,7 @@ describe Was::Registrar::RegisterCrawlObject do
       expect(params[:collection]).to eq("druid:gz033bg3146")
       expect(params[:label]).to be_nil
       expect(params[:initiate_workflow]).to eq("wasCrawlPreassemblyWF")
-      expect(params[:rights]).to eq("none") 
+      expect(params[:rights]).to eq("dark") 
     end
     
     it "should not include unwanted fields" do
@@ -144,7 +144,7 @@ describe Was::Registrar::RegisterCrawlObject do
       expect(params[:collection]).to eq("druid:gz033bg3146")
       expect(params[:label]).to eq("jobs/directory")
       expect(params[:initiate_workflow]).to eq("wasCrawlPreassemblyWF")
-      expect(params[:rights]).to eq("none")
+      expect(params[:rights]).to eq("dark")
       expect(params[:embargo]).to be_nil
     end
     
