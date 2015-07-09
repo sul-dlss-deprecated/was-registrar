@@ -20,7 +20,7 @@ module Was
  
       def build_xml( seed_hash )
         seed_hash['source']  = seed_hash['source'].nil?  ? "AIT" : seed_hash['source']
-        seed_hash['embargo'] = seed_hash['embargo'].nil? ? False : seed_hash['embargo']
+        seed_hash['embargo'] = seed_hash['embargo'].nil? ? "False" : seed_hash['embargo']
         
         staging_xml = Nokogiri::XML::Builder.new do
             item {
