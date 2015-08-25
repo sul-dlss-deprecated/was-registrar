@@ -5,7 +5,6 @@ require File.expand_path('../config/application', __FILE__)
 
 Rails.application.load_tasks
 
-
 require 'rake'
 require 'bundler'
 
@@ -20,6 +19,9 @@ rescue Bundler::BundlerError => e
   $stderr.puts "Run `bundle install` to install missing gems"
   exit e.status_code
 end
+
+# Include raks tasks from lib/tasks directory
+Dir[File.join(File.dirname(__FILE__), 'tasks/**/*.rake')].each {|f| load f }
 
 task :default => :ci  
 

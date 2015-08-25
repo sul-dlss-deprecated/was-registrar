@@ -21,7 +21,8 @@ module WasRegistrar
     # config.i18n.default_locale = :de
     config.assets.enabled = true
 
-    config.autoload_paths += %W(#{config.root}/lib/was)
+    config.autoload_paths += %W(#{config.root}/lib)
+
     config.assets.paths << "#{Rails.root}/app/assets/fonts"
     config.assets.version = '1.0'
 

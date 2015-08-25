@@ -1,0 +1,4 @@
+Source_id	job_directory	collection_id
+WAS:CDLIB:13030-sw1707xc2f	cdl_download/sw10000p0b/13030-sw1707xc2f	druid:ab123cd4567
+WAS:CDLIB:13030-sw1wh2f41f	cdl_download/sw10000p0b/13030-sw1wh2f41f	druid:ab123cd4567
+WAS:CDLIB:13030-sw1wm14j92	cdl_download/sw10000p0b/13030-sw1wm14j92	druid:ab123cd4567

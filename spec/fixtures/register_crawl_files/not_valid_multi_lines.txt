@@ -1,0 +1,3 @@
+Source_id	job_directory	collection_id
+WAS:Test	job1/warc	druid:ab123cd4567a
+WAS:Test		druid:ef123gh4567
