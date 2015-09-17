@@ -1,4 +1,4 @@
-Source_id	job_directory	collection_id
-WAS:Test	job1/warc	druid:ab123cd4567a
-WAS:Test	job1/warc	druid:ab123cd4567
-WAS:Test	job2/warc	druid:ef123gh4567b
+Source_id	job_directory	collection_id	apo_id
+WAS:Test	job1/warc	druid:ab123cd4567a	druid:mn123pq4567
+WAS:Test	job1/warc	druid:ab123cd4567	druid:mn123pq4567
+WAS:Test	job2/warc	druid:ef123gh4567b	druid:mn123pq4567

@@ -1,40 +1,106 @@
 require 'spec_helper'
- 
 
 describe Was::Registrar::RegisterSeedObject do
 
-  before :all do
+  describe '.register_object_using_web_service' do
+    it 'should register object with valid params' do
+      Rails.configuration.service_root = 'https://registr.stanford.edu/'
+      params = {
+        object_type: 'item',
+        admin_policy: 'druid:ab123cd4567',
+        source_id: 'was:baa',
+        label: 'registrar_test',
+        collection: 'druid:kg698nv1738',
+        initiate_workflow: 'wasSeedPreassemblyWF',
+        rights: 'world'
+      }
+      response = double('net http response', to_hash: { 'Status' => ['200 OK'] }, code: 200, body: 'druid:aa111aa1111')
+
+      registrar = Was::Registrar::RegisterObject.new
+      allow(RestClient).to receive(:post).and_return(response)
+      expect(RestClient).to receive(:post).with('https://registr.stanford.edu/', params, timeout: 60, open_timeout: 60)
+      expect(registrar.register_object_using_web_service(params)).to eq('druid:aa111aa1111')
+    end
+    it 'should raise an error if the response is not valid druid' do
+      params = {}
+      response = double('net http response', to_hash: { 'Status' => ['200 OK'] }, code: 200, body: 'not_valid_druid')
+      registrar = Was::Registrar::RegisterObject.new
+      allow(RestClient).to receive(:post).and_return(response)
+      expect { registrar.register_object_using_web_service(params) }.to raise_error('Error in registring the object. Not valid druid returned not_valid_druid')
+    end
+    it 'should raise an error if the response is not valid druid' do
+      params = {}
+      registrar = Was::Registrar::RegisterObject.new
+      expect { registrar.register_object_using_web_service(params) }.to raise_error(RuntimeError)
+    end
   end
 
-  before :each do
-  end
-  
-  
-  describe ".register_object_using_web_service" do
-    
-    it "should register object with valid params" do
-        params=      {
-            :object_type  => 'item',
-            :admin_policy => Rails.configuration.apo,
-            :source_id   => 'was:baa',
-            :label        => "registrar_test",
-            :collection   => "druid:kg698nv1738",
-            :initiate_workflow => "wasSeedPreassemblyWF",
-            :rights=>"world",
-          }
-          
-        registrar = Was::Registrar::RegisterObject.new
-        
-        begin
-        druid = registrar.register_object_using_web_service params
-        puts druid
-        rescue Exception => e
-          puts e.message
-          
-        end
-        
-        #expect(druid).not_to be_nil    
-          
+  describe '.is_valid?' do
+    it 'should return true if all the required fields appear' do
+      params = { object_type: 'item', admin_policy: 'druid:gv121gk7467', source_id: 'aaa', label: 'job/directory', collection: 'druid:gz033bg3146', initiate_workflow: 'wasCrawlPreassemblyWF', rights: 'dark' }
+      registrar = Was::Registrar::RegisterObject.new
+
+      expect(registrar.is_valid?(params)).to be true
     end
-   end
+
+    it 'should return false if source_id is missing' do
+      params = { object_type: 'item', admin_policy: 'druid:gv121gk7467',  label: 'job/directory', collection: 'druid:gz033bg3146', initiate_workflow: 'wasCrawlPreassemblyWF', rights: 'dark' }
+      registrar = Was::Registrar::RegisterObject.new
+
+      expect(registrar.is_valid?(params)).to be false
+    end
+    it 'should return false if source_id is nil' do
+      params = { object_type: 'item', admin_policy: 'druid:gv121gk7467',  source_id: nil, label: 'job/directory', collection: 'druid:gz033bg3146', initiate_workflow: 'wasCrawlPreassemblyWF', rights: 'dark' }
+      registrar = Was::Registrar::RegisterObject.new
+
+      expect(registrar.is_valid?(params)).to be false
+    end
+
+    it 'should return false if source_id is blank'  do
+      params = { object_type: 'item', admin_policy: 'druid:gv121gk7467',  source_id: '', label: 'job/directory', collection: 'druid:gz033bg3146', initiate_workflow: 'wasCrawlPreassemblyWF', rights: 'dark ' }
+      registrar = Was::Registrar::RegisterObject.new
+
+      expect(registrar.is_valid?(params)).to be false
+    end
+
+    it 'should return false if collection is missing' do
+      params = { object_type: 'item', admin_policy: 'druid:gv121gk7467', source_id: 'aaa', label: 'job/directory',  initiate_workflow: 'wasCrawlPreassemblyWF', rights: 'dark' }
+      registrar = Was::Registrar::RegisterObject.new
+
+      expect(registrar.is_valid?(params)).to be false
+    end
+    it 'should return false if collection is nil' do
+      params = { object_type: 'item', admin_policy: 'druid:gv121gk7467',  source_id: 'aaa', label: 'job/directory', collection: nil, initiate_workflow: 'wasCrawlPreassemblyWF', rights: 'dark' }
+      registrar = Was::Registrar::RegisterObject.new
+
+      expect(registrar.is_valid?(params)).to be false
+    end
+
+    it 'should return false if collection is blank'  do
+      params = { object_type: 'item', admin_policy: 'druid:gv121gk7467',  source_id: 'aaa', label: 'job/directory', collection: '', initiate_workflow: 'wasCrawlPreassemblyWF', rights: 'dark ' }
+      registrar = Was::Registrar::RegisterObject.new
+
+      expect(registrar.is_valid?(params)).to be false
+    end
+
+    it 'should return false if label is missing'  do
+      params = { object_type: 'item', admin_policy: 'druid:gv121gk7467',  source_id: 'aaa',  collection: 'druid:gz033bg3146', initiate_workflow: 'wasCrawlPreassemblyWF', rights: 'dark ' }
+      registrar = Was::Registrar::RegisterObject.new
+
+      expect(registrar.is_valid?(params)).to be false
+    end
+    it 'should return false if label is nil' do
+      params = { object_type: 'item', admin_policy: 'druid:gv121gk7467',  source_id: 'aaa',  label: nil, collection: 'druid:gz033bg3146', initiate_workflow: 'wasCrawlPreassemblyWF', rights: 'dark' }
+      registrar = Was::Registrar::RegisterObject.new
+
+      expect(registrar.is_valid?(params)).to be false
+    end
+
+    it 'should return false if label is blank'  do
+      params = { object_type: 'item', admin_policy: 'druid:gv121gk7467',  source_id: 'aaa',  label: '', collection: 'druid:gz033bg3146', initiate_workflow: 'wasCrawlPreassemblyWF', rights: 'dark ' }
+      registrar = Was::Registrar::RegisterObject.new
+
+      expect(registrar.is_valid?(params)).to be false
+    end
+  end
 end

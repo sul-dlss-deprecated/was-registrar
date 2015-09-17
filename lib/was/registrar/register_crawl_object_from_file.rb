@@ -40,8 +40,9 @@ module Was
         source_id = fields[0]
         job_directory = fields[1]
         collection_id = fields[2]
-
-        return { 'source_id' => source_id, 'job_directory' => job_directory, 'collection_id' => collection_id }
+        apo_id = fields[3]
+        
+        return { 'source_id' => source_id, 'job_directory' => job_directory, 'collection_id' => collection_id, 'apo_id' => apo_id }
       end
 
       def self.verify_file(input_file_path)
@@ -60,7 +61,7 @@ module Was
       end
 
       def self.pattern
-        /\A[\S]+\t\S+\tdruid:([a-z]{2})(\d{3})([a-z]{2})(\d{4})\z/
+        /\A[\S]+\t\S+\tdruid:([a-z]{2})(\d{3})([a-z]{2})(\d{4})\tdruid:([a-z]{2})(\d{3})([a-z]{2})(\d{4})\z/
       end
     end
   end

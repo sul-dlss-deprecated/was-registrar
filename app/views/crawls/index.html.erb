@@ -10,7 +10,6 @@ $(document).ready(function() {
 		return true;	
 	});
 
-
 	$('#crawl_items_table')
         .on( 'draw.dt',  function () { 
 		reset_datatable_controls();
@@ -21,6 +20,42 @@ $(document).ready(function() {
 
 function reset_datatable_controls(){
 
+		$(".apo_dropdown").change(function(){
+			id = $(this).attr('id').replace("apo_list_","");
+
+	    	$("#save_"+id).removeClass();
+
+			if( $("#apo_list_"+id).val()==null || $("#apo_list_"+id).val().length==0){
+				$("#save_apo_"+id).addClass('save_apo');
+		    } else {
+				$("#save_apo_"+id).addClass('glyphicon glyphicon-floppy-save save_apo');
+			}
+		
+		});
+		
+		$(".save_apo").click(function (){
+			id = $(this).attr('id').replace("save_apo_","");
+			apo_id = $("#apo_list_"+id).val();
+			
+			$.ajax({
+		    	
+		        url: "/crawls/update_apo",
+		        type: 'get',
+				data : {
+					id : id,
+					format : "json",
+					apo_id : apo_id
+				},
+				success : function (result) {
+			   		$("#save_apo_"+id).removeClass();
+		    		$("#save_apo_"+id).addClass('glyphicon glyphicon-floppy-saved text-success save_apo');
+			    },
+			    error:function (results){   		   		
+			    	$("#save_apo_"+id).removeClass();
+			    	$("#save_apo_"+id).addClass('glyphicon glyphicon-floppy-saved text-danger save_apo');
+		    	}
+		    });
+		});
 	
 		$(".collection_dropdown").change(function(){
 			id = $(this).attr('id').replace("collection_list_","");
@@ -28,19 +63,18 @@ function reset_datatable_controls(){
 	    	$("#save_"+id).removeClass();
 
 			if( $("#collection_list_"+id).val()==null || $("#collection_list_"+id).val().length==0){
-				$("#save_"+id).addClass('save_collection');
+				$("#save_collection_"+id).addClass('save_collection');
 		    } else {
-				$("#save_"+id).addClass('glyphicon glyphicon-floppy-save save_collection');
+				$("#save_collection_"+id).addClass('glyphicon glyphicon-floppy-save save_collection');
 			}
 		
 		});
 		
 		$(".save_collection").click(function (){
-			id = $(this).attr('id').replace("save_","");
+			id = $(this).attr('id').replace("save_collection_","");
 			collection_id = $("#collection_list_"+id).val();
 			
 			$.ajax({
-		    	
 		        url: "/crawls/update_collection",
 		        type: 'get',
 				data : {
@@ -49,22 +83,15 @@ function reset_datatable_controls(){
 					collection_id : collection_id
 				},
 				success : function (result) {
-			   		$("#save_"+id).removeClass();
-		
-			    	if(result.status==true){
-			    		$("#save_"+id).addClass('glyphicon glyphicon-floppy-saved text-success save_collection');
-			    	} else {
-			    		$("#save_"+id).addClass('glyphicon glyphicon-floppy-saved text-danger save_collection');
-			    	}
+			   		$("#save_collection_"+id).removeClass();
+				    $("#save_collection_"+id).addClass('glyphicon glyphicon-floppy-saved text-success save_collection');
 			    },
 			    error:function (results){   		   		
-			    	$("#save_"+id).removeClass();
-			    	$("#save_"+id).addClass('glyphicon glyphicon-floppy-saved text-danger save_collection');
+			    	$("#save_collection_"+id).removeClass();
+			    	$("#save_collection_"+id).addClass('glyphicon glyphicon-floppy-saved text-danger save_collection');
 		    	}
 		    });
 		});
-
-
 
 		$('.crawl_source_id_input').keypress(function(e){
 	    	if ( e.which == 13 ){
@@ -150,8 +177,9 @@ function reset_source_ids_controls(id){
 				<tr>
 					<th>Check</th>
 					<th>Druid</th>
-					<th>Job directory</th>
+					<th>Job Directory</th>
 					<th>Source Id</th>
+					<th>Admin Policy</th>
 					<th>Collection</th>
 				</tr>
 			</thead>
@@ -181,12 +209,22 @@ function reset_source_ids_controls(id){
 
 					<td> 
 						<% if crawl_item.druid_id.nil? or crawl_item.druid_id.blank? then%>
+							<%= select_tag("apo_list_#{crawl_item.id}", options_for_select(@apos_list, crawl_item.apo_id), class:"apo_dropdown", :prompt => "Please select") %> 
+							<span> <span id="save_apo_<%= crawl_item.id%>"  class="save_apo" /> </span> 
+						<% else %>
+							<%= raw format_apo(crawl_item.apo_id, @apos_list) %>
+						<% end %> 
+					</td>
+
+					<td> 
+						<% if crawl_item.druid_id.nil? or crawl_item.druid_id.blank? then%>
 							<%= select_tag("collection_list_#{crawl_item.id}", options_for_select(@collections_list, crawl_item.collection_id), class:"collection_dropdown", :prompt => "Please select") %> 
-							<span> <span id="save_<%= crawl_item.id%>"  class="save_collection" /> </span> 
+							<span> <span id="save_collection_<%= crawl_item.id%>"  class="save_collection" /> </span> 
 						<% else %>
 							<%= raw format_collection(crawl_item.collection_id, @collections_list) %>
 						<% end %> 
 					</td>
+
 				</tr>
 				<% end %>
 			</tbody>
