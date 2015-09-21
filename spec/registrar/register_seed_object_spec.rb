@@ -2,14 +2,10 @@ require 'spec_helper'
  
 
 describe Was::Registrar::RegisterSeedObject do
-
+  before :all do
+    Rails.configuration.seed_apo = 'druid:xy123yz4567'
+  end
   describe ".register" do
- #   it "should register a seed object" do
- #     registrar = Was::Registrar::RegisterSeedObject.new
- #     hash = {"source_id"=>"aaa", "collection_id"=>"druid:gz033bg3146","uri"=>"http://www.slac.stanford.edu","rights"=>"world"}
- #     registrar.register hash
-  #  end
-    
     it "shoud return a valid druid with valid params " do
       hash = {"source_id"=>"aaa", "collection_id"=>"druid:gz033bg3146","uri"=>"http://www.slac.stanford.edu","rights"=>"world"}
 
@@ -26,83 +22,7 @@ describe Was::Registrar::RegisterSeedObject do
     end
   end
 
-  describe ".is_valid" do
-    it "should return true for valid argument" do
-      params={:object_type=>"item", :admin_policy=>"druid:gv121gk7467", :source_id=>"aaa", :label=>"http://www.slac.stanford.edu", :collection=>"druid:gz033bg3146", :initiate_workflow=>"wasSeedPreassemblyWF", :rights=>"world"}      
-      registrar = Was::Registrar::RegisterSeedObject.new
-
-      expect(registrar.is_valid?(params)).to be true
-    end
-    
-    it "should return false for missing source_id" do
-      params={:object_type=>"item", :admin_policy=>"druid:gv121gk7467",  :label=>"http://www.slac.stanford.edu", :collection=>"druid:gz033bg3146", :initiate_workflow=>"wasSeedPreassemblyWF", :rights=>"world"}      
-      registrar = Was::Registrar::RegisterSeedObject.new
-
-      expect(registrar.is_valid?(params)).to be false
-   
-    end
-
-    it "should return false for nil source_id" do
-      params={:object_type=>"item", :admin_policy=>"druid:gv121gk7467", :source_id=>nil, :label=>"http://www.slac.stanford.edu", :collection=>"druid:gz033bg3146", :initiate_workflow=>"wasSeedPreassemblyWF", :rights=>"world"}      
-      registrar = Was::Registrar::RegisterSeedObject.new
-
-      expect(registrar.is_valid?(params)).to be false
-    end
-
-    it "should return false for blank source_id" do
-      params={:object_type=>"item", :admin_policy=>"druid:gv121gk7467", :source_id=>"", :label=>"http://www.slac.stanford.edu", :collection=>"druid:gz033bg3146", :initiate_workflow=>"wasSeedPreassemblyWF", :rights=>"world"}      
-      registrar = Was::Registrar::RegisterSeedObject.new
-
-      expect(registrar.is_valid?(params)).to be false
-    end
-
-    it "should return false for missing collection" do
-      params={:object_type=>"item", :admin_policy=>"druid:gv121gk7467", :source_id=>"aaa", :label=>"http://www.slac.stanford.edu", :initiate_workflow=>"wasSeedPreassemblyWF", :rights=>"world"}      
-      registrar = Was::Registrar::RegisterSeedObject.new
-
-      expect(registrar.is_valid?(params)).to be false
-    end
-    
-    it "should return false for nil collection" do
-        params={:object_type=>"item", :admin_policy=>"druid:gv121gk7467", :source_id=>"aaa", :label=>"http://www.slac.stanford.edu", :collection=>nil, :initiate_workflow=>"wasSeedPreassemblyWF", :rights=>"world"}      
-      registrar = Was::Registrar::RegisterSeedObject.new
-
-      expect(registrar.is_valid?(params)).to be false
-    end
-    
-    it "should return false for blank collection" do
-      params={:object_type=>"item", :admin_policy=>"druid:gv121gk7467", :source_id=>"aaa", :label=>"http://www.slac.stanford.edu", :collection=>"", :initiate_workflow=>"wasSeedPreassemblyWF", :rights=>"world"}      
-      registrar = Was::Registrar::RegisterSeedObject.new
-
-      expect(registrar.is_valid?(params)).to be false
-   end
-
-    it "should return false for missing label" do
-      params={:object_type=>"item", :admin_policy=>"druid:gv121gk7467", :source_id=>"aaa",  :collection=>"druid:gz033bg3146", :initiate_workflow=>"wasSeedPreassemblyWF", :rights=>"world"}      
-      registrar = Was::Registrar::RegisterSeedObject.new
-
-      expect(registrar.is_valid?(params)).to be false
-    end
-
-     it "should return false for missing label" do
-      params={:object_type=>"item", :admin_policy=>"druid:gv121gk7467", :source_id=>"aaa", :label=>nil, :collection=>"druid:gz033bg3146", :initiate_workflow=>"wasSeedPreassemblyWF", :rights=>"world"}      
-      registrar = Was::Registrar::RegisterSeedObject.new
-
-      expect(registrar.is_valid?(params)).to be false
-    end
-
-    it "should return false for missing label" do
-      params={:object_type=>"item", :admin_policy=>"druid:gv121gk7467", :source_id=>"aaa", :label=>"", :collection=>"druid:gz033bg3146", :initiate_workflow=>"wasSeedPreassemblyWF", :rights=>"world"}      
-      registrar = Was::Registrar::RegisterSeedObject.new
-
-      expect(registrar.is_valid?(params)).to be false
-    end
-
-  end
-
-
   describe ".convert_column_to_params" do
-
     it "should convert hash to params" do
       registrar = Was::Registrar::RegisterSeedObject.new
       hash = {"source_id"=>"aaa", "collection_id"=>"druid:gz033bg3146","uri"=>"http://www.slac.stanford.edu","rights"=>"world"}
@@ -175,7 +95,5 @@ describe Was::Registrar::RegisterSeedObject do
       expect(params[:initiate_workflow]).to eq("wasSeedPreassemblyWF")
       expect(params[:rights]).to eq("world")
     end
-
   end
-
 end

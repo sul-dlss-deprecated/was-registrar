@@ -1,2 +1,2 @@
-Source_id	job_directory	collection_id
-WAS:Test	job1/warc	druid:ab123cd4567a
+Source_id	job_directory	collection_id	apo_id
+WAS:Test	job1/warc	druid:ab123cd4567a	druid:mn123pq4567

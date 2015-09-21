@@ -19,4 +19,16 @@ module ApplicationHelper
       end 
     end
   end
+
+  def format_apo(apo_id, apos_list)
+    unless apo_id.present? then
+      return apo_id
+    end
+
+    apos_list.each do |apo_record|
+      if apo_id == apo_record[1]
+        return link_to apo_record[0], format_druid(apo_id)
+      end
+    end
+  end
 end

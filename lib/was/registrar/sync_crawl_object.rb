@@ -37,7 +37,7 @@ module Was
       
       # Reads the crawl objects from DOR
       def sync_dor
-        items_list = Was::Utilities::DorUtilities.get_items_list
+        items_list = Was::Utilities::DorUtilities.new(Rails.configuration.crawl_apos).get_items_list
 
         items_list.each do |item|
           crawl_item = CrawlItem.find_by job_directory: item[:title]
