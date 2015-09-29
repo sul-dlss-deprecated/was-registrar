@@ -24,6 +24,7 @@ module Was
           begin
             druid = registrar.register register_hash
             puts "Registering #{register_hash['job_directory']} with #{druid}"
+            logger.info "Registering #{register_hash['job_directory']} with #{druid}"
             success_count += 1
           rescue => e
             puts "Error in registering #{line} with #{e.inspect}"
