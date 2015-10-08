@@ -18,6 +18,7 @@ module ApplicationHelper
         return  link_to collection_record[0], format_druid(collection_id)
       end 
     end
+    return collection_id
   end
 
   def format_apo(apo_id, apos_list)
@@ -30,5 +31,6 @@ module ApplicationHelper
         return link_to apo_record[0], format_druid(apo_id)
       end
     end
+    return apo_id
   end
 end
