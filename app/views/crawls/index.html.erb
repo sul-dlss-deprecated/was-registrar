@@ -137,14 +137,9 @@ function reset_datatable_controls(){
 					source_id : new_source_id_val
 				},
 				success : function (result) {
-		
-			    	if(result.status==true){
-			    		$("#crawl_source_id_"+id).val( new_source_id_val);
-	    				$("#crawl_original_source_id_"+id).val( new_source_id_val);
-						reset_source_ids_controls(id);
-			    	} else {
-						$("#crawl_source_id_"+id).val( $("#crawl_original_source_id_"+id).val());
-			    	}
+		    		$("#crawl_source_id_"+id).val( new_source_id_val);
+    				$("#crawl_original_source_id_"+id).val( new_source_id_val);
+					reset_source_ids_controls(id);
 			    },
 			    error:function (results){   		   		
 					$("#crawl_source_id_"+id).val( $("#crawl_original_source_id_"+id).val());
