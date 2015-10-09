@@ -13,7 +13,7 @@ module Was
           next if apo_info_json.nil?
 
           collections_list = parse_collection_json(apo_info_json['collections'])
-          apo_title = apo_info_json['adminpolicies'].first['title']
+          apo_title = apo_info_json['adminpolicies'].first['title'].sub('Web Archive ','')
 
           apo_record = { apo_druid: apo,
                          apo_title: apo_title,
@@ -31,7 +31,7 @@ module Was
           next if apo_info_json.nil?
 
           items_list = parse_items_json(apo_info_json['items'])
-          apo_title = apo_info_json['adminpolicies'].first['title']
+          apo_title = apo_info_json['adminpolicies'].first['title'].sub('Web Archive ','')
 
           apo_record = { apo_druid: apo,
                          apo_title: apo_title,
