@@ -137,14 +137,9 @@ function reset_datatable_controls(){
 					source_id : new_source_id_val
 				},
 				success : function (result) {
-		
-			    	if(result.status==true){
-			    		$("#crawl_source_id_"+id).val( new_source_id_val);
-	    				$("#crawl_original_source_id_"+id).val( new_source_id_val);
-						reset_source_ids_controls(id);
-			    	} else {
-						$("#crawl_source_id_"+id).val( $("#crawl_original_source_id_"+id).val());
-			    	}
+		    		$("#crawl_source_id_"+id).val( new_source_id_val);
+    				$("#crawl_original_source_id_"+id).val( new_source_id_val);
+					reset_source_ids_controls(id);
 			    },
 			    error:function (results){   		   		
 					$("#crawl_source_id_"+id).val( $("#crawl_original_source_id_"+id).val());
@@ -178,7 +173,7 @@ function reset_source_ids_controls(id){
 					<th>Check</th>
 					<th>Druid</th>
 					<th>Job Directory</th>
-					<th>Source Id</th>
+					<th width="300px">Source Id</th>
 					<th>Admin Policy</th>
 					<th>Collection</th>
 				</tr>
@@ -190,7 +185,7 @@ function reset_source_ids_controls(id){
 					<%= check_box_tag "crawls[]", crawl_item.id %>
 					<% end %> </td>
 					<td> <% unless crawl_item.druid_id.nil? or crawl_item.druid_id.blank? then%> 
-						<a href='<%= format_druid(crawl_item.druid_id) %>' target='_blank' ><%= crawl_item.druid_id%></a> 
+						<a href='<%= format_druid(crawl_item.druid_id) %>' target='_blank' ><%= crawl_item.druid_id.sub('druid:','')%></a> 
 						<%end%> 
 					</td>
 
