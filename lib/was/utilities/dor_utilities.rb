@@ -57,7 +57,12 @@ module Was
         collections_list = []
         unless collection_json.nil?
           collection_json.each do |collection|
-            collections_list.push(title: collection['title'], druid: collection['druid'])
+            if collection['title'].length > 30 then
+              collection_title = "#{collection['title'][0..30]} ..."
+            else
+              collection_title = collection['title']
+            end
+            collections_list.push(title: collection_title, druid: collection['druid'])
           end
         end
         collections_list
