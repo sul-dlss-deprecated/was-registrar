@@ -1,14 +1,45 @@
 <script>
-$(  ).ready(function() {
-  $( "#seeds-navbar" ).addClass("active")
+$().ready(function() {
+  	$("#seeds-navbar").addClass("active")
+
+	$("#metadata_source").change(function(){
+		if($("#metadata_source").val() == 'G'){
+			$("#metadata_file").prop( "disabled", true );
+			$("#metadata_div").prop( "disabled", true );
+			$("#metadata_source_ext").prop( "disabled", true );
+		} else {
+			$("#metadata_file").prop( "disabled", false );
+			$("#metadata_source_ext").prop( "disabled", false ); 
+		}
+	});
 });
 
+function ValidateForm(){
+	$("#seed_file_error_message").empty();
+	$("#seed_file_error_message").hide();
+	$("#metadata_file_error_message").empty();
+	$("#metadata_file_error_message").hide();
+	
+	var success = true;
+	if($("#seed_file").val() == ''){
+		$("#seed_file_error_message").show();
+		$("#seed_file_error_message").text("Seed file list is required");
+		success = false;
+	}
+	if($("#metadata_source").val() != 'G' && $("#metadata_file").val()=='' ){
+		$("#metadata_file_error_message").show();
+		$("#metadata_file_error_message").text("Metadata file is required ");
+		success = false;
+	}
+	return (success);
+}
 </script>
+
 <div class="panel panel-primary">
 
 	<div class="panel-body">
 
-		<%= form_tag({action: :upload}, multipart: true, action: "update", class:"form") do %>
+		<%= form_tag({action: :upload}, multipart: true,  onSubmit: "return ValidateForm()", class:"form") do %>
 
 		<div class="form-group">
 			<label  for="seed_file">Seed list file:</label>
@@ -16,14 +47,22 @@ $(  ).ready(function() {
 			<p class="help-block">
 				Input tab delimited file with seed list.
 			</p>
+			<div style="display: none;" class="alert alert-danger" id="seed_file_error_message"> <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span></div>
 		</div>
 
 		<div class="form-group">
+			<label  for="metadata_source">Metadata source:</label><br />
+			<%= select_tag('metadata_source', options_for_select([['Generic','G'],['ArchiveIt', 'AIT'], ['CDL','CDL']])) %>
+			<%= text_field_tag 'metadata_source_ext', '', :disabled=>"disabled"%>
+		</div>
+
+		<div class="form-group" id="metadata_div">
 			<label for="metadata_file">Source XML metadata file:</label>
-			<%= file_field_tag 'metadata_file' %>
+			<%= file_field_tag 'metadata_file', :disabled=>"disabled" %>
 			<p class="help-block">
 				Input XML file for the metadata as exported from the source.
 			</p>
+			<div style="display: none;" class="alert alert-danger" id="metadata_file_error_message"> <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span></div>
 		</div>
 
 		<div class="form-group">
