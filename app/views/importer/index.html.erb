@@ -58,7 +58,7 @@ function ValidateForm(){
 
 		<div class="form-group" id="metadata_div">
 			<label for="metadata_file">Source XML metadata file:</label>
-			<%= file_field_tag 'metadata_file' %>
+			<%= file_field_tag 'metadata_file', :disabled=>"disabled" %>
 			<p class="help-block">
 				Input XML file for the metadata as exported from the source.
 			</p>
