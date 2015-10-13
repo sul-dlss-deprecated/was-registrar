@@ -2,37 +2,45 @@
 $(  ).ready(function() {
   $( "#seeds-navbar" ).addClass("active")
 });
-
 </script>
-<div class="panel panel-success">
-	<div class="panel-heading">
-		Successful records
-	</div>
-	<div class="panel-body">
-		<%= @result_list.number_of_succeeded_records %> have been imported successfully.
-	</div>
-</div>
 
-<div class="panel panel-danger">
-	<!-- Default panel contents -->
-	<div class="panel-heading">
-		Failed records
+<% if @message.present? %>
+	<div class="panel panel-danger">
+		<div class="panel-heading">
+			<%= @message %>
+		</div>
 	</div>
-	<div class="panel-body">
-		<p><%= @result_list.number_of_failed_records %> haven't been imported.</p>
-		<!-- Table -->
-		<% if @result_list.number_of_failed_records > 0 then %>
-		
-		<table class="table">
-			<% @result_list.result_message_list.each do | result_message | %>
-			<tr>
-				<td>  <span class="glyphicon glyphicon-remove text-danger" ></span></td>
-				<td> <%= result_message[:message] %> </td>
-				<td> <%= result_message[:record] %> </td>
-			</tr>
-			<%end%>
-		</table>
-		<% end %>
+<% else %>
+	<div class="panel panel-success">
+		<div class="panel-heading">
+			Successful records
+		</div>
+		<div class="panel-body">
+			<%= @result_list.number_of_succeeded_records %> have been imported successfully.
+		</div>
 	</div>
-</div>
+	
+	<div class="panel panel-danger">
+		<!-- Default panel contents -->
+		<div class="panel-heading">
+			Failed records
+		</div>
+		<div class="panel-body">
+			<p><%= @result_list.number_of_failed_records %> haven't been imported.</p>
+			<!-- Table -->
+			<% if @result_list.number_of_failed_records > 0 then %>
+			
+			<table class="table">
+				<% @result_list.result_message_list.each do | result_message | %>
+				<tr>
+					<td>  <span class="glyphicon glyphicon-remove text-danger" ></span></td>
+					<td> <%= result_message[:message] %> </td>
+					<td> <%= result_message[:record] %> </td>
+				</tr>
+				<%end%>
+			</table>
+			<% end %>
+		</div>
+	</div>
+<% end %>
 <div align="right"><a href="/seeds/index">Return to admin page</div>
