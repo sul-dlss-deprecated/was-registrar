@@ -2,7 +2,7 @@ module Was
   module Registrar
     # Registers a set of crawl objects defined by an input file
     class RegisterCrawlObjectFromFile
-      
+
       # Registers the items in the input_file_path and log the errors in log_file
       # @example file format:
       #   Source_id job_directory collection_id
@@ -28,7 +28,9 @@ module Was
             success_count += 1
           rescue => e
             puts "Error in registering #{line} with #{e.inspect}"
+            puts e.backtrace.join("\n") unless e.backtrace.nil?
             logger.fatal "Error in registering #{line} with #{e.inspect}"
+            logger.fatal e.backtrace.join("\n") unless e.backtrace.nil?
             fail_count += 1
           end
         end
@@ -42,7 +44,7 @@ module Was
         job_directory = fields[1]
         collection_id = fields[2]
         apo_id = fields[3]
-        
+
         return { 'source_id' => source_id, 'job_directory' => job_directory, 'collection_id' => collection_id, 'apo_id' => apo_id }
       end
 

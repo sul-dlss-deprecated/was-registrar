@@ -57,7 +57,8 @@ describe Was::Registrar::RegisterCrawlObjectFromFile do
       valid_file = "#{@fixtures}register_crawl_files/valid_one_line.txt"
       allow(Was::Registrar::RegisterCrawlObjectFromFile).to receive(:verify_file).and_return(true)
       expect(Was::Registrar::RegisterCrawlObjectFromFile).to receive(:convert_line_to_hash).and_return(nil)
-      expect_any_instance_of(Logger).to receive(:fatal).with("Error in registering WAS:Test\tjob1/warc\tdruid:ab123cd4567\tdruid:mn123pq4567 with #<NoMethodError: undefined method `[]' for nil:NilClass>")
+      expect_any_instance_of(Logger).to receive(:fatal).with(/Error in registering/)
+      expect_any_instance_of(Logger).to receive(:fatal).with(/was-registrar\/lib\/was\/registrar\/register_crawl_object.rb:/) # stack trace
       Was::Registrar::RegisterCrawlObjectFromFile.register(valid_file, 'log/tmp.txt')
     end
   end
