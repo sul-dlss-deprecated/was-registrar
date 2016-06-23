@@ -18,12 +18,19 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'spring',        group: :development
 
 gem 'nokogiri'
-gem "rspec"
-gem 'rspec-rails'
+
 gem 'rest-client'
-gem 'equivalent-xml'
 gem 'coveralls', require: false
-gem 'yard'
+
+group :development do
+  gem 'yard'
+end
+
+group :test do
+  gem "rspec"
+  gem 'rspec-rails'
+  gem 'equivalent-xml'
+end
 
 group :deployment do
   gem 'capistrano'
