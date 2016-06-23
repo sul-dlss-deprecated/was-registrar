@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.1.11'
+gem 'rails', '4.1.15'
 gem "sqlite3", :platform => [:ruby, :mswin, :mingw]
 gem 'mysql2', '~> 0.3.18'
 gem 'sass-rails', '~> 4.0.3'
@@ -26,9 +26,9 @@ gem 'coveralls', require: false
 gem 'yard'
 
 group :deployment do
-  gem 'capistrano', '~> 3.0'
+  gem 'capistrano'
   gem 'capistrano-rvm'
   gem 'capistrano-bundler'
   gem 'capistrano-rails'
-  gem 'lyberteam-capistrano-devel'
+  gem 'dlss-capistrano'
 end
