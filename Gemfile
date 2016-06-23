@@ -26,9 +26,9 @@ gem 'coveralls', require: false
 gem 'yard'
 
 group :deployment do
-  gem 'capistrano', '~> 3.0'
+  gem 'capistrano'
   gem 'capistrano-rvm'
   gem 'capistrano-bundler'
   gem 'capistrano-rails'
-  gem 'lyberteam-capistrano-devel'
+  gem 'dlss-capistrano'
 end
