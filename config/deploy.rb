@@ -1,10 +1,9 @@
-# config valid only for Capistrano 3.1
-#lock '3.3.3'
-
 set :rvm_ruby_string, 'ruby-2.1.4'
 
 set :application, 'was-registrar'
 set :repo_url, 'https://github.com/sul-dlss/was-registrar.git'
+
+set :stages, %W(stage development production)
 
 # Default branch is :master
 # ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }.call
@@ -41,7 +40,7 @@ namespace :deploy do
   task :start do
     bundle exec cap setup
   end
-  
+
   desc 'Restart application'
   task :restart do
     on roles(:app), in: :sequence, wait: 5 do
@@ -64,4 +63,3 @@ namespace :deploy do
 end
 
 after "deploy", "deploy:migrate"
-
