@@ -31,8 +31,9 @@ module Was
         begin
           response = RestClient.post(Rails.configuration.service_root,  register_params, timeout: 60, open_timeout: 60)
           code = response.code
-         rescue => e
-           raise 'Error in registring the object. ' + e.message
+        rescue RestClient::Exception => e
+          Rails.logger.error 'Error in registring the object. ' + e.message
+          raise
         end
 
         druid = response.body
