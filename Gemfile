@@ -15,21 +15,20 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0',          group: :doc
 
-gem 'spring',        group: :development
-
 gem 'nokogiri'
 
 gem 'rest-client'
-gem 'coveralls', require: false
 
 group :development do
+  gem 'spring'
   gem 'yard'
 end
 
 group :test do
+  gem 'coveralls', require: false
+  gem 'equivalent-xml'
   gem "rspec"
   gem 'rspec-rails'
-  gem 'equivalent-xml'
 end
 
 group :deployment do
