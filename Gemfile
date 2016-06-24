@@ -13,17 +13,23 @@ gem 'execjs'
 gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
-gem 'sdoc', '~> 0.4.0',          group: :doc
-
-gem 'spring',        group: :development
 
 gem 'nokogiri'
-gem "rspec"
-gem 'rspec-rails'
+
 gem 'rest-client'
-gem 'equivalent-xml'
-gem 'coveralls', require: false
-gem 'yard'
+
+group :development do
+  gem 'sdoc', '~> 0.4.0'
+  gem 'spring'
+  gem 'yard'
+end
+
+group :test do
+  gem 'coveralls', require: false
+  gem 'equivalent-xml'
+  gem "rspec"
+  gem 'rspec-rails'
+end
 
 group :deployment do
   gem 'capistrano'
