@@ -13,13 +13,13 @@ gem 'execjs'
 gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
-gem 'sdoc', '~> 0.4.0',          group: :doc
 
 gem 'nokogiri'
 
 gem 'rest-client'
 
 group :development do
+  gem 'sdoc', '~> 0.4.0'
   gem 'spring'
   gem 'yard'
 end
