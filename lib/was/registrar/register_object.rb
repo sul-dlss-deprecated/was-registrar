@@ -29,7 +29,7 @@ module Was
       def register_object_using_web_service(register_params)
         Rails.logger.debug "Registering an object with params #{register_params}"
         begin
-          response = RestClient.post(Rails.configuration.service_root,  register_params, timeout: 60, open_timeout: 60)
+          response = RestClient.post(Rails.configuration.service_root,  register_params, timeout: 300, open_timeout: 60)
           code = response.code
         rescue RestClient::Exception => e
           Rails.logger.error 'Error in registring the object. ' + e.message

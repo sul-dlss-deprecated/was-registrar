@@ -18,7 +18,7 @@ describe Was::Registrar::RegisterSeedObject do
 
       registrar = Was::Registrar::RegisterObject.new
       allow(RestClient).to receive(:post).and_return(response)
-      expect(RestClient).to receive(:post).with('https://registr.stanford.edu/', params, timeout: 60, open_timeout: 60)
+      expect(RestClient).to receive(:post).with('https://registr.stanford.edu/', params, timeout: 300, open_timeout: 60)
       expect(registrar.register_object_using_web_service(params)).to eq('druid:aa111aa1111')
     end
     it 'should raise an error if the response is not valid druid' do
