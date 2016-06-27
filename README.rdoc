@@ -1,3 +1,5 @@
+= [Deprecated:  see was_robot_suite] 
+
 {<img src="https://coveralls.io/repos/sul-dlss/was-registrar/badge.png" alt="Coverage Status" />}[https://coveralls.io/r/sul-dlss/was-registrar]
 {<img src="https://travis-ci.org/sul-dlss/was-registrar.svg?branch=master" alt="Build Status" />}[https://travis-ci.org/sul-dlss/was-registrar]
 
