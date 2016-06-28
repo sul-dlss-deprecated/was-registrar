@@ -45,10 +45,16 @@ module Was
 
       def read_apo_data(apo)
         begin
-          response = RestClient.get("#{Rails.configuration.apo_list_call}#{apo}",  timeout: 60, open_timeout: 60)
+          resource = RestClient::Resource.new(
+            Rails.configuration.apo_list_call, timeout: 60, open_timeout: 60
+          )
+          response = resource[apo].get
+          Rails.logger.debug response.inspect
           return JSON.parse(response.body)
-        rescue Exception => e
-          Rails.logger.fatal 'Error in reading apo list. ' + e.message
+        rescue RestClient::Exception => e
+          Rails.logger.fatal 'Error in reading apo list: ' + e.inspect
+          Rails.logger.fatal e.backtrace.join("\n") if e.backtrace.present?
+          raise
         end
         nil
       end
