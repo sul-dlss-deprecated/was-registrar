@@ -12,8 +12,6 @@ require_relative '../lib/was/registrar/register_crawl_object_from_file'
 require_relative '../lib/was/registrar/source_xml_writer'
 require_relative '../lib/was/registrar/sync_crawl_object'
 
-require_relative '../lib/was/utilities/dor_utilities'
-
 require 'rspec/matchers'
 require 'equivalent-xml'
 require 'nokogiri'
