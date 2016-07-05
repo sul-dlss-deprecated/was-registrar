@@ -6,7 +6,7 @@
 WAS Registrar is responsible of faciltating the web archiving service object registration process. It has two main parts
 
 === Crawl registration
-It reads the available crawl jobs and gives the service manager the ability to register the object.
+This functionality has been removed pending implementation of APO retrieval. (It reads the available crawl jobs and gives the service manager the ability to register the object.)
 
 === Seed registration
 It reads two files that represents the main seed URI list and its related XML metadata. It gives the service manager the ability to register the seed object.

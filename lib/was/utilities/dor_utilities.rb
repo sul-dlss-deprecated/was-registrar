@@ -44,19 +44,7 @@ module Was
       private
 
       def read_apo_data(apo)
-        begin
-          resource = RestClient::Resource.new(
-            Rails.configuration.apo_list_call, timeout: 60, open_timeout: 60
-          )
-          response = resource[apo].get
-          Rails.logger.debug response.inspect
-          return JSON.parse(response.body)
-        rescue RestClient::Exception => e
-          Rails.logger.fatal 'Error in reading apo list: ' + e.inspect
-          Rails.logger.fatal e.backtrace.join("\n") if e.backtrace.present?
-          raise
-        end
-        nil
+        fail NotImplementedError, 'APO retrieval via dor_fetcher is no longer supported'
       end
 
       def parse_collection_json(collection_json)
