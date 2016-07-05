@@ -2,6 +2,8 @@ require 'was/utilities/dor_utilities'
 require 'was/registrar/sync_crawl_object'
 require 'was/registrar/register_crawl_object'
 
+# TODO: Note that all of this code is disabled in config/routes.rb
+
 class CrawlsController < ApplicationController
   layout 'application'
   respond_to :html, :json

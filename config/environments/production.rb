@@ -75,15 +75,14 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
-  
-  
-   # Application specific 
+
+
+   # Application specific
   config.apo = ''
   config.staging_path = "./"
-  
-  
+
+
   config.service_root = ''
   config.argo_catalog = ''
   config.crawl_stage = ''
-  config.apo_list_call = ''
 end
