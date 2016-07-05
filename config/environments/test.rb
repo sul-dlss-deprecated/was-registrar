@@ -36,14 +36,13 @@ Rails.application.configure do
   # config.action_view.raise_on_missing_translations = true
   config.autoload_paths += %W(#{config.root}/lib/importer)
 
-  # Application specific 
- # Application specific 
+  # Application specific
+ # Application specific
   config.apo = ''
   config.staging_path = "./"
-  
-  
+
+
   config.service_root = ''
   config.argo_catalog = ''
   config.crawl_stage = ''
-  config.apo_list_call = ''
 end
