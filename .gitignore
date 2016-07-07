@@ -4,3 +4,4 @@ doc/
 .yardoc/
 coverage/
 log/
+.pry_history
