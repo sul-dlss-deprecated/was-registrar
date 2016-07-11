@@ -1,3 +1,9 @@
+<!-- DataTables CSS -->
+<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.0/css/jquery.dataTables.css">
+    
+<!-- DataTables -->
+<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.0/js/jquery.dataTables.min.js"></script>
+
 <script>
 $(document).ready(function() {
 	$("#crawl-navbar").addClass("active");
@@ -6,17 +12,17 @@ $(document).ready(function() {
 	$("#crawls_form").submit(function(){
 		$(".collection_dropdown").attr('disabled',true);
 		$(".crawl_source_id_input").attr('disabled',true);
-				
-		return true;	
+
+		return true;
 	});
 
 	$('#crawl_items_table')
-        .on( 'draw.dt',  function () { 
+        .on( 'draw.dt',  function () {
 		reset_datatable_controls();
 	} ).dataTable();
 	reset_datatable_controls();
 
-}); 
+});
 
 function reset_datatable_controls(){
 
@@ -30,15 +36,15 @@ function reset_datatable_controls(){
 		    } else {
 				$("#save_apo_"+id).addClass('glyphicon glyphicon-floppy-save save_apo');
 			}
-		
+
 		});
-		
+
 		$(".save_apo").click(function (){
 			id = $(this).attr('id').replace("save_apo_","");
 			apo_id = $("#apo_list_"+id).val();
-			
+
 			$.ajax({
-		    	
+
 		        url: "/crawls/update_apo",
 		        type: 'get',
 				data : {
@@ -50,13 +56,13 @@ function reset_datatable_controls(){
 			   		$("#save_apo_"+id).removeClass();
 		    		$("#save_apo_"+id).addClass('glyphicon glyphicon-floppy-saved text-success save_apo');
 			    },
-			    error:function (results){   		   		
+			    error:function (results){
 			    	$("#save_apo_"+id).removeClass();
 			    	$("#save_apo_"+id).addClass('glyphicon glyphicon-floppy-saved text-danger save_apo');
 		    	}
 		    });
 		});
-	
+
 		$(".collection_dropdown").change(function(){
 			id = $(this).attr('id').replace("collection_list_","");
 
@@ -67,13 +73,13 @@ function reset_datatable_controls(){
 		    } else {
 				$("#save_collection_"+id).addClass('glyphicon glyphicon-floppy-save save_collection');
 			}
-		
+
 		});
-		
+
 		$(".save_collection").click(function (){
 			id = $(this).attr('id').replace("save_collection_","");
 			collection_id = $("#collection_list_"+id).val();
-			
+
 			$.ajax({
 		        url: "/crawls/update_collection",
 		        type: 'get',
@@ -86,7 +92,7 @@ function reset_datatable_controls(){
 			   		$("#save_collection_"+id).removeClass();
 				    $("#save_collection_"+id).addClass('glyphicon glyphicon-floppy-saved text-success save_collection');
 			    },
-			    error:function (results){   		   		
+			    error:function (results){
 			    	$("#save_collection_"+id).removeClass();
 			    	$("#save_collection_"+id).addClass('glyphicon glyphicon-floppy-saved text-danger save_collection');
 		    	}
@@ -98,7 +104,7 @@ function reset_datatable_controls(){
 	    		e.preventDefault();
 	    		id = $(this).attr('id').replace("crawl_source_id_","");
 				$("#save_crawl_source_id_"+id).click();
-	    	} 
+	    	}
 		});
 
 		$(".edit_crawl_source_id").click(function (){
@@ -109,26 +115,26 @@ function reset_datatable_controls(){
 			$("#save_crawl_source_id_"+id).show();
 			$("#cancel_crawl_source_id_"+id).show();
 		});
-		
+
 		$(".cancel_crawl_source_id").click(function (){
 			id = $(this).attr('id').replace("cancel_crawl_source_id_","");
-			
+
 			$("#crawl_source_id_"+id).val( $("#crawl_original_source_id_"+id).val());
 			reset_source_ids_controls(id);
 		});
-		
+
 		$(".save_crawl_source_id").click(function (){
 			id = $(this).attr('id').replace("save_crawl_source_id_","");
 			new_source_id_val = $("#crawl_source_id_"+id).val().trim();
-			
+
 			if(new_source_id_val.length==0 || new_source_id_val.indexOf(' ')>-1){
 				$("#crawl_source_id_"+id).tooltip("Source id can't be empty");
 				return;
 			}
-			
+
 			console.log(new_source_id_val);
 			$.ajax({
-		    	
+
 		        url: "/crawls/update_source_id",
 		        type: 'get',
 				data : {
@@ -141,7 +147,7 @@ function reset_datatable_controls(){
     				$("#crawl_original_source_id_"+id).val( new_source_id_val);
 					reset_source_ids_controls(id);
 			    },
-			    error:function (results){   		   		
+			    error:function (results){
 					$("#crawl_source_id_"+id).val( $("#crawl_original_source_id_"+id).val());
 				}
 		    });
@@ -184,9 +190,9 @@ function reset_source_ids_controls(id){
 					<td> <% if crawl_item.druid_id.nil? or crawl_item.druid_id.blank? then%>
 					<%= check_box_tag "crawls[]", crawl_item.id %>
 					<% end %> </td>
-					<td> <% unless crawl_item.druid_id.nil? or crawl_item.druid_id.blank? then%> 
-						<a href='<%= format_druid(crawl_item.druid_id) %>' target='_blank' ><%= crawl_item.druid_id.sub('druid:','')%></a> 
-						<%end%> 
+					<td> <% unless crawl_item.druid_id.nil? or crawl_item.druid_id.blank? then%>
+						<a href='<%= format_druid(crawl_item.druid_id) %>' target='_blank' ><%= crawl_item.druid_id.sub('druid:','')%></a>
+						<%end%>
 					</td>
 
 					<td><%= format_job_directory(crawl_item.job_directory)%> </td>
@@ -202,22 +208,22 @@ function reset_source_ids_controls(id){
 						<% end %>
 					</div></td>
 
-					<td> 
+					<td>
 						<% if crawl_item.druid_id.nil? or crawl_item.druid_id.blank? then%>
-							<%= select_tag("apo_list_#{crawl_item.id}", options_for_select(@apos_list, crawl_item.apo_id), class:"apo_dropdown", :prompt => "Please select") %> 
-							<span> <span id="save_apo_<%= crawl_item.id%>"  class="save_apo" /> </span> 
+							<%= select_tag("apo_list_#{crawl_item.id}", options_for_select(@apos_list, crawl_item.apo_id), class:"apo_dropdown", :prompt => "Please select") %>
+							<span> <span id="save_apo_<%= crawl_item.id%>"  class="save_apo" /> </span>
 						<% else %>
 							<%= raw format_apo(crawl_item.apo_id, @apos_list) %>
-						<% end %> 
+						<% end %>
 					</td>
 
-					<td> 
+					<td>
 						<% if crawl_item.druid_id.nil? or crawl_item.druid_id.blank? then%>
-							<%= select_tag("collection_list_#{crawl_item.id}", options_for_select(@collections_list, crawl_item.collection_id), class:"collection_dropdown", :prompt => "Please select") %> 
-							<span> <span id="save_collection_<%= crawl_item.id%>"  class="save_collection" /> </span> 
+							<%= select_tag("collection_list_#{crawl_item.id}", options_for_select(@collections_list, crawl_item.collection_id), class:"collection_dropdown", :prompt => "Please select") %>
+							<span> <span id="save_collection_<%= crawl_item.id%>"  class="save_collection" /> </span>
 						<% else %>
 							<%= raw format_collection(crawl_item.collection_id, @collections_list) %>
-						<% end %> 
+						<% end %>
 					</td>
 
 				</tr>
@@ -230,4 +236,3 @@ function reset_source_ids_controls(id){
 <%= submit_tag("Go", class:"btn btn-default") %>
 
 <% end %>
-
