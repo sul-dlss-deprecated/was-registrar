@@ -1,3 +1,9 @@
+<!-- DataTables CSS -->
+<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.0/css/jquery.dataTables.css">
+
+<!-- DataTables -->
+<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.0/js/jquery.dataTables.min.js"></script>
+
 <script>
 	$().ready(function() {
 		$("#seeds-navbar").addClass("active");
@@ -8,7 +14,7 @@
 			return false;
 		});
 
-	}); 
+	});
 </script>
 
 <div align="right">
@@ -16,7 +22,7 @@
 </div>
 <br/>
 <%= form_tag({controller: "seeds", action: "do_action"}, method: "get") do %>
-	
+
 <div class="panel panel-primary">
   <div class="panel-body">
  	<table id="seedt_lists">
@@ -34,8 +40,8 @@
 			<% @seeds.each_with_index do |seed, seed_id| %>
 				<tr>
 					<td>
-						<% if seed.druid_id.nil? or seed.druid_id.blank? then%>	
-						 <%= check_box_tag "seeds[]", seed.id %> 
+						<% if seed.druid_id.nil? or seed.druid_id.blank? then%>
+						 <%= check_box_tag "seeds[]", seed.id %>
 						<% end %>
 					</td>
 					<td>
@@ -46,27 +52,24 @@
 					<td><%= seed.uri%></td>
 					<td><%= seed.collection_id%></td>
 					<td><%= seed.embargo%></td>
-					<td> 
-					<% unless seed.source_xml.blank? then %> 
+					<td>
+					<% unless seed.source_xml.blank? then %>
 						<a class="toggle_btn" value="<%= seed_id%>" href="#"> Show </a>
 						<div id="source_xml_div_<%= seed_id%>"  class="hidden">
 						<pre>
 			      			<%= Nokogiri::XML(seed.source_xml).to_xml %>
 			      			</pre>
-						</div> 
+						</div>
 					<%	end %>
 					</td>
-		
+
 				</tr>
 			<% end %>
 		</tbody>
-	</table> 
+	</table>
 	</div>
 </div>
 <%= select_tag(:action_list, options_for_select(['Register','Delete']), class:"btn btn-default  dropdown-toggle") %>
 <%= submit_tag("Go", class:"btn btn-default") %>
 
 <% end %>
-
-
-
