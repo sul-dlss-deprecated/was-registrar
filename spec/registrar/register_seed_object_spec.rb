@@ -18,7 +18,7 @@ describe Was::Registrar::RegisterSeedObject do
       hash = {"source_id"=>"aaa", "collection_id"=>nil,"uri"=>"http://www.slac.stanford.edu","rights"=>"world"}
       registrar = Was::Registrar::RegisterSeedObject.new
       allow(registrar).to receive(:register_object_using_web_service) { "druid:aa111aa1111" }
-      expect{ registrar.register hash }.to raise_error
+      expect{ registrar.register hash }.to raise_error /Missing required parameters/
     end
   end
 
