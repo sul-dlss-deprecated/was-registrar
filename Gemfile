@@ -18,6 +18,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'nokogiri'
 
 gem 'rest-client'
+gem 'okcomputer' # for 'upness' monitoring
 
 group :development do
   gem 'sdoc', '~> 0.4.0'
@@ -33,9 +34,9 @@ end
 
 group :test do
   gem 'coveralls', require: false
-  gem 'equivalent-xml'
-  gem "rspec"
   gem 'rspec-rails'
+  gem 'capybara' # for feature/integration tests
+  gem 'equivalent-xml' # for semantic comparison of xml
 end
 
 group :deployment do

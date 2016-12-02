@@ -36,6 +36,8 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
+    addressable (2.5.0)
+      public_suffix (~> 2.0, >= 2.0.2)
     airbrussh (1.1.2)
       sshkit (>= 1.6.1, != 1.7.0)
     arel (6.0.3)
@@ -71,6 +73,13 @@ GEM
       capistrano (~> 3.0)
       sshkit (~> 1.2)
     capistrano-shared_configs (0.1.2)
+    capybara (2.10.1)
+      addressable
+      mime-types (>= 1.16)
+      nokogiri (>= 1.3.3)
+      rack (>= 1.0.0)
+      rack-test (>= 0.5.4)
+      xpath (~> 2.0)
     coderay (1.1.1)
     coffee-rails (4.0.1)
       coffee-script (>= 2.2.0)
@@ -140,6 +149,7 @@ GEM
     nokogiri (1.6.8)
       mini_portile2 (~> 2.1.0)
       pkg-config (~> 1.1.7)
+    okcomputer (1.14.0)
     parser (2.3.3.1)
       ast (~> 2.2)
     pkg-config (1.1.7)
@@ -151,6 +161,7 @@ GEM
     pry-byebug (3.4.0)
       byebug (~> 9.0)
       pry (~> 0.10)
+    public_suffix (2.0.5)
     rack (1.6.4)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -189,10 +200,6 @@ GEM
       http-cookie (>= 1.0.2, < 2.0)
       mime-types (>= 1.16, < 4.0)
       netrc (~> 0.8)
-    rspec (3.5.0)
-      rspec-core (~> 3.5.0)
-      rspec-expectations (~> 3.5.0)
-      rspec-mocks (~> 3.5.0)
     rspec-core (3.5.2)
       rspec-support (~> 3.5.0)
     rspec-expectations (3.5.0)
@@ -266,6 +273,8 @@ GEM
       unf_ext
     unf_ext (0.0.7.2)
     unicode-display_width (1.1.2)
+    xpath (2.0.0)
+      nokogiri (~> 1.3)
     yard (0.9.5)
 
 PLATFORMS
@@ -276,6 +285,7 @@ DEPENDENCIES
   capistrano-passenger
   capistrano-rails
   capistrano-rvm
+  capybara
   coffee-rails (~> 4.0.0)
   config
   coveralls
@@ -286,11 +296,11 @@ DEPENDENCIES
   jquery-rails
   mysql2 (~> 0.3.18)
   nokogiri
+  okcomputer
   pry-byebug
   rails (= 4.2.7.1)
   responders
   rest-client
-  rspec
   rspec-rails
   rubocop
   sass-rails (~> 4.0.3)
