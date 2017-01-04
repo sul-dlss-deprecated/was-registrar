@@ -30,7 +30,7 @@ module Was
         Rails.logger.debug "Registering an object with params #{register_params}"
         begin
           resource = RestClient::Resource.new(
-            Rails.configuration.service_root, timeout: 300, open_timeout: 60
+            Rails.configuration.service_root, read_timeout: 300, open_timeout: 60
           )
           response = resource.post(register_params)
           Rails.logger.debug response.inspect
