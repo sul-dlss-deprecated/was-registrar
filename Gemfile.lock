@@ -162,6 +162,8 @@ GEM
     rdoc (4.2.2)
       json (~> 1.4)
     ref (2.0.0)
+    responders (2.3.0)
+      railties (>= 4.2.0, < 5.1)
     rest-client (2.0.0)
       http-cookie (>= 1.0.2, < 2.0)
       mime-types (>= 1.16, < 4.0)
@@ -255,6 +257,7 @@ DEPENDENCIES
   mysql2 (~> 0.3.18)
   nokogiri
   rails (= 4.2.7.1)
+  responders
   rest-client
   rspec
   rspec-rails
@@ -268,4 +271,4 @@ DEPENDENCIES
   yard
 
 BUNDLED WITH
-   1.12.5
+   1.13.6
