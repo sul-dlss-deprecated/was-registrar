@@ -24,8 +24,8 @@ describe Was::Registrar::RegisterSeedObject do
       params = {}
       response = double('net http response', to_hash: { 'Status' => ['200 OK'] }, code: 200, body: 'not_valid_druid')
       registrar = Was::Registrar::RegisterObject.new
-      expect_any_instance_of(RestClient::Resource).to receive(:post).with(params).and_return(response)
-      expect { registrar.register_object_using_web_service(params) }.to raise_error(RuntimeError, /Error in registring the object/)
+      expect_any_instance_of(RestClient::Resource).to receive(:post).with(params, accept: :text).and_return(response)
+      expect { registrar.register_object_using_web_service(params) }.to raise_error(RuntimeError, /Error in registering the object/)
     end
     it 'should raise an error if the client connection fails' do
       params = {}

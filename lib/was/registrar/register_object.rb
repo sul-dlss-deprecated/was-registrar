@@ -46,7 +46,7 @@ module Was
         if valid_druid?(druid)
           return druid
         else
-          fail 'Error in registring the object. Not valid druid returned ' + druid
+          fail 'Error in registering the object. Invalid druid returned ' + druid
         end
       end
 
