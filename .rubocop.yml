@@ -1,0 +1,25 @@
+inherit_from: .rubocop_todo.yml
+
+AllCops:
+  TargetRubyVersion: 2.1
+  Exclude:
+    - bin/**
+    - config.ru
+    - db/migrate/**
+    - db/schema.rb
+
+Rails:
+  Enabled: true
+
+# Far more languages and notations use /regex/ than %r
+# rspec `.to match(/regex/)` is also conventional
+Style/RegexpLiteral:
+  Enabled: false
+
+# Configuration parameters: AllowURI, URISchemes.
+Metrics/LineLength:
+  Max: 120
+
+# because it's silly to care
+Style/StringLiterals:
+  Enabled: false

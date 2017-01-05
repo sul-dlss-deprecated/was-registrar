@@ -1,8 +1,8 @@
 module Was
   module Registrar
-    # This is the base class to register an object using dor-service-app
+    # Base class to register an object using dor-services-app
     class RegisterObject
-      def initalize
+      def initialize
         @prefix = 'druid'
       end
 
@@ -21,7 +21,7 @@ module Was
         druid
       end
 
-      # Registers the object using dor-service REST API
+      # Registers the object using dor-services REST API
       # @param [Hash] params is hash representing the registration informatino
       # @raise [Error] if there is a network problem in registering the object
       # @raise [Error] if the returned value is not a valid druid
@@ -30,11 +30,12 @@ module Was
         Rails.logger.debug "Registering an object with params #{register_params}"
         begin
           resource = RestClient::Resource.new(
-            Rails.configuration.service_root, timeout: 300, open_timeout: 60
+            Rails.configuration.service_root, read_timeout: 300, open_timeout: 60
           )
-          response = resource.post(register_params)
+          # we explicitly want text response so the body is only the druid
+          # New Rails dor-services-app defaults to json; old Sinatra one defaulted to text
+          response = resource.post(register_params, accept: :text)
           Rails.logger.debug response.inspect
-          code = response.code
         rescue RestClient::Exception => e
           Rails.logger.error 'Error in registering the object. ' + e.message
           raise
@@ -44,7 +45,7 @@ module Was
         if valid_druid?(druid)
           return druid
         else
-          fail 'Error in registring the object. Not valid druid returned ' + druid
+          fail 'Error in registering the object. Invalid druid returned ' + druid
         end
       end
 
