@@ -1,6 +1,6 @@
 module Was
   module Registrar
-    # This is the base class to register an object using dor-service-app
+    # Base class to register an object using dor-services-app
     class RegisterObject
       def initalize
         @prefix = 'druid'
@@ -21,7 +21,7 @@ module Was
         druid
       end
 
-      # Registers the object using dor-service REST API
+      # Registers the object using dor-services REST API
       # @param [Hash] params is hash representing the registration informatino
       # @raise [Error] if there is a network problem in registering the object
       # @raise [Error] if the returned value is not a valid druid
