@@ -2,7 +2,7 @@ module Was
   module Registrar
     # Base class to register an object using dor-services-app
     class RegisterObject
-      def initalize
+      def initialize
         @prefix = 'druid'
       end
 
@@ -36,7 +36,6 @@ module Was
           # New Rails dor-services-app defaults to json; old Sinatra one defaulted to text
           response = resource.post(register_params, accept: :text)
           Rails.logger.debug response.inspect
-          code = response.code
         rescue RestClient::Exception => e
           Rails.logger.error 'Error in registering the object. ' + e.message
           raise
