@@ -32,7 +32,9 @@ module Was
           resource = RestClient::Resource.new(
             Rails.configuration.service_root, read_timeout: 300, open_timeout: 60
           )
-          response = resource.post(register_params)
+          # we explicitly want text response so the body is only the druid
+          # New Rails dor-services-app defaults to json; old Sinatra one defaulted to text
+          response = resource.post(register_params, accept: :text)
           Rails.logger.debug response.inspect
           code = response.code
         rescue RestClient::Exception => e

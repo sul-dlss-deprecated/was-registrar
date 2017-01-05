@@ -17,7 +17,7 @@ describe Was::Registrar::RegisterSeedObject do
       response = double('net http response', to_hash: { 'Status' => ['200 OK'] }, code: 200, body: 'druid:aa111aa1111')
 
       registrar = Was::Registrar::RegisterObject.new
-      expect_any_instance_of(RestClient::Resource).to receive(:post).with(params).and_return(response)
+      expect_any_instance_of(RestClient::Resource).to receive(:post).with(params, accept: :text).and_return(response)
       expect(registrar.register_object_using_web_service(params)).to eq('druid:aa111aa1111')
     end
     it 'should raise an error if the response is not valid druid' do
@@ -29,14 +29,14 @@ describe Was::Registrar::RegisterSeedObject do
     end
     it 'should raise an error if the client connection fails' do
       params = {}
-      expect_any_instance_of(RestClient::Resource).to receive(:post).with(params).and_raise(RestClient::Exception)
+      expect_any_instance_of(RestClient::Resource).to receive(:post).with(params, accept: :text).and_raise(RestClient::Exception)
       registrar = Was::Registrar::RegisterObject.new
       expect_any_instance_of(Logger).to receive(:error).once
       expect { registrar.register_object_using_web_service(params) }.to raise_error(RestClient::Exception)
     end
     it 'should raise an error on an unexpected exception' do
       params = {}
-      expect_any_instance_of(RestClient::Resource).to receive(:post).with(params).and_raise(RuntimeError)
+      expect_any_instance_of(RestClient::Resource).to receive(:post).with(params, accept: :text).and_raise(RuntimeError)
       registrar = Was::Registrar::RegisterObject.new
       expect_any_instance_of(Logger).not_to receive(:error)
       expect { registrar.register_object_using_web_service(params) }.to raise_error(RuntimeError)
