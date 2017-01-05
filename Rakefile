@@ -37,6 +37,17 @@ rescue LoadError
   end
 end
 
+begin
+  require 'rubocop/rake_task'
+  RuboCop::RakeTask.new(:rubocop) do |task|
+    task.fail_on_error = true
+  end
+rescue LoadError
+  task :rubocop do
+    abort "Please install the rubocop gem to run rubocop."
+  end
+end
+
 # Use yard to build docs
 begin
   require 'yard'

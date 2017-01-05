@@ -25,6 +25,11 @@ group :development do
   gem 'yard'
 end
 
+group :test, :development do
+  gem 'rubocop', require: false
+  gem 'pry-byebug', require: false
+end
+
 group :test do
   gem 'coveralls', require: false
   gem 'equivalent-xml'
