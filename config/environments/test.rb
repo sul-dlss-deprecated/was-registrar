@@ -32,16 +32,17 @@ Rails.application.configure do
   # Raises helpful error messages.
   config.assets.raise_runtime_errors = true
 
+  # Use default logging formatter so that PID and timestamp are not suppressed.
+  config.log_formatter = ::Logger::Formatter.new
+
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
   config.autoload_paths += %W(#{config.root}/lib/importer)
 
   # Application specific
- # Application specific
-  config.apo = ''
+  config.crawl_apos = ''
+  config.seed_apo = ''
   config.staging_path = "./"
-
-
   config.service_root = ''
   config.argo_catalog = ''
   config.crawl_stage = ''
