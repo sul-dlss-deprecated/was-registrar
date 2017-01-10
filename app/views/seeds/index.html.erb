@@ -46,7 +46,7 @@
 					</td>
 					<td>
 						<% unless seed.druid_id.nil? and seed.druid_id.blank? then%>
-					 	<a href='<%= Rails.configuration.argo_catalog%><%= seed.druid_id%>' target='_blank' ><%= seed.druid_id%></a>
+						<a href='<%= Settings.argo_view_url%><%= seed.druid_id%>' target='_blank' ><%= seed.druid_id%></a>
 						<%end%>
 					</td>
 					<td><%= seed.uri%></td>

@@ -30,7 +30,7 @@ function register_item(id,type) {
 			 		$('#'+register_status_id).addClass("glyphicon glyphicon-ok text-success")
 
 					druid_span_id = "druid_span_"+id;
-					druid_link = "<a href='<%= Rails.configuration.argo_catalog%>"+result.druid+"' target='_blank' >"+result.druid+"</a>";
+					druid_link = "<a href='<%= Settings.argo_view_url%>"+result.druid+"' target='_blank' >"+result.druid+"</a>";
 					$('#'+druid_span_id).html(  druid_link);
 				} else{
 					register_status_id = "register_status_"+id;

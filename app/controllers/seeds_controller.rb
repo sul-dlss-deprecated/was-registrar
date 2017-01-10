@@ -44,7 +44,7 @@ class SeedsController < ApplicationController
   end
 
   def register_one_item
-    writer = Was::Registrar::SourceXmlWriter.new(Rails.configuration.staging_path)
+    writer = Was::Registrar::SourceXmlWriter.new(Settings.seed_staging_path)
 
     seed_id = params["id"]
     seed_item = SeedItem.find(seed_id)

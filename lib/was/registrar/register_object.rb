@@ -9,7 +9,7 @@ module Was
       # Registers object based on item record
       # @param [Hash] crawl_item_hash is a hash that represents the crawl item
       # @raise [Error] if there is a missing parameters
-      # @return [String] the druid id as retruned from the registering object
+      # @return [String] the druid id as returned from the registering object
       def register(item_hash)
         druid = nil
         register_params = convert_column_to_params(item_hash)
@@ -30,7 +30,7 @@ module Was
         Rails.logger.debug "Registering an object with params #{register_params}"
         begin
           resource = RestClient::Resource.new(
-            Rails.configuration.service_root, read_timeout: 300, open_timeout: 60
+            "#{Settings.dor_services_url}/objects", read_timeout: 300, open_timeout: 60
           )
           # we explicitly want text response so the body is only the druid
           # New Rails dor-services-app defaults to json; old Sinatra one defaulted to text
