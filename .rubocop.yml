@@ -20,6 +20,14 @@ Style/RegexpLiteral:
 Metrics/LineLength:
   Max: 120
 
+# because it can make the code more readable
+Style/EmptyLinesAroundClassBody:
+  Enabled: false
+
+# because it can make the code more readable
+Style/EmptyLinesAroundModuleBody:
+  Enabled: false
+
 # because it's silly to care
 Style/StringLiterals:
   Enabled: false
