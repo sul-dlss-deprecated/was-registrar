@@ -39,7 +39,6 @@ group :test do
 end
 
 group :deployment do
-  gem 'capistrano'
   gem 'capistrano-rvm'
   gem 'capistrano-bundler'
   gem 'capistrano-passenger'

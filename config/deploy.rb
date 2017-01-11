@@ -25,10 +25,13 @@ set :deploy_to, '/opt/app/was/was-registrar'
 set :linked_files, %w{config/database.yml config/secrets.yml}
 
 # Default value for linked_dirs is []
-set :linked_dirs, %w{bin log config/environments  vendor/bundle public/system data}
+set :linked_dirs, %w{bin config/settings data log public/system tmp/cache vendor/bundle}
 
 # Default value for default_env is {}
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
 
 # Default value for keep_releases is 5
 # set :keep_releases, 5
+
+# update shared_configs before restarting app
+before 'deploy:restart', 'shared_configs:update'
