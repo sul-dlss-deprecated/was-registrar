@@ -1,13 +1,17 @@
 set :application, 'was-registrar'
 set :repo_url, 'https://github.com/sul-dlss/was-registrar.git'
-
-set :stages, %W(stage development production)
+set :deploy_host, "was-registrar-#{fetch(:stage)}.stanford.edu"
+set :user, 'was'
 
 # Default branch is :master
 ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }.call
 
 # Default deploy_to directory is /var/www/my_app
-set :deploy_to, '/opt/app/was/was-registrar'
+set :deploy_to, "/opt/app/#{fetch(:user)}/#{fetch(:application)}"
+
+server fetch(:deploy_host), user: fetch(:user), roles: %w(web db app)
+
+Capistrano::OneTimeKey.generate_one_time_key!
 
 # Default value for :scm is :git
 # set :scm, :git
@@ -16,7 +20,7 @@ set :deploy_to, '/opt/app/was/was-registrar'
 # set :format, :pretty
 
 # Default value for :log_level is :debug
-# set :log_level, :debug
+set :log_level, :info
 
 # Default value for :pty is false
 # set :pty, true
