@@ -14,3 +14,6 @@ tmp/*
 doc/
 .yardoc/
 coverage/
+
+# Ignore the db files
+db/*.sqlite3
