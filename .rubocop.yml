@@ -19,6 +19,11 @@ Style/RegexpLiteral:
 # Configuration parameters: AllowURI, URISchemes.
 Metrics/LineLength:
   Max: 120
+  Exclude:
+    - 'spec/lib/was/importer/data_importer_from_text_spec.rb'
+    - 'spec/lib/was/registrar/register_crawl_object_from_file_spec.rb'
+    - 'spec/lib/was/registrar/register_crawl_object_spec.rb'
+    - 'spec/lib/was/registrar/source_xml_writer_spec.rb'
 
 # because it can make the code more readable
 Style/EmptyLinesAroundClassBody:
