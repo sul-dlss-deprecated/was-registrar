@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Was::Registrar::RegisterCrawlObjectFromFile do
   before :all do

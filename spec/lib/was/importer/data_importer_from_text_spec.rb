@@ -1,5 +1,5 @@
-require 'spec_helper'
- 
+require 'rails_helper'
+
 describe Was::Importer::DataImporterFromText do
 
   before :all do
