@@ -5,36 +5,18 @@ require File.expand_path('../config/application', __FILE__)
 
 Rails.application.load_tasks
 
-require 'rake'
-require 'bundler'
-
-begin
-  Bundler.setup(:default, :development)
-rescue Bundler::BundlerError => e
-  $stderr.puts e.message
-  $stderr.puts "Run `bundle install` to install missing gems"
-  exit e.status_code
-end
-
-# Include raks tasks from lib/tasks directory
+# Include rake tasks from lib/tasks directory
 Dir[File.join(File.dirname(__FILE__), 'tasks/**/*.rake')].each {|f| load f }
 
-task :default => :ci
+task default: :ci
 
 desc "run continuous integration suite (tests, coverage)"
-task :ci => [:rspec]
-task :spec => :rspec
+task ci: :spec
 
 begin
   require 'rspec/core/rake_task'
-
-  RSpec::Core::RakeTask.new(:rspec) do |spec|
-    spec.rspec_opts = ["-c", "-f progress", "--tty", "-r ./spec/spec_helper.rb"]
-  end
 rescue LoadError
-  task :rspec do
-    abort "Please install the rspec gem to run tests."
-  end
+  STDERR.puts "Please install the rspec gem to run tests."
 end
 
 begin
@@ -43,9 +25,7 @@ begin
     task.fail_on_error = true
   end
 rescue LoadError
-  task :rubocop do
-    abort "Please install the rubocop gem to run rubocop."
-  end
+  STDERR.puts "Please install the rubocop gem to run rubocop."
 end
 
 # Use yard to build docs
@@ -60,8 +40,5 @@ begin
     yt.options = ['--output-dir', doc_dest_dir, '--readme', 'README.rdoc', '--title', 'WAS Registrar Documentation']
   end
 rescue LoadError
-  desc "Generate YARD Documentation"
-  task :doc do
-    abort "Please install the YARD gem to generate rdoc."
-  end
+  STDERR.puts "Please install the YARD gem to generate rdoc."
 end
