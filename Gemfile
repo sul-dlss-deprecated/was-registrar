@@ -10,6 +10,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'therubyracer',  platforms: :ruby
 gem 'execjs'
+gem 'config' # rails environment specific configs
 
 gem 'jquery-rails'
 gem 'turbolinks'
@@ -38,7 +39,6 @@ group :test do
 end
 
 group :deployment do
-  gem 'capistrano'
   gem 'capistrano-rvm'
   gem 'capistrano-bundler'
   gem 'capistrano-passenger'

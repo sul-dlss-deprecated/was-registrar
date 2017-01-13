@@ -37,13 +37,6 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
-  config.autoload_paths += %W(#{config.root}/lib/importer)
 
-  # Application specific
-  config.crawl_apos = ''
-  config.seed_apo = ''
-  config.staging_path = "./"
-  config.service_root = ''
-  config.argo_catalog = ''
-  config.crawl_stage = ''
+  config.autoload_paths += %W(#{config.root}/lib/importer)
 end

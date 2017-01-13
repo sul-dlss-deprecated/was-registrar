@@ -13,7 +13,7 @@ class CrawlsController < ApplicationController
     @collections_list = []
     @apos_list = []
 
-    apo_reader = Was::Utilities::DorUtilities.new(Rails.configuration.crawl_apos)
+    apo_reader = Was::Utilities::DorUtilities.new(Settings.crawl_apos)
     apo_collection_list = apo_reader.get_collections_list
 
     apo_collection_list.each do |apo|
