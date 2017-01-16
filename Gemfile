@@ -3,7 +3,6 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.7.1'
 gem 'responders' # controller-level `respond_to' feature now in `responders` gem as of rails 4.2
-gem "sqlite3", :platform => [:ruby, :mswin, :mingw]
 gem 'mysql2', '~> 0.3.18'
 gem 'sass-rails', '~> 4.0.3'
 gem 'uglifier', '>= 1.3.0'
@@ -27,8 +26,9 @@ group :development do
 end
 
 group :test, :development do
-  gem 'rubocop', require: false
   gem 'pry-byebug', require: false
+  gem 'rubocop', require: false
+  gem "sqlite3", :platform => [:ruby, :mswin, :mingw]
 end
 
 group :test do
