@@ -4,6 +4,7 @@ require 'was/registrar/register_crawl_object'
 
 # TODO: Note that all of this code is disabled in config/routes.rb
 
+# @deprecated - was used when crawls were registered via crawls_controller
 class CrawlsController < ApplicationController
   layout 'application'
   respond_to :html, :json
@@ -45,7 +46,7 @@ class CrawlsController < ApplicationController
       crawl_ids.each do |id|
         begin
           crawl_item = CrawlItem.find id
-        rescue ActiveRecord::RecordNotFound => e
+        rescue ActiveRecord::RecordNotFound
           crawl_item = CrawlItem.new(id: id)
         end
 

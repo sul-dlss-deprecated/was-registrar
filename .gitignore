@@ -10,7 +10,10 @@ config/environments/*.local.yml
 
 # Ignore all log files and temp files.
 log/
-tmp/
+tmp/*
 doc/
 .yardoc/
 coverage/
+
+# Ignore the db files
+db/*.sqlite3

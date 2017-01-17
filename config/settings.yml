@@ -2,16 +2,11 @@
 # create config/settings/development.local.yml and populate
 
 # seed_apo: APO used when creating DOR seed objects.  format 'druid:xx123yy4567'
-seed_apo: ''
-# crawl_apos: APOs used to find DOR crawl objects.  format ['druid:xx123yy4567', 'druid:jj666kk1234']
-crawl_apos: []
+seed_apo: 'oo000oo0000'
 
 # seed_staging_path: where the seeds_controller outputs XML representing the seed object;
 #  this XML is read later by was_robot_suite wasSeedPreassemblyWF step
 seed_staging_path: './'
-
-# crawl_jobs_path: used to synchronize between the available crawl jobs, database, and DOR repo.
-crawl_jobs_path: './'
 
 # dor_services_url:  dor-services REST API used to register objects.
 #  format: No trailing slash; '/object' is appended in the code
@@ -20,3 +15,11 @@ dor_services_url: ''
 # argo_view_url: prepended to druid;  used for links to registered objects in views
 #  format: yes, trailing slash, e.g. 'https://argo-stage.stanford.edu/catalog/'
 argo_view_url: ''
+
+# NO LONGER USED:  we expect crawl objects being registered to have an apo_id value in the .tsv file
+# crawl_apos: APOs used to find DOR crawl objects.  format ['druid:xx123yy4567', 'druid:jj666kk1234']
+#crawl_apos: ['aa123aa4567', 'ee123ee4567']
+
+# NO LONGER USED:  was possibly used when crawls were registered via the rails UI
+# crawl_jobs_path: used to synchronize between the available crawl jobs, database, and DOR repo.
+#crawl_jobs_path: './'

@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Was::Registrar::RegisterSeedObject do
 
@@ -65,7 +65,7 @@ describe Was::Registrar::RegisterSeedObject do
         rights: 'dark'
       }
     end
-    
+
     it 'true if all the required fields appear' do
       registrar = Was::Registrar::RegisterObject.new
       expect(registrar.is_valid?(params)).to be true

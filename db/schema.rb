@@ -13,7 +13,7 @@
 
 ActiveRecord::Schema.define(version: 20150916223728) do
 
-  create_table "crawl_items", force: true do |t|
+  create_table "crawl_items", force: :cascade do |t|
     t.string   "druid_id"
     t.string   "job_directory"
     t.string   "collection_id"
@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 20150916223728) do
     t.string   "apo_id"
   end
 
-  create_table "seed_items", force: true do |t|
+  create_table "seed_items", force: :cascade do |t|
     t.string   "druid_id"
     t.string   "uri"
     t.boolean  "embargo"

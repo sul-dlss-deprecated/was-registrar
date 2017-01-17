@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Was::Registrar::RegisterCrawlObjectFromFile do
   before :all do
@@ -69,20 +69,20 @@ describe Was::Registrar::RegisterCrawlObjectFromFile do
       Was::Registrar::RegisterCrawlObjectFromFile.register(valid_file, 'log/tmp.txt')
     end
 
-    it 'does not call the registerar if there is any wrong records' do
+    it 'does not call the registrar if there is any wrong records' do
       allow(Was::Registrar::RegisterCrawlObjectFromFile).to receive(:verify_file).and_return(false)
       expect_any_instance_of(Was::Registrar::RegisterCrawlObject).not_to receive(:register)
       Was::Registrar::RegisterCrawlObjectFromFile.register('', '')
     end
 
-    it 'raises an exception that should be logged in the log file' do
+    it 'logs an exception that is raised' do
       valid_file = "#{@fixtures}register_crawl_files/valid_one_line.txt"
       allow(Was::Registrar::RegisterCrawlObjectFromFile).to receive(:verify_file).and_return(true)
       expect(Was::Registrar::RegisterCrawlObjectFromFile).to receive(:convert_line_to_hash).and_return(nil)
       expect_any_instance_of(Logger).to receive(:fatal).with(/Error in registering/)
       expected_regex = /was-registrar\/lib\/was\/registrar\/register_crawl_object.rb:/
       expect_any_instance_of(Logger).to receive(:fatal).with(expected_regex)
-      Was::Registrar::RegisterCrawlObjectFromFile.register(valid_file, 'log/tmp.txt')
+      Was::Registrar::RegisterCrawlObjectFromFile.register(valid_file, 'tmp/log_from_spec.txt')
     end
   end
 end
