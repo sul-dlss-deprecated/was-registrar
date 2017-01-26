@@ -31,6 +31,7 @@ module Was
             puts e.backtrace.join("\n") unless e.backtrace.nil?
             logger.fatal "Error in registering #{line} with #{e.inspect}"
             logger.fatal e.backtrace.join("\n") unless e.backtrace.nil?
+            Honeybadger.notify(e)
             fail_count += 1
           end
         end

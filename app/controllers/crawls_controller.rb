@@ -71,6 +71,7 @@ class CrawlsController < ApplicationController
       @register_status['status'] = true
     rescue => e
       logger.fatal e.message
+      Honeybadger.notify(e)
       @register_status['status'] = false
       @register_status['message'] = e.message
     end
@@ -108,6 +109,7 @@ class CrawlsController < ApplicationController
     render nothing: true, status: 200
   rescue => e
     logger.fatal e.message
+    Honeybadger.notify(e)
     render nothing: true, status: 500
   end
 end

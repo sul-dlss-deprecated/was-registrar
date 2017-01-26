@@ -61,6 +61,7 @@ class SeedsController < ApplicationController
     rescue => e
       logger.fatal e.inspect
       logger.fatal e.backtrace.join("\n") unless e.backtrace.nil?
+      Honeybadger.notify(e)
       @register_status['status'] = false
       @register_status['message'] = e.message
     end
@@ -88,6 +89,7 @@ class SeedsController < ApplicationController
           delete_status['status'] = true
         rescue => e
           logger.fatal e.message
+          Honeybadger.notify(e)
           delete_status['status'] = false
           delete_status['message'] = e.message
         end

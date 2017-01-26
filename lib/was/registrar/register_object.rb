@@ -38,6 +38,7 @@ module Was
           Rails.logger.debug response.inspect
         rescue RestClient::Exception => e
           Rails.logger.error 'Error in registering the object. ' + e.message
+          Honeybadger.notify(e)
           raise
         end
 
