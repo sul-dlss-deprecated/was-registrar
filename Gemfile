@@ -19,6 +19,7 @@ gem 'nokogiri'
 
 gem 'rest-client'
 gem 'okcomputer' # for 'upness' monitoring
+gem 'honeybadger' # for exception reporting
 
 group :development do
   gem 'sdoc', '~> 0.4.0'

@@ -21,6 +21,7 @@ require 'capistrano/bundler'
 require 'capistrano/passenger'
 require 'capistrano/rails/assets'
 require 'capistrano/rails/migrations'
+require 'capistrano/honeybadger'
 
 require 'dlss/capistrano'
 
