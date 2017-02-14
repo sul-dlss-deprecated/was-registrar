@@ -27,9 +27,10 @@ module Was
             logger.info "Registering #{register_hash['job_directory']} with #{druid}"
             success_count += 1
           rescue => e
-            puts "Error in registering #{line} with #{e.inspect}"
+            msg = "Error registering line #{index + 1}: \"#{line}\" with #{e.inspect}"
+            puts msg
             puts e.backtrace.join("\n") unless e.backtrace.nil?
-            logger.fatal "Error in registering #{line} with #{e.inspect}"
+            logger.fatal msg
             logger.fatal e.backtrace.join("\n") unless e.backtrace.nil?
             Honeybadger.notify(e)
             fail_count += 1
@@ -57,7 +58,7 @@ module Was
           next if index == 0
           if (line.strip =~ pattern).nil?
             status = false
-            puts "Problem in line #{line.strip}"
+            puts "Problem in line #{index + 1}: \"#{line.strip}\""
           end
         end
         input_file.close

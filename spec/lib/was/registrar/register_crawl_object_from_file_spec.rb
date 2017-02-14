@@ -16,19 +16,20 @@ describe Was::Registrar::RegisterCrawlObjectFromFile do
         expect(Was::Registrar::RegisterCrawlObjectFromFile.verify_file(valid_file)).to be_truthy
       end
     end
-    it 'returns false and print error message if the file is bad-formatted with one line' do
-      not_valid_file = "#{@fixtures}register_crawl_files/not_valid_one_line.txt"
-      expected_text = "Problem in line WAS:Test\tjob1/warc\tdruid:ab123cd4567a\tdruid:mn123pq4567"
-      expect(STDOUT).to receive(:puts).with(expected_text)
-      expect(Was::Registrar::RegisterCrawlObjectFromFile.verify_file(not_valid_file)).to be_falsey
-    end
-    it 'returns false and print error message if the file is bad-formatted with multi lines' do
-      not_valid_file = "#{@fixtures}register_crawl_files/not_valid_multi_lines.txt"
-      expected_text = "Problem in line WAS:Test\tjob1/warc\tdruid:ab123cd4567a\tdruid:mn123pq4567"
-      expect(STDOUT).to receive(:puts).with(expected_text)
-      expect(STDOUT).to receive(:puts).with("Problem in line WAS:Test\t\tdruid:ef123gh4567\tdruid:mn123pq4567")
-
-      expect(Was::Registrar::RegisterCrawlObjectFromFile.verify_file(not_valid_file)).to be_falsey
+    context 'false and prints error message when file is invalid with' do
+      it 'one line' do
+        not_valid_file = "#{@fixtures}register_crawl_files/not_valid_one_line.txt"
+        expected_text = "Problem in line 2: \"WAS:Test\tjob1/warc\tdruid:ab123cd4567a\tdruid:mn123pq4567\""
+        expect(STDOUT).to receive(:puts).with(expected_text)
+        expect(Was::Registrar::RegisterCrawlObjectFromFile.verify_file(not_valid_file)).to be_falsey
+      end
+      it 'multiple lines' do
+        not_valid_file = "#{@fixtures}register_crawl_files/not_valid_multi_lines.txt"
+        expected_text = "Problem in line 2: \"WAS:Test\tjob1/warc\tdruid:ab123cd4567a\tdruid:mn123pq4567\""
+        expect(STDOUT).to receive(:puts).with(expected_text)
+        expect(STDOUT).to receive(:puts).with("Problem in line 3: \"WAS:Test\t\tdruid:ef123gh4567\tdruid:mn123pq4567\"")
+        expect(Was::Registrar::RegisterCrawlObjectFromFile.verify_file(not_valid_file)).to be_falsey
+      end
     end
   end
 
@@ -81,7 +82,7 @@ describe Was::Registrar::RegisterCrawlObjectFromFile do
       valid_file = "#{@fixtures}register_crawl_files/valid_one_line.txt"
       allow(Was::Registrar::RegisterCrawlObjectFromFile).to receive(:verify_file).and_return(true)
       expect(Was::Registrar::RegisterCrawlObjectFromFile).to receive(:convert_line_to_hash).and_return(nil)
-      expect_any_instance_of(Logger).to receive(:fatal).with(/Error in registering/)
+      expect_any_instance_of(Logger).to receive(:fatal).with(/Error registering/)
       expected_regex = /was-registrar\/lib\/was\/registrar\/register_crawl_object.rb:/
       expect_any_instance_of(Logger).to receive(:fatal).with(expected_regex)
       Was::Registrar::RegisterCrawlObjectFromFile.register(valid_file, 'tmp/log_from_spec.txt')
