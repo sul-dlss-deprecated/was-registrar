@@ -6,13 +6,15 @@ describe Was::Registrar::RegisterCrawlObjectFromFile do
   end
 
   describe '.verify_file' do
-    it 'returns true if the file is well-formatted with one line' do
-      valid_file = "#{@fixtures}register_crawl_files/valid_one_line.txt"
-      expect(Was::Registrar::RegisterCrawlObjectFromFile.verify_file(valid_file)).to be_truthy
-    end
-    it 'returns true if the file is well-formatted with multi lines' do
-      valid_file = "#{@fixtures}register_crawl_files/valid_multi_lines.txt"
-      expect(Was::Registrar::RegisterCrawlObjectFromFile.verify_file(valid_file)).to be_truthy
+    context 'true when file is well-formatted with' do
+      it 'one line' do
+        valid_file = "#{@fixtures}register_crawl_files/valid_one_line.txt"
+        expect(Was::Registrar::RegisterCrawlObjectFromFile.verify_file(valid_file)).to be_truthy
+      end
+      it 'multiple lines' do
+        valid_file = "#{@fixtures}register_crawl_files/valid_multi_lines.txt"
+        expect(Was::Registrar::RegisterCrawlObjectFromFile.verify_file(valid_file)).to be_truthy
+      end
     end
     it 'returns false and print error message if the file is bad-formatted with one line' do
       not_valid_file = "#{@fixtures}register_crawl_files/not_valid_one_line.txt"
@@ -31,7 +33,7 @@ describe Was::Registrar::RegisterCrawlObjectFromFile do
   end
 
   describe '.register' do
-    it 'register one item in the crawl list file with one item' do
+    it 'registers one item when crawl list file has one data line' do
       valid_file = "#{@fixtures}register_crawl_files/valid_one_line.txt"
       allow(Was::Registrar::RegisterCrawlObjectFromFile).to receive(:verify_file).and_return(true)
       exp_param_hash = {
@@ -46,7 +48,7 @@ describe Was::Registrar::RegisterCrawlObjectFromFile do
       Was::Registrar::RegisterCrawlObjectFromFile.register(valid_file, 'log/tmp.txt')
     end
 
-    it 'registers items in the crawl list file with multiple lines' do
+    it 'registers all items in the crawl list file with multiple lines' do
       valid_file = "#{@fixtures}register_crawl_files/valid_multi_lines.txt"
       allow(Was::Registrar::RegisterCrawlObjectFromFile).to receive(:verify_file).and_return(true)
       exp_param_hash = {
@@ -69,7 +71,7 @@ describe Was::Registrar::RegisterCrawlObjectFromFile do
       Was::Registrar::RegisterCrawlObjectFromFile.register(valid_file, 'log/tmp.txt')
     end
 
-    it 'does not call the registrar if there is any wrong records' do
+    it 'does not call RegisterCrawlObject.register if verify_file returns false' do
       allow(Was::Registrar::RegisterCrawlObjectFromFile).to receive(:verify_file).and_return(false)
       expect_any_instance_of(Was::Registrar::RegisterCrawlObject).not_to receive(:register)
       Was::Registrar::RegisterCrawlObjectFromFile.register('', '')
