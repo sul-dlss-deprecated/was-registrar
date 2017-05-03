@@ -13,9 +13,6 @@ server fetch(:deploy_host), user: fetch(:user), roles: %w(web db app)
 
 Capistrano::OneTimeKey.generate_one_time_key!
 
-# Default value for :scm is :git
-# set :scm, :git
-
 # Default value for :format is :pretty
 # set :format, :pretty
 
