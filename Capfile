@@ -23,6 +23,9 @@ require 'capistrano/rails/assets'
 require 'capistrano/rails/migrations'
 require 'capistrano/honeybadger'
 
+require "capistrano/scm/git"
+install_plugin Capistrano::SCM::Git
+
 require 'dlss/capistrano'
 
 # Loads custom tasks from `lib/capistrano/tasks' if you have any defined.
