@@ -1,7 +1,6 @@
 source 'https://rubygems.org'
 
-# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.7.1'
+gem 'rails', '~> 4.2.7'
 gem 'responders' # controller-level `respond_to' feature now in `responders` gem as of rails 4.2
 gem 'mysql2', '~> 0.3.18'
 gem 'sass-rails', '~> 4.0.3'
