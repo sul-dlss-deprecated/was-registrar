@@ -1,11 +1,11 @@
 source 'https://rubygems.org'
 
-gem 'rails', '~> 4.2.7'
+gem 'rails', '~> 5.0'
 gem 'responders' # controller-level `respond_to' feature now in `responders` gem as of rails 4.2
 gem 'mysql2', '~> 0.3.18'
-gem 'sass-rails', '~> 4.0.3'
+gem 'sass-rails'
 gem 'uglifier', '>= 1.3.0'
-gem 'coffee-rails', '~> 4.0.0'
+gem 'coffee-rails'
 gem 'therubyracer',  platforms: :ruby
 gem 'execjs'
 gem 'config' # rails environment specific configs
@@ -24,6 +24,7 @@ group :development do
   gem 'sdoc', '~> 0.4.0'
   gem 'spring'
   gem 'yard'
+  gem 'listen'
 end
 
 group :test, :development do
@@ -37,6 +38,7 @@ group :test do
   gem 'rspec-rails'
   gem 'capybara' # for feature/integration tests
   gem 'equivalent-xml' # for semantic comparison of xml
+  gem 'rails-controller-testing'
 end
 
 group :deployment do
