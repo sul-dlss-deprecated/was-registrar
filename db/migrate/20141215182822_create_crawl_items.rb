@@ -1,4 +1,4 @@
-class CreateCrawlItems < ActiveRecord::Migration
+class CreateCrawlItems < ActiveRecord::Migration[5.0]
   def change
     create_table :crawl_items do |t|
         t.column "druid_id",      :string

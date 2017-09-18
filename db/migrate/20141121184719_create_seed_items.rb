@@ -1,4 +1,4 @@
-class CreateSeedItems < ActiveRecord::Migration
+class CreateSeedItems < ActiveRecord::Migration[5.0]
 
   def up
   	  create_table :seed_items do |t|
