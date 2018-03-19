@@ -30,3 +30,7 @@ set :linked_dirs, %w{config/settings data log public/system tmp/cache vendor/bun
 
 # update shared_configs before restarting app
 before 'deploy:restart', 'shared_configs:update'
+
+# honeybadger_env otherwise defaults to rails_env
+# we want prod rather than production
+set :honeybadger_env, fetch(:stage)
