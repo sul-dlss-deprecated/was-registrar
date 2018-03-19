@@ -23,7 +23,6 @@ gem 'honeybadger' # for exception reporting
 group :development do
   gem 'sdoc', '~> 0.4.0'
   gem 'spring'
-  gem 'yard'
   gem 'listen'
 end
 
