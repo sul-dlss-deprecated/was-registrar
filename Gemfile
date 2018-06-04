@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 gem 'rails', '~> 5.0'
 gem 'responders' # controller-level `respond_to' feature now in `responders` gem as of rails 4.2
-gem 'mysql2', '~> 0.3.18'
+gem 'mysql2'
 gem 'sass-rails'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails'
