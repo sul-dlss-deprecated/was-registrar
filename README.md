@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.org/sul-dlss/was-registrar.svg?branch=master)](https://travis-ci.org/sul-dlss/was-registrar) [![Coverage Status](https://coveralls.io/repos/github/sul-dlss/was-registrar/badge.svg?branch=master)](https://coveralls.io/github/sul-dlss/was-registrar?branch=master)
-[![Dependency Status](https://gemnasium.com/badges/github.com/sul-dlss/was-registrar.svg)](https://gemnasium.com/github.com/sul-dlss/was-registrar)
+
 [![GitHub version](https://badge.fury.io/gh/sul-dlss%2Fwas-registrar.svg)](https://badge.fury.io/gh/sul-dlss%2Fwas-registrar)
 
 # was-registrar
