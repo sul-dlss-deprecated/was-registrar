@@ -6,8 +6,6 @@ gem 'mysql2'
 gem 'sass-rails'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails'
-gem 'therubyracer',  platforms: :ruby
-gem 'execjs'
 gem 'config' # rails environment specific configs
 
 gem 'jquery-rails'
