@@ -1,11 +1,12 @@
+# frozen_string_literal: true
+
 module Was
   module Importer
     class MetadataExtractor
       
       def self.extract_from_ait(source_metadata_xml_doc, seed_uri)
-        if source_metadata_xml_doc.present? then     
-          return source_metadata_xml_doc.xpath("//seed[url=\"#{seed_uri}\"]").to_s
-        end
+        return source_metadata_xml_doc.xpath("//seed[url=\"#{seed_uri}\"]").to_s if source_metadata_xml_doc.present?
+
         return ''
       end
 

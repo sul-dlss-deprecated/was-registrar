@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'was/importer/data_importer_from_text' 
 require 'was/importer/data_importer_results'
 

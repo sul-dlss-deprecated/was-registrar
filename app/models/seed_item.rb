@@ -1,2 +1,4 @@
-class SeedItem < ActiveRecord::Base
+# frozen_string_literal: true
+
+class SeedItem < ApplicationRecord
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'was/registrar/register_seed_object'
 require 'was/registrar/source_xml_writer'
 
@@ -11,7 +13,7 @@ class SeedsController < ApplicationController
   end
 
   def do_action
-    seed_ids =  params["seeds"]
+    seed_ids =  params['seeds']
     action_type = params['action_list']
 
     case action_type
@@ -46,7 +48,7 @@ class SeedsController < ApplicationController
   def register_one_item
     writer = Was::Registrar::SourceXmlWriter.new(Settings.seed_staging_path)
 
-    seed_id = params["id"]
+    seed_id = params['id']
     seed_item = SeedItem.find(seed_id)
 
     registrar = Was::Registrar::RegisterSeedObject.new
@@ -58,7 +60,7 @@ class SeedsController < ApplicationController
       writer.write_xml seed_item.serializable_hash
       @register_status['druid']= seed_item.druid_id
       @register_status['status'] = true
-    rescue => e
+    rescue StandardError => e
       logger.fatal e.inspect
       logger.fatal e.backtrace.join("\n") unless e.backtrace.nil?
       Honeybadger.notify(e)
@@ -87,7 +89,7 @@ class SeedsController < ApplicationController
           seed_item.delete
 
           delete_status['status'] = true
-        rescue => e
+        rescue StandardError => e
           logger.fatal e.message
           Honeybadger.notify(e)
           delete_status['status'] = false

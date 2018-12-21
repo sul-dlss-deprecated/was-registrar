@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 namespace :was_registrar do
 
   desc 'Registering crawl objects listed in a file'

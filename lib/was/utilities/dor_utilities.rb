@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Was
   module Utilities
     class DorUtilities
@@ -49,25 +51,21 @@ module Was
 
       def parse_collection_json(collection_json)
         collections_list = []
-        unless collection_json.nil?
-          collection_json.each do |collection|
-            if collection['title'].length > 30 then
-              collection_title = "#{collection['title'][0..30]} ..."
-            else
-              collection_title = collection['title']
-            end
-            collections_list.push(title: collection_title, druid: collection['druid'])
+        collection_json&.each do |collection|
+          if collection['title'].length > 30 then
+            collection_title = "#{collection['title'][0..30]} ..."
+          else
+            collection_title = collection['title']
           end
+          collections_list.push(title: collection_title, druid: collection['druid'])
         end
         collections_list
       end
 
       def parse_items_json(items_json)
         items_list = []
-        unless items_json.nil?
-          items_json.each do |item|
-            items_list.push(title: item['title'], druid: item['druid'])
-          end
+        items_json&.each do |item|
+          items_list.push(title: item['title'], druid: item['druid'])
         end
         items_list
       end

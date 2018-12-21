@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
 
 gem 'rails', '~> 5.0'
@@ -29,7 +31,7 @@ end
 group :test, :development do
   gem 'pry-byebug', require: false
   gem 'rubocop', require: false
-  gem "sqlite3", :platform => [:ruby, :mswin, :mingw]
+  gem 'sqlite3', :platform => %i[ruby mswin mingw]
 end
 
 group :test do

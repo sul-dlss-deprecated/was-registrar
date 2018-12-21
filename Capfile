@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Load DSL and Setup Up Stages
 require 'capistrano/setup'
 
@@ -23,7 +25,7 @@ require 'capistrano/rails/assets'
 require 'capistrano/rails/migrations'
 require 'capistrano/honeybadger'
 
-require "capistrano/scm/git"
+require 'capistrano/scm/git'
 install_plugin Capistrano::SCM::Git
 
 require 'dlss/capistrano'
