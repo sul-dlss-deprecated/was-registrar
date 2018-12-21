@@ -18,7 +18,6 @@ gem 'okcomputer' # for 'upness' monitoring
 gem 'honeybadger' # for exception reporting
 
 # Stanford Gems
-gem 'dor-services'
 gem 'dor-services-client'
 
 group :development do
