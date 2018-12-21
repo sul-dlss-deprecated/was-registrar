@@ -29,14 +29,21 @@ module Was
       def register_object_using_web_service(register_params)
         Rails.logger.debug "Registering an object with params #{register_params}"
         begin
-          resource = RestClient::Resource.new(
-            "#{Settings.dor_services_url}/objects", read_timeout: 300, open_timeout: 60
-          )
-          # we explicitly want text response so the body is only the druid
-          # New Rails dor-services-app defaults to json; old Sinatra one defaulted to text
-          response = resource.post(register_params, accept: :text)
+          connection = Faraday.new(
+              url: Settings.dor_services_url,
+              headers: { accept: 'text/plain' } # we explicitly want text response so the body is only the druid
+          ) do |faraday|
+            faraday.use Faraday::Response::RaiseError
+          end
+
+          response = connection.post do |req|
+            req.url = '/objects'
+            req.body = register_params
+            req.options.timeout = 300
+            req.options.open_timeout = 60
+          end
           Rails.logger.debug response.inspect
-        rescue RestClient::Exception => e
+        rescue Faraday::Error => e
           Rails.logger.error 'Error in registering the object. ' + e.message
           Honeybadger.notify(e)
           raise
