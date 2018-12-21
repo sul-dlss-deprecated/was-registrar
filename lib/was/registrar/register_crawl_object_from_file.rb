@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Was
   module Registrar
     # Registers a set of crawl objects defined by an input file
@@ -20,13 +22,14 @@ module Was
         input_file = File.open(input_file_path)
         input_file.each_with_index do |line, index|
           next if index == 0
+
           register_hash = convert_line_to_hash line
           begin
             druid = registrar.register register_hash
             puts "Registering #{register_hash['job_directory']} with #{druid}"
             logger.info "Registering #{register_hash['job_directory']} with #{druid}"
             success_count += 1
-          rescue => e
+          rescue StandardError => e
             msg = "Error registering line #{index + 1}: \"#{line}\" with #{e.inspect}"
             puts msg
             puts e.backtrace.join("\n") unless e.backtrace.nil?
@@ -56,6 +59,7 @@ module Was
         input_file = File.open(input_file_path)
         input_file.each_with_index do |line, index|
           next if index == 0
+
           if (line.strip =~ pattern).nil?
             status = false
             puts "Problem in line #{index + 1}: \"#{line.strip}\""

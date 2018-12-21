@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 set :application, 'was-registrar'
 set :repo_url, 'https://github.com/sul-dlss/was-registrar.git'
 
@@ -5,7 +7,7 @@ set :repo_url, 'https://github.com/sul-dlss/was-registrar.git'
 ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }.call
 
 # Default deploy_to directory is /var/www/my_app
-set :deploy_to, "/opt/app/was/was-registrar"
+set :deploy_to, '/opt/app/was/was-registrar'
 
 # Default value for :format is :pretty
 # set :format, :pretty

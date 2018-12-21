@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Was
   module Registrar
 
@@ -41,9 +43,7 @@ module Was
 
         items_list.each do |item|
           crawl_item = CrawlItem.find_by job_directory: item[:title]
-          unless crawl_item.nil?
-            crawl_item.update(:druid_id => item[:druid])
-          end
+          crawl_item&.update(:druid_id => item[:druid])
         end
       end
 

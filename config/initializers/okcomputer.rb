@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'okcomputer'
 
 # /status for 'upness', e.g. for load balancer
@@ -30,4 +32,4 @@ OkComputer::Registry.register 'external-argo_status', OkComputer::HttpCheck.new(
 default_seed_apo_argo_url = "#{Settings.argo_view_url}#{Settings.seed_apo}"
 OkComputer::Registry.register 'external-default_seed_apo', OkComputer::HttpCheck.new(default_seed_apo_argo_url)
 
-OkComputer.make_optional %w(external-dor_services_app external-argo_status external-default_seed_apo)
+OkComputer.make_optional %w[external-dor_services_app external-argo_status external-default_seed_apo]

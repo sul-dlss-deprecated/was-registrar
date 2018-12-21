@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'nokogiri'
 require 'was/importer/data_importer'
 require 'was/importer/data_importer_verifier'
@@ -81,9 +83,7 @@ module Was
         fields = line.split(@sep)
 
         fields.each_with_index do |field, field_id|
-          if column_names.include?(headers[field_id])
-            hash_record[headers[field_id]] = field
-          end
+          hash_record[headers[field_id]] = field if column_names.include?(headers[field_id])
         end
 
         hash_record

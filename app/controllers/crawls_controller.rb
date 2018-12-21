@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'was/utilities/dor_utilities'
 require 'was/registrar/sync_crawl_object'
 require 'was/registrar/register_crawl_object'
@@ -69,7 +71,7 @@ class CrawlsController < ApplicationController
       crawl_item.update(druid_id: "#{druid}")
       @register_status['druid'] = crawl_item.druid_id
       @register_status['status'] = true
-    rescue => e
+    rescue StandardError => e
       logger.fatal e.message
       Honeybadger.notify(e)
       @register_status['status'] = false
@@ -106,10 +108,10 @@ class CrawlsController < ApplicationController
   def update_database(id, column_name, column_value)
     crawl_item = CrawlItem.find id
     crawl_item.update(column_name => column_value)
-    render nothing: true, status: 200
-  rescue => e
+    render nothing: true, status: :ok
+  rescue StandardError => e
     logger.fatal e.message
     Honeybadger.notify(e)
-    render nothing: true, status: 500
+    render nothing: true, status: :internal_server_error
   end
 end

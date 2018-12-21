@@ -1,4 +1,6 @@
-require File.expand_path('../boot', __FILE__)
+# frozen_string_literal: true
+
+require File.expand_path('boot', __dir__)
 
 require 'rails/all'
 
@@ -21,13 +23,13 @@ module WasRegistrar
     # config.i18n.default_locale = :de
     config.assets.enabled = true
 
-    config.autoload_paths += %W(#{config.root}/lib)
+    config.autoload_paths += %W[#{config.root}/lib]
 
     config.assets.paths << "#{Rails.root}/app/assets/fonts"
     config.assets.version = '1.0'
 
     # Enable the asset pipeline
     # Precompile additional assets
-    config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif *.eot *.svg *.ttf *.otf *.woff app/assets/stylesheets/**/* app/assets/fonts/*)
+    config.assets.precompile += %w[*.png *.jpg *.jpeg *.gif *.eot *.svg *.ttf *.otf *.woff app/assets/stylesheets/**/* app/assets/fonts/*]
   end
 end

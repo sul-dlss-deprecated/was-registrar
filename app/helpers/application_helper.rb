@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module ApplicationHelper
   def format_druid druid
     if druid.present? then
@@ -8,7 +10,7 @@ module ApplicationHelper
   end
 
   def format_collection(collection_id, collections_list)
-    unless collection_id.present? then
+    if collection_id.blank? then
       return collection_id
     end
 
@@ -21,7 +23,7 @@ module ApplicationHelper
   end
 
   def format_apo(apo_id, apos_list)
-    unless apo_id.present? then
+    if apo_id.blank? then
       return apo_id
     end
 

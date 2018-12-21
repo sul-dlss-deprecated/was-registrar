@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Was
   module Registrar
     # Base class to register an object using dor-services-app
@@ -52,7 +54,7 @@ module Was
       # @param [String] druid id
       # @return [Boolean] true if druid matches pattern; otherwise false
       def valid_druid?(druid)
-        druid =~ pattern ? true : false
+        druid.match?(pattern) ? true : false
       end
 
       # @return [Boolean] true if the required parameters exist
@@ -63,6 +65,7 @@ module Was
             register_params[:admin_policy].present?
           return true
         end
+
         false
       end
     end

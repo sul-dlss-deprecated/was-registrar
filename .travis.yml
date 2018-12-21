@@ -2,7 +2,7 @@ language: ruby
 rvm:
   - 2.5.3
 
-language: ruby
+bundler_args: --without production
 
 before_script:
   - "bundle exec rake db:migrate"

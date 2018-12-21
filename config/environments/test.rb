@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
@@ -41,7 +43,7 @@ Rails.application.configure do
   # The :test delivery method accumulates sent emails in the
   # ActionMailer::Base.deliveries array.
   config.action_mailer.delivery_method = :test
-  
+
   # Debug mode disables concatenation and preprocessing of assets.
   # This option may cause significant delays in view rendering with a large
   # number of complex assets.
@@ -57,5 +59,5 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
-  config.autoload_paths += %W(#{config.root}/lib/importer)
+  config.autoload_paths += %W[#{config.root}/lib/importer]
 end

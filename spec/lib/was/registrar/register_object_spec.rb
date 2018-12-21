@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 describe Was::Registrar::RegisterSeedObject do
@@ -31,7 +33,7 @@ describe Was::Registrar::RegisterSeedObject do
       registrar = Was::Registrar::RegisterObject.new
       exp_regex = /Error in registering the object/
       expect { registrar.register_object_using_web_service(params) }.to raise_error(RuntimeError, exp_regex)
-     end
+    end
   end
 
   describe '#is_valid?' do
