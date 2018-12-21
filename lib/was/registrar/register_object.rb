@@ -54,7 +54,7 @@ module Was
       # @param [String] druid id
       # @return [Boolean] true if druid matches pattern; otherwise false
       def valid_druid?(druid)
-        druid.match? pattern ? true : false
+        druid.match?(pattern) ? true : false
       end
 
       # @return [Boolean] true if the required parameters exist
