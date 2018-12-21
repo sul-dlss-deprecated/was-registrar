@@ -1,7 +1,7 @@
 inherit_from: .rubocop_todo.yml
 
 AllCops:
-  TargetRubyVersion: 2.1
+  TargetRubyVersion: 2.5
   Exclude:
     - bin/**
     - config.ru
@@ -26,11 +26,11 @@ Metrics/LineLength:
     - 'spec/lib/was/registrar/source_xml_writer_spec.rb'
 
 # because it can make the code more readable
-Style/EmptyLinesAroundClassBody:
+Layout/EmptyLinesAroundClassBody:
   Enabled: false
 
 # because it can make the code more readable
-Style/EmptyLinesAroundModuleBody:
+Layout/EmptyLinesAroundModuleBody:
   Enabled: false
 
 # because it's silly to care
