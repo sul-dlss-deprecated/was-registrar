@@ -29,27 +29,14 @@ module Was
       def register_object_using_web_service(register_params)
         Rails.logger.debug "Registering an object with params #{register_params}"
         begin
-          connection = Faraday.new(
-              url: Settings.dor_services_url,
-              headers: { accept: 'text/plain' } # we explicitly want text response so the body is only the druid
-          ) do |faraday|
-            faraday.use Faraday::Response::RaiseError
-          end
-
-          response = connection.post do |req|
-            req.url = '/objects'
-            req.body = register_params
-            req.options.timeout = 300
-            req.options.open_timeout = 60
-          end
-          Rails.logger.debug response.inspect
-        rescue Faraday::Error => e
+          response = Dor::Services::Client.register(params: register_params)
+        rescue StandardError => e
           Rails.logger.error 'Error in registering the object. ' + e.message
           Honeybadger.notify(e)
           raise
         end
 
-        druid = response.body
+        druid = response[:pid]
         if valid_druid?(druid)
           return druid
         else

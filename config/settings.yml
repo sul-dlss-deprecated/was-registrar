@@ -8,9 +8,11 @@ seed_apo: 'oo000oo0000'
 #  this XML is read later by was_robot_suite wasSeedPreassemblyWF step
 seed_staging_path: './'
 
-# dor_services_url:  dor-services REST API used to register objects.
-#  format: No trailing slash; '/object' is appended in the code
-dor_services_url: 'http://localhost:3000'
+# Dor Services Client configuration
+DOR_SERVICES:
+  URL: 'http://localhost:3003'
+  USER: 'user'
+  PASS: 'password'
 
 # argo_view_url: prepended to druid;  used for links to registered objects in views
 #  format: yes, trailing slash, e.g. 'https://argo-stage.stanford.edu/catalog/'

@@ -3,6 +3,9 @@ require 'rails_helper'
 describe Was::Registrar::RegisterSeedObject do
   describe '#register_object_using_web_service' do
 
+    let(:dor_registration) { { pid: 'druid:aa111aa1111' } }
+    let(:invalid_dor_registration) { { pid: 'not_valid_druid' } }
+
     it 'registers object with valid params' do
       params = {
         object_type: 'item',
@@ -13,9 +16,8 @@ describe Was::Registrar::RegisterSeedObject do
         initiate_workflow: 'wasSeedPreassemblyWF',
         rights: 'world'
       }
-      response = double('net http response', to_hash: { 'Status' => ['200 OK'] }, code: 200, body: 'druid:aa111aa1111')
 
-      expect_any_instance_of(Faraday::Connection).to receive(:post).and_return(response)
+      expect(Dor::Services::Client).to receive(:register).and_return(dor_registration)
 
       registrar = Was::Registrar::RegisterObject.new
       expect(registrar.register_object_using_web_service(params)).to eq('druid:aa111aa1111')
@@ -23,9 +25,8 @@ describe Was::Registrar::RegisterSeedObject do
 
     it 'raises an error if the response is not valid druid' do
       params = {}
-      response = double('net http response', to_hash: { 'Status' => ['200 OK'] }, code: 200, body: 'not_valid_druid')
 
-      expect_any_instance_of(Faraday::Connection).to receive(:post).and_return(response)
+      expect(Dor::Services::Client).to receive(:register).and_return(invalid_dor_registration)
 
       registrar = Was::Registrar::RegisterObject.new
       exp_regex = /Error in registering the object/
