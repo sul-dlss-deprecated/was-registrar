@@ -21,17 +21,6 @@ describe Was::Registrar::RegisterSeedObject do
       expect(registrar.register_object_using_web_service(params)).to eq('druid:aa111aa1111')
     end
 
-    it 'raises an error if the response is not valid druid' do
-      params = {}
-      response = double('net http response', to_hash: { 'Status' => ['200 OK'] }, code: 200, body: 'not_valid_druid')
-
-      expect_any_instance_of(Faraday::Connection).to receive(:post).with(params).and_return(response)
-
-      registrar = Was::Registrar::RegisterObject.new
-      exp_regex = /Error in registering the object/
-      expect { registrar.register_object_using_web_service(params) }.to raise_error(Faraday::Error, exp_regex)
-    end
-
     it 'raises an error if the client connection fails' do
       params = {}
 
