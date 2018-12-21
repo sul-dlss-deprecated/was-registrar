@@ -340,7 +340,7 @@ DEPENDENCIES
   nokogiri
   okcomputer
   pry-byebug
-  rails (~> 5.0)
+  rails (~> 5.2.2)
   rails-controller-testing
   responders
   rspec-rails
