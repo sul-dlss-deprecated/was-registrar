@@ -13,7 +13,7 @@ Dir[File.join(File.dirname(__FILE__), 'tasks/**/*.rake')].each {|f| load f }
 task default: :ci
 
 desc 'run continuous integration suite (tests, coverage)'
-task ci: :spec
+task ci: %i[rubocop spec]
 
 begin
   require 'rspec/core/rake_task'
