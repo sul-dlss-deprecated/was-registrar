@@ -30,7 +30,7 @@ module Was
         Rails.logger.debug "Registering an object with params #{register_params}"
         begin
           response = Dor::Services::Client.register(params: register_params)
-        rescue Dor::ParameterError, StandardError => e
+        rescue StandardError => e
           Rails.logger.error 'Error in registering the object. ' + e.message
           Honeybadger.notify(e)
           raise
