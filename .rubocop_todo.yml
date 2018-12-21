@@ -57,7 +57,7 @@ Rails/Output:
     - 'lib/was/registrar/register_crawl_object_from_file.rb'
 
 # Offense count: 4
-Style/AccessorMethodName:
+Naming/AccessorMethodName:
   Exclude:
     - 'lib/was/registrar/sync_crawl_object.rb'
     - 'lib/was/utilities/dor_utilities.rb'
@@ -66,7 +66,7 @@ Style/AccessorMethodName:
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedHashRocketStyle, EnforcedColonStyle, EnforcedLastArgumentHashStyle, SupportedLastArgumentHashStyles.
 # SupportedLastArgumentHashStyles: always_inspect, always_ignore, ignore_implicit, ignore_explicit
-Style/AlignHash:
+Layout/AlignHash:
   Exclude:
     - 'spec/lib/was/registrar/source_xml_writer_spec.rb'
 
@@ -98,7 +98,7 @@ Style/BracesAroundHashParameters:
 
 # Offense count: 1
 # Cop supports --auto-correct.
-Style/CommentIndentation:
+Layout/CommentIndentation:
   Exclude:
     - 'app/controllers/seeds_controller.rb'
 
@@ -141,7 +141,7 @@ Style/EmptyElse:
 
 # Offense count: 1
 # Cop supports --auto-correct.
-Style/EmptyLines:
+Layout/EmptyLines:
   Exclude:
     - 'config/routes.rb'
 
@@ -149,7 +149,7 @@ Style/EmptyLines:
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle, SupportedStyles.
 # SupportedStyles: empty_lines, no_empty_lines
-Style/EmptyLinesAroundBlockBody:
+Layout/EmptyLinesAroundBlockBody:
   Exclude:
     - 'app/controllers/seeds_controller.rb'
     - 'config/routes.rb'
@@ -161,7 +161,7 @@ Style/EmptyLinesAroundBlockBody:
 
 # Offense count: 1
 # Cop supports --auto-correct.
-Style/EmptyLinesAroundMethodBody:
+Layout/EmptyLinesAroundMethodBody:
   Exclude:
     - 'app/controllers/seeds_controller.rb'
 
@@ -178,7 +178,7 @@ Style/EmptyMethod:
 # Offense count: 11
 # Cop supports --auto-correct.
 # Configuration parameters: AllowForAlignment, ForceEqualSignAlignment.
-Style/ExtraSpacing:
+Layout/ExtraSpacing:
   Exclude:
     - 'Gemfile'
     - 'app/controllers/crawls_controller.rb'
@@ -229,7 +229,7 @@ Style/IfWithSemicolon:
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle, SupportedStyles, IndentationWidth.
 # SupportedStyles: special_inside_parentheses, consistent, align_braces
-Style/IndentHash:
+Layout/IndentHash:
   Exclude:
     - 'lib/was/registrar/register_crawl_object.rb'
     - 'lib/was/registrar/register_seed_object.rb'
@@ -238,7 +238,7 @@ Style/IndentHash:
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle, SupportedStyles.
 # SupportedStyles: normal, rails
-Style/IndentationConsistency:
+Layout/IndentationConsistency:
   Exclude:
     - 'app/controllers/seeds_controller.rb'
     - 'lib/was/importer/data_importer_verifier.rb'
@@ -247,7 +247,7 @@ Style/IndentationConsistency:
 # Offense count: 7
 # Cop supports --auto-correct.
 # Configuration parameters: Width.
-Style/IndentationWidth:
+Layout/IndentationWidth:
   Exclude:
     - 'app/controllers/seeds_controller.rb'
     - 'app/helpers/crawls_helper.rb'
@@ -258,7 +258,7 @@ Style/IndentationWidth:
 
 # Offense count: 1
 # Cop supports --auto-correct.
-Style/MethodCallParentheses:
+Style/MethodCallWithoutArgsParentheses:
   Exclude:
     - 'app/controllers/importer_controller.rb'
 
@@ -319,7 +319,7 @@ Style/PercentLiteralDelimiters:
 # NamePrefix: is_, has_, have_
 # NamePrefixBlacklist: is_, has_, have_
 # NameWhitelist: is_a?
-Style/PredicateName:
+Naming/PredicateName:
   Exclude:
     - 'spec/**/*'
     - 'lib/was/registrar/register_object.rb'
@@ -365,13 +365,13 @@ Style/SignalException:
 
 # Offense count: 1
 # Cop supports --auto-correct.
-Style/SpaceAfterColon:
+Layout/SpaceAfterColon:
   Exclude:
     - 'app/controllers/seeds_controller.rb'
 
 # Offense count: 18
 # Cop supports --auto-correct.
-Style/SpaceAfterComma:
+Layout/SpaceAfterComma:
   Exclude:
     - 'app/helpers/crawls_helper.rb'
     - 'lib/was/importer/data_importer_results.rb'
@@ -384,7 +384,7 @@ Style/SpaceAfterComma:
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyleInsidePipes, SupportedStyles.
 # SupportedStyles: space, no_space
-Style/SpaceAroundBlockParameters:
+Layout/SpaceAroundBlockParameters:
   Exclude:
     - 'app/controllers/seeds_controller.rb'
     - 'lib/was/registrar/sync_crawl_object.rb'
@@ -392,7 +392,7 @@ Style/SpaceAroundBlockParameters:
 # Offense count: 66
 # Cop supports --auto-correct.
 # Configuration parameters: AllowForAlignment.
-Style/SpaceAroundOperators:
+Layout/SpaceAroundOperators:
   Exclude:
     - 'app/controllers/crawls_controller.rb'
     - 'app/controllers/seeds_controller.rb'
@@ -411,7 +411,7 @@ Style/SpaceAroundOperators:
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle, SupportedStyles.
 # SupportedStyles: space, no_space
-Style/SpaceBeforeBlockBraces:
+Layout/SpaceBeforeBlockBraces:
   Exclude:
     - 'spec/lib/was/registrar/register_crawl_object_spec.rb'
     - 'spec/lib/was/registrar/register_seed_object_spec.rb'
@@ -420,7 +420,7 @@ Style/SpaceBeforeBlockBraces:
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle, SupportedStyles, EnforcedStyleForEmptyBraces, SpaceBeforeBlockParameters.
 # SupportedStyles: space, no_space
-Style/SpaceInsideBlockBraces:
+Layout/SpaceInsideBlockBraces:
   Exclude:
     - 'Rakefile'
 
@@ -428,7 +428,7 @@ Style/SpaceInsideBlockBraces:
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle, EnforcedStyleForEmptyBraces, SupportedStyles.
 # SupportedStyles: space, no_space, compact
-Style/SpaceInsideHashLiteralBraces:
+Layout/SpaceInsideHashLiteralBraces:
   Exclude:
     - 'lib/was/importer/data_importer_results.rb'
     - 'lib/was/registrar/sync_crawl_object.rb'
@@ -437,7 +437,7 @@ Style/SpaceInsideHashLiteralBraces:
 
 # Offense count: 8
 # Cop supports --auto-correct.
-Style/SpaceInsideParens:
+Layout/SpaceInsideParens:
   Exclude:
     - 'lib/was/registrar/source_xml_writer.rb'
     - 'lib/was/registrar/sync_crawl_object.rb'
@@ -445,7 +445,7 @@ Style/SpaceInsideParens:
 
 # Offense count: 6
 # Cop supports --auto-correct.
-Style/Tab:
+Layout/Tab:
   Exclude:
     - 'lib/was/importer/data_importer.rb'
 
@@ -453,7 +453,7 @@ Style/Tab:
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle, SupportedStyles.
 # SupportedStyles: final_newline, final_blank_line
-Style/TrailingBlankLines:
+Layout/TrailingBlankLines:
   Exclude:
     - 'config/initializers/cookies_serializer.rb'
     - 'lib/was/importer/data_importer_results.rb'
@@ -464,14 +464,14 @@ Style/TrailingBlankLines:
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyleForMultiline, SupportedStyles.
 # SupportedStyles: comma, consistent_comma, no_comma
-Style/TrailingCommaInLiteral:
+Layout/TrailingCommaInLiteral:
   Exclude:
     - 'lib/was/registrar/register_crawl_object.rb'
     - 'lib/was/registrar/register_seed_object.rb'
 
 # Offense count: 38
 # Cop supports --auto-correct.
-Style/TrailingWhitespace:
+Layout/TrailingWhitespace:
   Exclude:
     - 'app/controllers/importer_controller.rb'
     - 'app/helpers/crawls_helper.rb'

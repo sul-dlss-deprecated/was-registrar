@@ -32,7 +32,3 @@ Layout/EmptyLinesAroundClassBody:
 # because it can make the code more readable
 Layout/EmptyLinesAroundModuleBody:
   Enabled: false
-
-# because it's silly to care
-Style/StringLiterals:
-  Enabled: false
