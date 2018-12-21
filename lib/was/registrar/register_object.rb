@@ -31,9 +31,12 @@ module Was
         begin
           connection = Faraday.new(
               url: Settings.dor_services_url,
-              header: { accept: 'text/plain' }) # we explicitly want text response so the body is only the druid
+              headers: { accept: 'text/plain' } # we explicitly want text response so the body is only the druid
+          ) do |faraday|
+            faraday.use Faraday::Response::RaiseError
+          end
 
-          connection.post do |req|
+          response = connection.post do |req|
             req.url = '/objects'
             req.body = register_params
             req.options.timeout = 300

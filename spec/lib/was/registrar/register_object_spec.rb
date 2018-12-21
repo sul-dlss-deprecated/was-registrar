@@ -1,16 +1,7 @@
 require 'rails_helper'
 
 describe Was::Registrar::RegisterSeedObject do
-
-  let(:faraday_dbl) { class_double(Faraday) }
-  let(:url) { Settings.dor_services_url }
-  let(:header) { { accept: "text/plain" } }
-
   describe '#register_object_using_web_service' do
-
-    before do
-      allow(Faraday).to receive(:new).with(url: url, header: header).and_return(faraday_dbl)
-    end
 
     it 'registers object with valid params' do
       params = {
@@ -24,7 +15,7 @@ describe Was::Registrar::RegisterSeedObject do
       }
       response = double('net http response', to_hash: { 'Status' => ['200 OK'] }, code: 200, body: 'druid:aa111aa1111')
 
-      expect(faraday_dbl).to receive(:post).with(params).and_return(response)
+      expect_any_instance_of(Faraday::Connection).to receive(:post).and_return(response)
 
       registrar = Was::Registrar::RegisterObject.new
       expect(registrar.register_object_using_web_service(params)).to eq('druid:aa111aa1111')
@@ -34,17 +25,17 @@ describe Was::Registrar::RegisterSeedObject do
       params = {}
       response = double('net http response', to_hash: { 'Status' => ['200 OK'] }, code: 200, body: 'not_valid_druid')
 
-      expect(faraday_dbl).to receive(:post).with(params).and_return(response)
+      expect_any_instance_of(Faraday::Connection).to receive(:post).with(params).and_return(response)
 
       registrar = Was::Registrar::RegisterObject.new
       exp_regex = /Error in registering the object/
-      expect { registrar.register_object_using_web_service(params) }.to raise_error(RuntimeError, exp_regex)
+      expect { registrar.register_object_using_web_service(params) }.to raise_error(Faraday::Error, exp_regex)
     end
 
     it 'raises an error if the client connection fails' do
       params = {}
 
-      expect(faraday_dbl).to receive(:post).with(params).and_raise(Faraday::Error)
+      expect_any_instance_of(Faraday::Connection).to receive(:post).with(params).and_raise(Faraday::Error)
       expect_any_instance_of(Logger).to receive(:error).once
 
       registrar = Was::Registrar::RegisterObject.new
@@ -53,7 +44,7 @@ describe Was::Registrar::RegisterSeedObject do
 
     it 'raises an error on an unexpected exception' do
       params = {}
-      expect(faraday_dbl).to receive(:post).with(params).and_raise(RuntimeError)
+      expect_any_instance_of(Faraday::Connection).to receive(:post).with(params).and_raise(RuntimeError)
 
       expect_any_instance_of(Logger).not_to receive(:error)
 
