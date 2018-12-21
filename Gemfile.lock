@@ -493,7 +493,6 @@ DEPENDENCIES
   dor-services
   dor-services-client
   equivalent-xml
-  faraday
   honeybadger
   jbuilder (~> 2.0)
   jquery-rails

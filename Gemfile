@@ -14,7 +14,6 @@ gem 'jbuilder', '~> 2.0'
 
 gem 'nokogiri'
 
-gem 'faraday'
 gem 'okcomputer' # for 'upness' monitoring
 gem 'honeybadger' # for exception reporting
 
