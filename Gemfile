@@ -18,6 +18,9 @@ gem 'faraday'
 gem 'okcomputer' # for 'upness' monitoring
 gem 'honeybadger' # for exception reporting
 
+# Stanford Gems
+gem 'dor-services-client'
+
 group :development do
   gem 'sdoc', '~> 0.4.0'
   gem 'spring'
