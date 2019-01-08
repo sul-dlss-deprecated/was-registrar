@@ -2,11 +2,9 @@
 
 module Was
   module Registrar
-
     # Synchronizes between the available crawl jobs, database, and DOR repo.
     # @deprecated - was possibly used when crawls were registered via crawls_controller
     class SyncCrawlObject
-
       def sync_all
         sync_staging
         sync_dor
@@ -46,7 +44,6 @@ module Was
           crawl_item&.update(:druid_id => item[:druid])
         end
       end
-
     end
   end
 end

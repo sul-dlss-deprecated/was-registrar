@@ -3,7 +3,6 @@
 module Was
   module Importer
     class DataImporterVerifier
-
       def self.verify(hash_record) 
         if  hash_record.has_key?('uri').present? &&
             hash_record.has_key?('source_id').present?  && 
@@ -14,7 +13,6 @@ module Was
 
           return [false, 'Missing one of the required fields: uri, source_id, or collection_id']
       end
-
     end
   end
 end

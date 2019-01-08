@@ -4,7 +4,6 @@ module Was
   module Registrar
     # Registers a set of crawl objects defined by an input file
     class RegisterCrawlObjectFromFile
-
       # Registers the items in the input_file_path and log the errors in log_file
       # @example file format:
       #   Source_id job_directory collection_id

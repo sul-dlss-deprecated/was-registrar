@@ -4,10 +4,8 @@ require 'was/registrar/register_object'
 
 module Was
   module Registrar
-    
     # Registers crawl object
     class RegisterCrawlObject < RegisterObject
-
       # Converts the database columns into params that could be passed to the registration service   
       def convert_column_to_params crawl_item_hash
         register_params= {
@@ -21,7 +19,6 @@ module Was
           }
         return register_params
       end
- 
     end
   end
 end

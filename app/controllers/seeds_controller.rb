@@ -4,7 +4,6 @@ require 'was/registrar/register_seed_object'
 require 'was/registrar/source_xml_writer'
 
 class SeedsController < ApplicationController
-
   layout 'application'
   respond_to :html, :json
 
