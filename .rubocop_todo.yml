@@ -8,12 +8,6 @@
 
 # Offense count: 1
 # Cop supports --auto-correct.
-Layout/CommentIndentation:
-  Exclude:
-    - 'app/controllers/seeds_controller.rb'
-
-# Offense count: 1
-# Cop supports --auto-correct.
 Layout/EmptyLines:
   Exclude:
     - 'config/routes.rb'

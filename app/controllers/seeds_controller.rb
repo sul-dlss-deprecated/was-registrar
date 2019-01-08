@@ -21,7 +21,7 @@ class SeedsController < ApplicationController
     when 'Delete'
       delete(seed_ids)
     else
-    # Returns Error message
+      # Returns Error message
     end
   end
 
