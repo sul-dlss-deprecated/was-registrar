@@ -74,7 +74,6 @@ class SeedsController < ApplicationController
   end
 
   def delete seed_ids
-
      @delete_status_list = []
 
     if seed_ids.present?

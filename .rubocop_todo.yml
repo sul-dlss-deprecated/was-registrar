@@ -20,12 +20,6 @@ Layout/EmptyLinesAroundBlockBody:
     - 'spec/lib/was/registrar/register_object_spec.rb'
     - 'spec/lib/was/registrar/source_xml_writer_spec.rb'
 
-# Offense count: 1
-# Cop supports --auto-correct.
-Layout/EmptyLinesAroundMethodBody:
-  Exclude:
-    - 'app/controllers/seeds_controller.rb'
-
 # Offense count: 10
 # Cop supports --auto-correct.
 # Configuration parameters: AllowForAlignment, ForceEqualSignAlignment.
