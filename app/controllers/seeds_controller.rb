@@ -73,7 +73,7 @@ class SeedsController < ApplicationController
   end
 
   def delete seed_ids
-     @delete_status_list = []
+    @delete_status_list = []
 
     if seed_ids.present?
       seed_ids.each do | id |

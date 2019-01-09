@@ -6,16 +6,6 @@
 # Note that changes in the inspected code, or installation of new
 # versions of RuboCop, may require this file to be generated again.
 
-# Offense count: 6
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: normal, rails
-Layout/IndentationConsistency:
-  Exclude:
-    - 'app/controllers/seeds_controller.rb'
-    - 'lib/was/importer/data_importer_verifier.rb'
-    - 'spec/lib/was/registrar/source_xml_writer_spec.rb'
-
 # Offense count: 7
 # Cop supports --auto-correct.
 # Configuration parameters: Width, IgnoredPatterns.

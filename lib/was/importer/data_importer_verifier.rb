@@ -11,7 +11,7 @@ module Was
           return [true,'OK']
         end
 
-          return [false, 'Missing one of the required fields: uri, source_id, or collection_id']
+        return [false, 'Missing one of the required fields: uri, source_id, or collection_id']
       end
     end
   end
