@@ -1,37 +1,29 @@
 # frozen_string_literal: true
 
 module ApplicationHelper
-  def format_druid druid
-    if druid.present? then
-      return "#{Settings.argo_view_url}#{druid}"
+  def format_druid(druid)
+    if druid.present?
+      "#{Settings.argo_view_url}#{druid}"
     else
-      return druid
+      druid
     end
   end
 
   def format_collection(collection_id, collections_list)
-    if collection_id.blank? then
-      return collection_id
-    end
+    return collection_id if collection_id.blank?
 
     collections_list.each do |collection_record|
-      if collection_id == collection_record[1]
-        return  link_to collection_record[0], format_druid(collection_id)
-      end
+      return link_to collection_record[0], format_druid(collection_id) if collection_id == collection_record[1]
     end
-    return collection_id
+    collection_id
   end
 
   def format_apo(apo_id, apos_list)
-    if apo_id.blank? then
-      return apo_id
-    end
+    return apo_id if apo_id.blank?
 
     apos_list.each do |apo_record|
-      if apo_id == apo_record[1]
-        return link_to apo_record[0], format_druid(apo_id)
-      end
+      return link_to apo_record[0], format_druid(apo_id) if apo_id == apo_record[1]
     end
-    return apo_id
+    apo_id
   end
 end

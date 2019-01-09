@@ -18,7 +18,7 @@ module Was
         if is_valid?(register_params)
           druid = register_object_using_web_service register_params
         else
-          fail "Missing required parameters #{register_params}"
+          raise "Missing required parameters #{register_params}"
         end
         druid
       end
@@ -42,7 +42,7 @@ module Was
         if valid_druid?(druid)
           return druid
         else
-          fail 'Error in registering the object. Invalid druid returned ' + druid
+          raise 'Error in registering the object. Invalid druid returned ' + druid
         end
       end
 

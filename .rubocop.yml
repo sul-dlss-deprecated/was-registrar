@@ -11,10 +11,8 @@ AllCops:
 Rails:
   Enabled: true
 
-# Far more languages and notations use /regex/ than %r
-# rspec `.to match(/regex/)` is also conventional
-Style/RegexpLiteral:
-  Enabled: false
+Metrics/AbcSize:
+  Max: 33
 
 # Configuration parameters: AllowURI, URISchemes.
 Metrics/LineLength:
@@ -25,10 +23,7 @@ Metrics/LineLength:
     - 'spec/lib/was/registrar/register_crawl_object_spec.rb'
     - 'spec/lib/was/registrar/source_xml_writer_spec.rb'
 
-# because it can make the code more readable
-Layout/EmptyLinesAroundClassBody:
-  Enabled: false
-
-# because it can make the code more readable
-Layout/EmptyLinesAroundModuleBody:
+# Far more languages and notations use /regex/ than %r
+# rspec `.to match(/regex/)` is also conventional
+Style/RegexpLiteral:
   Enabled: false

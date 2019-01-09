@@ -4,7 +4,6 @@ require 'was/registrar/register_seed_object'
 require 'was/registrar/source_xml_writer'
 
 class SeedsController < ApplicationController
-
   layout 'application'
   respond_to :html, :json
 
@@ -21,8 +20,6 @@ class SeedsController < ApplicationController
       register(seed_ids)
     when 'Delete'
       delete(seed_ids)
-    else
-    # Returns Error message
     end
   end
 
@@ -30,12 +27,11 @@ class SeedsController < ApplicationController
     @seed_list = []
 
     if seed_ids.present?
-      seed_ids.each do | id |
-
+      seed_ids.each do |id|
         begin
           seed_item = SeedItem.find(id)
         rescue ActiveRecord::RecordNotFound
-          seed_item = SeedItem.new(id:id)
+          seed_item = SeedItem.new(id: id)
         end
 
         @seed_list.push(seed_item)
@@ -56,9 +52,9 @@ class SeedsController < ApplicationController
 
     begin
       druid = registrar.register seed_item.serializable_hash
-      seed_item.update(druid_id: "#{druid}")
+      seed_item.update(druid_id: druid.to_s)
       writer.write_xml seed_item.serializable_hash
-      @register_status['druid']= seed_item.druid_id
+      @register_status['druid'] = seed_item.druid_id
       @register_status['status'] = true
     rescue StandardError => e
       logger.fatal e.inspect
@@ -71,19 +67,17 @@ class SeedsController < ApplicationController
     respond_with(@register_status)
   end
 
-  def update
-  end
+  def update; end
 
-  def delete seed_ids
-
-     @delete_status_list = []
+  def delete(seed_ids)
+    @delete_status_list = []
 
     if seed_ids.present?
-      seed_ids.each do | id |
+      seed_ids.each do |id|
         delete_status = {}
 
         begin
-          seed_item =  SeedItem.find id
+          seed_item = SeedItem.find id
           delete_status['uri'] = seed_item.uri
 
           seed_item.delete

@@ -11,11 +11,11 @@ module Was
         @item_list_text = item_list_text
         @sep = sep
 
-        if source_metadata_xml.nil? || source_metadata_xml == ''
-          @source_metadata_xml_doc = nil
-        else
-          @source_metadata_xml_doc = Nokogiri::XML(source_metadata_xml)
-        end
+        @source_metadata_xml_doc = if source_metadata_xml.nil? || source_metadata_xml == ''
+                                     nil
+                                   else
+                                     Nokogiri::XML(source_metadata_xml)
+                                   end
         @metadata_source = metadata_source
       end
 
@@ -25,7 +25,7 @@ module Was
         lines = @item_list_text.split("\n")
 
         lines.each_with_index do |line, index|
-          if index == 0 # It is the header line
+          if index.zero? # It is the header line
             fields_headers = line.split(@sep)
           else
             hash_record = fill_hash_record_from_line(SeedItem.column_names, fields_headers, line)

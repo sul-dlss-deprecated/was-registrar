@@ -34,10 +34,6 @@ class CrawlsController < ApplicationController
     case action_type
     when 'Register'
       register(crawl_ids)
-    #   when 'Delete'
-    #     delete( seed_ids)
-    else
-      #  Send Error message
     end
   end
 
@@ -61,14 +57,14 @@ class CrawlsController < ApplicationController
 
   def register_one_item
     crawl_id = params['id']
-    crawl_item =  CrawlItem.find crawl_id
+    crawl_item = CrawlItem.find crawl_id
 
     registrar = Was::Registrar::RegisterCrawlObject.new
     @register_status = {}
 
     begin
       druid = registrar.register crawl_item.serializable_hash
-      crawl_item.update(druid_id: "#{druid}")
+      crawl_item.update(druid_id: druid.to_s)
       @register_status['druid'] = crawl_item.druid_id
       @register_status['status'] = true
     rescue StandardError => e

@@ -15,7 +15,7 @@ module Was
           next if apo_info_json.nil?
 
           collections_list = parse_collection_json(apo_info_json['collections'])
-          apo_title = apo_info_json['adminpolicies'].first['title'].sub('Web Archive ','')
+          apo_title = apo_info_json['adminpolicies'].first['title'].sub('Web Archive ', '')
 
           apo_record = { apo_druid: apo,
                          apo_title: apo_title,
@@ -33,7 +33,7 @@ module Was
           next if apo_info_json.nil?
 
           items_list = parse_items_json(apo_info_json['items'])
-          apo_title = apo_info_json['adminpolicies'].first['title'].sub('Web Archive ','')
+          apo_title = apo_info_json['adminpolicies'].first['title'].sub('Web Archive ', '')
 
           apo_record = { apo_druid: apo,
                          apo_title: apo_title,
@@ -45,18 +45,18 @@ module Was
 
       private
 
-      def read_apo_data(apo)
-        fail NotImplementedError, 'APO retrieval via dor_fetcher is no longer supported'
+      def read_apo_data(_apo)
+        raise NotImplementedError, 'APO retrieval via dor_fetcher is no longer supported'
       end
 
       def parse_collection_json(collection_json)
         collections_list = []
         collection_json&.each do |collection|
-          if collection['title'].length > 30 then
-            collection_title = "#{collection['title'][0..30]} ..."
-          else
-            collection_title = collection['title']
-          end
+          collection_title = if collection['title'].length > 30
+                               "#{collection['title'][0..30]} ..."
+                             else
+                               collection['title']
+                             end
           collections_list.push(title: collection_title, druid: collection['druid'])
         end
         collections_list
