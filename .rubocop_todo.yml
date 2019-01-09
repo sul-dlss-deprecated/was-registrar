@@ -6,15 +6,6 @@
 # Note that changes in the inspected code, or installation of new
 # versions of RuboCop, may require this file to be generated again.
 
-# Offense count: 8
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyleInsidePipes.
-# SupportedStylesInsidePipes: space, no_space
-Layout/SpaceAroundBlockParameters:
-  Exclude:
-    - 'app/controllers/seeds_controller.rb'
-    - 'lib/was/registrar/sync_crawl_object.rb'
-
 # Offense count: 65
 # Cop supports --auto-correct.
 # Configuration parameters: AllowForAlignment.

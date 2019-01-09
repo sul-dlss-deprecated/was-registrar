@@ -12,7 +12,7 @@ module Was
 
       # Reads the job directories from the staging mount
       def sync_staging
-        get_jobs_directories.each do | job_dir |
+        get_jobs_directories.each do |job_dir|
           crawl_item = CrawlItem.find_by job_directory: job_dir
 
           if crawl_item.nil?
@@ -28,7 +28,7 @@ module Was
         absolute_job_dir_list = Dir.glob("#{jobs_directory}*/2*/") # {|f| File.directory? f}
 
         short_job_dir_list = []
-        absolute_job_dir_list.each do | absolute_job_dir |
+        absolute_job_dir_list.each do |absolute_job_dir|
           short_job_dir_list.append( absolute_job_dir.sub(jobs_directory, '')[0..-2] )
         end
 

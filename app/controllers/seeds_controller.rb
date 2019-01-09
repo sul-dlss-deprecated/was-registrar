@@ -29,7 +29,7 @@ class SeedsController < ApplicationController
     @seed_list = []
 
     if seed_ids.present?
-      seed_ids.each do | id |
+      seed_ids.each do |id|
         begin
           seed_item = SeedItem.find(id)
         rescue ActiveRecord::RecordNotFound
@@ -76,7 +76,7 @@ class SeedsController < ApplicationController
     @delete_status_list = []
 
     if seed_ids.present?
-      seed_ids.each do | id |
+      seed_ids.each do |id|
         delete_status = {}
 
         begin
