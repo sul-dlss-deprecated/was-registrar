@@ -3,7 +3,6 @@
 require 'rails_helper'
 
 describe Was::Registrar::RegisterSeedObject do
-
   before :all do
     @fixtures = 'spec/fixtures/'
     @source_xml = '<?xml version="1.0"?> <item>   <druid_id>druid:aa111aa1111</druid_id>   <collection_id>druid:gz033bg3146</collection_id>   <source_id>was:a</source_id>   <uri>http://www.slac.stanford.edu/</uri>   <source>AIT</source>   <embargo>false</embargo><source_xml><seed>   <url>http://www.slac.stanford.edu/</url>   <active>true</active>   <public>true</public>   <createdDate>2013-01-27 21:34:12 UTC</createdDate>   <lastUpdatedDate>2014-09-24 19:37:17 UTC</lastUpdatedDate>   <metadata>     <title>United States Global Change Research Program</title>     <creator>U.S. Global Change Research Program</creator>     <publisher>U.S. Global Change Research Program</publisher>     <collector>Stanford University, Social Sciences Resource Group</collector>     <type>text</type>     <format>html</format>     <subject>Climatic changes--Research--United States</subject>     <subject>Global environmental change--Research--United States</subject>     <description>Web site of the United States Global Change Research Program. The USGCRP coordinates and integrates federal research on climate change and changes in the global environment, as well as their implication for society.</description>     <language>eng</language>   </metadata> </seed></source_xml> </item>'
@@ -44,7 +43,6 @@ describe Was::Registrar::RegisterSeedObject do
   end
 
   describe '.build_xml' do
-
     it 'should return valid xml for valid seed hash' do
       registrar = Was::Registrar::SourceXmlWriter.new('')
 

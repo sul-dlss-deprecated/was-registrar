@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 namespace :was_registrar do
-
   desc 'Registering crawl objects listed in a file'
   task :register_crawls => :environment do
     puts 'Starting registering crawl task'
@@ -15,5 +14,4 @@ namespace :was_registrar do
       Was::Registrar::RegisterCrawlObjectFromFile.register(input_file_path, log_file_path)
     end
   end
-
 end

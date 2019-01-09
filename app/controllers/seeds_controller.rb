@@ -30,7 +30,6 @@ class SeedsController < ApplicationController
 
     if seed_ids.present?
       seed_ids.each do | id |
-
         begin
           seed_item = SeedItem.find(id)
         rescue ActiveRecord::RecordNotFound

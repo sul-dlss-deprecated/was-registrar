@@ -4,7 +4,6 @@ require 'rails_helper'
 
 describe Was::Registrar::RegisterSeedObject do
   describe '#register_object_using_web_service' do
-
     let(:dor_registration) { { pid: 'druid:aa111aa1111' } }
     let(:invalid_dor_registration) { { pid: 'not_valid_druid' } }
 

@@ -3,7 +3,6 @@
 require 'rails_helper'
 
 describe Was::Registrar::RegisterCrawlObject do
-
   describe '.register' do
     it 'shoud return a valid druid with valid params ' do
       hash = {'source_id'=>'aaa', 'collection_id'=>'druid:gz033bg3146','job_directory'=>'jobs/directory','rights'=>'world', 'apo_id'=>'druid:ab123cd4567'}
@@ -58,6 +57,5 @@ describe Was::Registrar::RegisterCrawlObject do
       expect(params[:rights]).to eq('dark')
       expect(params[:embargo]).to be_nil
     end
-
   end
 end

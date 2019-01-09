@@ -3,7 +3,6 @@
 require 'rails_helper'
 
 describe Was::Importer::DataImporterFromText do
-
   before :all do
     @epa_uri = 'http://www.epa.gov/'
     collection_2361_metadata_file = 'spec/fixtures/collectionFeed_2361.xml'
