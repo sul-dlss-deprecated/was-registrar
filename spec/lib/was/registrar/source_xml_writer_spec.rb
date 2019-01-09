@@ -66,6 +66,6 @@ describe Was::Registrar::RegisterSeedObject do
   end
 
   after :all do
-      FileUtils.rm('./druid:aa111aa1111.xml') if File.exists?('./druid:aa111aa1111.xml')
+    FileUtils.rm('./druid:aa111aa1111.xml') if File.exists?('./druid:aa111aa1111.xml')
   end
 end

@@ -25,14 +25,14 @@ module Was
         seed_hash['embargo'] = seed_hash['embargo'].nil? ? 'False' : seed_hash['embargo']
         
         staging_xml = Nokogiri::XML::Builder.new do
-            item {
-              druid_id      seed_hash['druid_id']
-              collection_id seed_hash['collection_id']
-              source_id     seed_hash['source_id']
-              uri           seed_hash['uri']
-              source        seed_hash['source']
-              embargo       seed_hash['embargo']
-            }
+          item {
+            druid_id      seed_hash['druid_id']
+            collection_id seed_hash['collection_id']
+            source_id     seed_hash['source_id']
+            uri           seed_hash['uri']
+            source        seed_hash['source']
+            embargo       seed_hash['embargo']
+          }
         end
           
         doc = Nokogiri::XML(staging_xml.to_xml) 

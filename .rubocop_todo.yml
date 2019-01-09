@@ -6,18 +6,6 @@
 # Note that changes in the inspected code, or installation of new
 # versions of RuboCop, may require this file to be generated again.
 
-# Offense count: 7
-# Cop supports --auto-correct.
-# Configuration parameters: Width, IgnoredPatterns.
-Layout/IndentationWidth:
-  Exclude:
-    - 'app/controllers/seeds_controller.rb'
-    - 'app/helpers/crawls_helper.rb'
-    - 'lib/was/importer/data_importer.rb'
-    - 'lib/was/registrar/source_xml_writer.rb'
-    - 'spec/lib/was/importer/data_importer_from_text_spec.rb'
-    - 'spec/lib/was/registrar/source_xml_writer_spec.rb'
-
 # Offense count: 1
 # Cop supports --auto-correct.
 Layout/SpaceAfterColon:
