@@ -8,7 +8,7 @@ require File.expand_path('config/application', __dir__)
 Rails.application.load_tasks
 
 # Include rake tasks from lib/tasks directory
-Dir[File.join(File.dirname(__FILE__), 'tasks/**/*.rake')].each {|f| load f }
+Dir[File.join(File.dirname(__FILE__), 'tasks/**/*.rake')].each { |f| load f }
 
 task default: :ci
 

@@ -3,7 +3,6 @@
 module Was
   module Importer
     class MetadataExtractor
-      
       def self.extract_from_ait(source_metadata_xml_doc, seed_uri)
         return source_metadata_xml_doc.xpath("//seed[url=\"#{seed_uri}\"]").to_s if source_metadata_xml_doc.present?
 

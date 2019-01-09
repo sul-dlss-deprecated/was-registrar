@@ -33,7 +33,7 @@ describe Was::Registrar::RegisterSeedObject do
                     'verified' => nil,
                     'source_id' => 'was:a',
                     'rights' => 'world' }
-      registrar.write_xml( seed_hash )
+      registrar.write_xml(seed_hash)
 
       actual_xml_file_path = './druid:aa111aa1111.xml'
       expected_xml_file_path = "#{@fixtures}druid:aa111aa1111.xml"
@@ -66,6 +66,6 @@ describe Was::Registrar::RegisterSeedObject do
   end
 
   after :all do
-    FileUtils.rm('./druid:aa111aa1111.xml') if File.exists?('./druid:aa111aa1111.xml')
+    FileUtils.rm('./druid:aa111aa1111.xml') if File.exist?('./druid:aa111aa1111.xml')
   end
 end

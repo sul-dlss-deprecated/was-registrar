@@ -16,7 +16,7 @@ module Was
           crawl_item = CrawlItem.find_by job_directory: job_dir
 
           if crawl_item.nil?
-            CrawlItem.create({:job_directory => job_dir, :on_disk => true })
+            CrawlItem.create({ :job_directory => job_dir, :on_disk => true })
           else
             crawl_item.update(:on_disk => true)
           end
@@ -29,7 +29,7 @@ module Was
 
         short_job_dir_list = []
         absolute_job_dir_list.each do |absolute_job_dir|
-          short_job_dir_list.append( absolute_job_dir.sub(jobs_directory, '')[0..-2] )
+          short_job_dir_list.append(absolute_job_dir.sub(jobs_directory, '')[0..-2])
         end
 
         return short_job_dir_list

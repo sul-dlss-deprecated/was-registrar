@@ -45,7 +45,7 @@ module Was
 
       private
 
-      def read_apo_data(apo)
+      def read_apo_data(_apo)
         fail NotImplementedError, 'APO retrieval via dor_fetcher is no longer supported'
       end
 
