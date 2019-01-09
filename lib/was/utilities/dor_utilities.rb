@@ -46,13 +46,13 @@ module Was
       private
 
       def read_apo_data(_apo)
-        fail NotImplementedError, 'APO retrieval via dor_fetcher is no longer supported'
+        raise NotImplementedError, 'APO retrieval via dor_fetcher is no longer supported'
       end
 
       def parse_collection_json(collection_json)
         collections_list = []
         collection_json&.each do |collection|
-          collection_title = if collection['title'].length > 30 then
+          collection_title = if collection['title'].length > 30
                                "#{collection['title'][0..30]} ..."
                              else
                                collection['title']

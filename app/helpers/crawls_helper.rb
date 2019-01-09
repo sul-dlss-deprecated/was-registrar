@@ -3,12 +3,12 @@
 require 'time'
 
 module CrawlsHelper
-  def format_job_directory job_directory
-    if job_directory.start_with?('/'); job_directory = job_directory[1..-1] end
-    if job_directory.end_with?('/'); job_directory = job_directory[0..-2] end
+  def format_job_directory(job_directory)
+    job_directory = job_directory[1..-1] if job_directory.start_with?('/')
+    job_directory = job_directory[0..-2] if job_directory.end_with?('/')
 
     directory_fields = job_directory.split(/\//)
-    if directory_fields.length == 2 then
+    if directory_fields.length == 2
       job_name = directory_fields[0].sub('_', ' ').sub('-', ' ').camelize
       job_date = directory_fields[1]
 
@@ -21,6 +21,6 @@ module CrawlsHelper
       job_directory = "#{job_name} [#{job_date}]"
     end
 
-    return job_directory
+    job_directory
   end
 end

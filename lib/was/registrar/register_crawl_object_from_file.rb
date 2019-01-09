@@ -20,7 +20,7 @@ module Was
 
         input_file = File.open(input_file_path)
         input_file.each_with_index do |line, index|
-          next if index == 0
+          next if index.zero?
 
           register_hash = convert_line_to_hash line
           begin
@@ -49,7 +49,7 @@ module Was
         collection_id = fields[2]
         apo_id = fields[3]
 
-        return { 'source_id' => source_id, 'job_directory' => job_directory, 'collection_id' => collection_id, 'apo_id' => apo_id }
+        { 'source_id' => source_id, 'job_directory' => job_directory, 'collection_id' => collection_id, 'apo_id' => apo_id }
       end
 
       def self.verify_file(input_file_path)
@@ -57,7 +57,7 @@ module Was
 
         input_file = File.open(input_file_path)
         input_file.each_with_index do |line, index|
-          next if index == 0
+          next if index.zero?
 
           if (line.strip =~ pattern).nil?
             status = false
@@ -65,7 +65,7 @@ module Was
           end
         end
         input_file.close
-        return status
+        status
       end
 
       def self.pattern

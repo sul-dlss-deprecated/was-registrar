@@ -14,7 +14,7 @@ describe Was::Registrar::RegisterSeedObject do
       }
       registrar = Was::Registrar::RegisterSeedObject.new
       allow(registrar).to receive(:register_object_using_web_service) { 'druid:aa111aa1111' }
-      expect(registrar.register hash).to eq('druid:aa111aa1111')
+      expect(registrar.register(hash)).to eq('druid:aa111aa1111')
     end
 
     it 'raises an exception with an invalid params' do

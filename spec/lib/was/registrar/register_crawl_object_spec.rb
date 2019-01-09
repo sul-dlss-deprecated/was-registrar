@@ -9,7 +9,7 @@ describe Was::Registrar::RegisterCrawlObject do
 
       registrar = Was::Registrar::RegisterCrawlObject.new
       allow(registrar).to receive(:register_object_using_web_service).and_return('druid:aa111aa1111')
-      expect(registrar.register hash).to eq('druid:aa111aa1111')
+      expect(registrar.register(hash)).to eq('druid:aa111aa1111')
     end
 
     it 'shoud raise an exception with an invalid params' do

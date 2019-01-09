@@ -20,8 +20,6 @@ class SeedsController < ApplicationController
       register(seed_ids)
     when 'Delete'
       delete(seed_ids)
-    else
-      # Returns Error message
     end
   end
 
@@ -54,7 +52,7 @@ class SeedsController < ApplicationController
 
     begin
       druid = registrar.register seed_item.serializable_hash
-      seed_item.update(druid_id: "#{druid}")
+      seed_item.update(druid_id: druid.to_s)
       writer.write_xml seed_item.serializable_hash
       @register_status['druid'] = seed_item.druid_id
       @register_status['status'] = true
@@ -69,10 +67,9 @@ class SeedsController < ApplicationController
     respond_with(@register_status)
   end
 
-  def update
-  end
+  def update; end
 
-  def delete seed_ids
+  def delete(seed_ids)
     @delete_status_list = []
 
     if seed_ids.present?

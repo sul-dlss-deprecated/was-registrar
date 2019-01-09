@@ -10,12 +10,12 @@ module Was
         @location_path = location_path
       end
 
-      def write_xml seed_hash
+      def write_xml(seed_hash)
         staging_xml = build_xml seed_hash
 
         staging_file_path = File.join(@location_path, seed_hash['druid_id'] + '.xml')
-        f = File.open(staging_file_path, 'w');
-        f.write(staging_xml);
+        f = File.open(staging_file_path, 'w')
+        f.write(staging_xml)
         f.close
       end
 
@@ -37,7 +37,7 @@ module Was
         doc = Nokogiri::XML(staging_xml.to_xml)
         doc.root.last_element_child.after('<source_xml>' + seed_hash['source_xml'] + '</source_xml>')
 
-        return doc.to_xml
+        doc.to_xml
       end
     end
   end

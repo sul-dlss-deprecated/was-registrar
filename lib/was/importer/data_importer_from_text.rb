@@ -25,7 +25,7 @@ module Was
         lines = @item_list_text.split("\n")
 
         lines.each_with_index do |line, index|
-          if index == 0 # It is the header line
+          if index.zero? # It is the header line
             fields_headers = line.split(@sep)
           else
             hash_record = fill_hash_record_from_line(SeedItem.column_names, fields_headers, line)
