@@ -81,7 +81,7 @@ class SeedsController < ApplicationController
         delete_status = {}
 
         begin
-          seed_item =  SeedItem.find id
+          seed_item = SeedItem.find id
           delete_status['uri'] = seed_item.uri
 
           seed_item.delete

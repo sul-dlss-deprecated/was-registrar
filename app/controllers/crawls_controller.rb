@@ -61,7 +61,7 @@ class CrawlsController < ApplicationController
 
   def register_one_item
     crawl_id = params['id']
-    crawl_item =  CrawlItem.find crawl_id
+    crawl_item = CrawlItem.find crawl_id
 
     registrar = Was::Registrar::RegisterCrawlObject.new
     @register_status = {}

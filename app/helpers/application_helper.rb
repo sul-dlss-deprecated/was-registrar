@@ -16,7 +16,7 @@ module ApplicationHelper
 
     collections_list.each do |collection_record|
       if collection_id == collection_record[1]
-        return  link_to collection_record[0], format_druid(collection_id)
+        return link_to collection_record[0], format_druid(collection_id)
       end
     end
     return collection_id

@@ -66,7 +66,7 @@ describe Was::Registrar::RegisterSeedObject do
       expect(registrar.is_valid?(params)).to be false
     end
 
-    it 'false if source_id is blank'  do
+    it 'false if source_id is blank' do
       params[:source_id] = ''
       registrar = Was::Registrar::RegisterObject.new
       expect(registrar.is_valid?(params)).to be false
@@ -84,13 +84,13 @@ describe Was::Registrar::RegisterSeedObject do
       expect(registrar.is_valid?(params)).to be false
     end
 
-    it 'false if collection is blank'  do
+    it 'false if collection is blank' do
       params[:collection] = ''
       registrar = Was::Registrar::RegisterObject.new
       expect(registrar.is_valid?(params)).to be false
     end
 
-    it 'false if label is missing'  do
+    it 'false if label is missing' do
       params.delete(:label)
       registrar = Was::Registrar::RegisterObject.new
       expect(registrar.is_valid?(params)).to be false
@@ -102,7 +102,7 @@ describe Was::Registrar::RegisterSeedObject do
       expect(registrar.is_valid?(params)).to be false
     end
 
-    it 'false if label is blank'  do
+    it 'false if label is blank' do
       params[:label] = ''
       registrar = Was::Registrar::RegisterObject.new
       expect(registrar.is_valid?(params)).to be false

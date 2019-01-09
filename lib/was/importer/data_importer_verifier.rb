@@ -5,7 +5,7 @@ module Was
     class DataImporterVerifier
       def self.verify(hash_record) 
         if  hash_record.has_key?('uri').present? &&
-            hash_record.has_key?('source_id').present?  && 
+            hash_record.has_key?('source_id').present? && 
             hash_record.has_key?('collection_id').present?
             then
           return [true,'OK']

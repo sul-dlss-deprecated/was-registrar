@@ -6,7 +6,7 @@ namespace :was_registrar do
   task :register_crawls => :environment do
     puts 'Starting registering crawl task'
     input_file_path = ENV['INPUT'] # specify the input file that list all the crawls directory
-    log_file_path =  ENV['LOG'] # specify the log file that will record the error
+    log_file_path = ENV['LOG'] # specify the log file that will record the error
     puts input_file_path
     unless input_file_path.present? && log_file_path.present?
       puts 'INPUT or LOG parameters is missing'

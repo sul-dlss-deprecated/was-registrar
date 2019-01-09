@@ -23,15 +23,15 @@ Layout/EmptyLinesAroundBlockBody:
 # Offense count: 10
 # Cop supports --auto-correct.
 # Configuration parameters: AllowForAlignment, ForceEqualSignAlignment.
-Layout/ExtraSpacing:
-  Exclude:
-    - 'app/controllers/crawls_controller.rb'
-    - 'app/controllers/seeds_controller.rb'
-    - 'app/helpers/application_helper.rb'
-    - 'config/routes.rb'
-    - 'lib/tasks/registering_crawl.rake'
-    - 'lib/was/importer/data_importer_verifier.rb'
-    - 'spec/lib/was/registrar/register_object_spec.rb'
+# Layout/ExtraSpacing:
+#   Exclude:
+#     - 'app/controllers/crawls_controller.rb'
+#     - 'app/controllers/seeds_controller.rb'
+#     - 'app/helpers/application_helper.rb'
+#     - 'config/routes.rb'
+#     - 'lib/tasks/registering_crawl.rake'
+#     - 'lib/was/importer/data_importer_verifier.rb'
+#     - 'spec/lib/was/registrar/register_object_spec.rb'
 
 # Offense count: 4
 # Cop supports --auto-correct.

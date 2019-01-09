@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'seeds#index'
 
-  match ':controller(/:action(/:id))', :controller => /(seeds|importer)/, :via=>  %i[get post]
+  match ':controller(/:action(/:id))', :controller => /(seeds|importer)/, :via=> %i[get post]
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
