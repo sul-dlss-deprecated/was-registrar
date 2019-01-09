@@ -16,9 +16,9 @@ module Was
           crawl_item = CrawlItem.find_by job_directory: job_dir
 
           if crawl_item.nil?
-            CrawlItem.create({:job_directory=>job_dir, :on_disk=> true })
+            CrawlItem.create({:job_directory => job_dir, :on_disk => true })
           else
-            crawl_item.update(:on_disk=>true)
+            crawl_item.update(:on_disk => true)
           end
         end
       end

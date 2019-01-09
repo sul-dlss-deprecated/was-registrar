@@ -6,24 +6,6 @@
 # Note that changes in the inspected code, or installation of new
 # versions of RuboCop, may require this file to be generated again.
 
-# Offense count: 65
-# Cop supports --auto-correct.
-# Configuration parameters: AllowForAlignment.
-Layout/SpaceAroundOperators:
-  Exclude:
-    - 'app/controllers/crawls_controller.rb'
-    - 'app/controllers/seeds_controller.rb'
-    - 'config/routes.rb'
-    - 'lib/tasks/registering_crawl.rake'
-    - 'lib/was/importer/data_importer_results.rb'
-    - 'lib/was/importer/data_importer_verifier.rb'
-    - 'lib/was/registrar/register_crawl_object.rb'
-    - 'lib/was/registrar/register_seed_object.rb'
-    - 'lib/was/registrar/source_xml_writer.rb'
-    - 'lib/was/registrar/sync_crawl_object.rb'
-    - 'spec/lib/was/registrar/register_crawl_object_spec.rb'
-    - 'spec/lib/was/registrar/source_xml_writer_spec.rb'
-
 # Offense count: 2
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle, EnforcedStyleForEmptyBraces.

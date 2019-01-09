@@ -56,7 +56,7 @@ class SeedsController < ApplicationController
       druid = registrar.register seed_item.serializable_hash
       seed_item.update(druid_id: "#{druid}")
       writer.write_xml seed_item.serializable_hash
-      @register_status['druid']= seed_item.druid_id
+      @register_status['druid'] = seed_item.druid_id
       @register_status['status'] = true
     rescue StandardError => e
       logger.fatal e.inspect
