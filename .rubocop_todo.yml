@@ -6,29 +6,6 @@
 # Note that changes in the inspected code, or installation of new
 # versions of RuboCop, may require this file to be generated again.
 
-# Offense count: 10
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: empty_lines, no_empty_lines
-# Layout/EmptyLinesAroundBlockBody:
-#   Exclude:
-#     - 'app/controllers/seeds_controller.rb'
-#     - 'config/routes.rb'
-#     - 'lib/tasks/registering_crawl.rake'
-#     - 'spec/lib/was/importer/data_importer_from_text_spec.rb'
-#     - 'spec/lib/was/registrar/register_crawl_object_spec.rb'
-#     - 'spec/lib/was/registrar/register_object_spec.rb'
-#     - 'spec/lib/was/registrar/source_xml_writer_spec.rb'
-
-# Offense count: 4
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, IndentationWidth.
-# SupportedStyles: special_inside_parentheses, consistent, align_braces
-Layout/IndentHash:
-  Exclude:
-    - 'lib/was/registrar/register_crawl_object.rb'
-    - 'lib/was/registrar/register_seed_object.rb'
-
 # Offense count: 6
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle.
