@@ -8,7 +8,7 @@ module Was
             hash_record.has_key?('source_id').present? && 
             hash_record.has_key?('collection_id').present?
             then
-          return [true,'OK']
+          return [true, 'OK']
         end
 
         return [false, 'Missing one of the required fields: uri, source_id, or collection_id']

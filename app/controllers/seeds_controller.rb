@@ -33,7 +33,7 @@ class SeedsController < ApplicationController
         begin
           seed_item = SeedItem.find(id)
         rescue ActiveRecord::RecordNotFound
-          seed_item = SeedItem.new(id:id)
+          seed_item = SeedItem.new(id: id)
         end
 
         @seed_list.push(seed_item)

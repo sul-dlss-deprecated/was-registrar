@@ -6,23 +6,6 @@
 # Note that changes in the inspected code, or installation of new
 # versions of RuboCop, may require this file to be generated again.
 
-# Offense count: 1
-# Cop supports --auto-correct.
-Layout/SpaceAfterColon:
-  Exclude:
-    - 'app/controllers/seeds_controller.rb'
-
-# Offense count: 18
-# Cop supports --auto-correct.
-Layout/SpaceAfterComma:
-  Exclude:
-    - 'app/helpers/crawls_helper.rb'
-    - 'lib/was/importer/data_importer_results.rb'
-    - 'lib/was/importer/data_importer_verifier.rb'
-    - 'lib/was/registrar/source_xml_writer.rb'
-    - 'lib/was/utilities/dor_utilities.rb'
-    - 'spec/lib/was/registrar/register_crawl_object_spec.rb'
-
 # Offense count: 8
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyleInsidePipes.

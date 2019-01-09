@@ -15,7 +15,7 @@ module Was
         staging_xml = build_xml seed_hash
         
         staging_file_path = File.join( @location_path, seed_hash['druid_id']+'.xml') 
-        f = File.open(staging_file_path,'w'); 
+        f = File.open(staging_file_path, 'w'); 
         f.write(staging_xml); 
         f.close          
       end
