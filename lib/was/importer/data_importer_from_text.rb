@@ -11,11 +11,11 @@ module Was
         @item_list_text = item_list_text
         @sep = sep
 
-        if source_metadata_xml.nil? || source_metadata_xml == ''
-          @source_metadata_xml_doc = nil
-        else
-          @source_metadata_xml_doc = Nokogiri::XML(source_metadata_xml)
-        end
+        @source_metadata_xml_doc = if source_metadata_xml.nil? || source_metadata_xml == ''
+                                     nil
+                                   else
+                                     Nokogiri::XML(source_metadata_xml)
+                                   end
         @metadata_source = metadata_source
       end
 

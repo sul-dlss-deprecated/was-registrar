@@ -52,11 +52,11 @@ module Was
       def parse_collection_json(collection_json)
         collections_list = []
         collection_json&.each do |collection|
-          if collection['title'].length > 30 then
-            collection_title = "#{collection['title'][0..30]} ..."
-          else
-            collection_title = collection['title']
-          end
+          collection_title = if collection['title'].length > 30 then
+                               "#{collection['title'][0..30]} ..."
+                             else
+                               collection['title']
+                             end
           collections_list.push(title: collection_title, druid: collection['druid'])
         end
         collections_list
