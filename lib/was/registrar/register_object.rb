@@ -31,7 +31,7 @@ module Was
       def register_object_using_web_service(register_params)
         Rails.logger.debug "Registering an object with params #{register_params}"
         begin
-          response = Dor::Services::Client.register(params: register_params)
+          response = Dor::Services::Client.objects.register(params: register_params)
         rescue StandardError => e
           Rails.logger.error 'Error in registering the object. ' + e.message
           Honeybadger.notify(e)

@@ -18,7 +18,7 @@ gem 'turbolinks'
 gem 'uglifier', '>= 1.3.0'
 
 # Stanford Gems
-gem 'dor-services-client'
+gem 'dor-services-client', '~> 1.1'
 
 group :development do
   gem 'capistrano-bundler'
