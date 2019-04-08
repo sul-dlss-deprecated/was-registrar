@@ -34,6 +34,7 @@ end
 group :test, :development do
   gem 'pry-byebug', require: false
   gem 'rubocop', require: false
+  gem 'rubocop-performance', require: false
   gem 'sqlite3', '~> 1.3.13'
 end
 

@@ -18,7 +18,7 @@ task ci: %i[rubocop spec]
 begin
   require 'rspec/core/rake_task'
 rescue LoadError
-  STDERR.puts 'Please install the rspec gem to run tests.'
+  warn 'Please install the rspec gem to run tests.'
 end
 
 begin
@@ -27,5 +27,5 @@ begin
     task.fail_on_error = true
   end
 rescue LoadError
-  STDERR.puts 'Please install the rubocop gem to run rubocop.'
+  warn 'Please install the rubocop gem to run rubocop.'
 end
