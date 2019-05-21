@@ -52,6 +52,8 @@ class SeedsController < ApplicationController
 
     begin
       druid = registrar.register seed_item.serializable_hash
+      workflow_client.create_workflow_by_name(druid, 'wasSeedPreassemblyWF')
+
       seed_item.update(druid_id: druid.to_s)
       writer.write_xml seed_item.serializable_hash
       @register_status['druid'] = seed_item.druid_id
@@ -95,5 +97,11 @@ class SeedsController < ApplicationController
     end
 
     render(:delete)
+  end
+
+  private
+
+  def workflow_client
+    Dor::Workflow::Client.new(url: Settings.workflow.url)
   end
 end

@@ -16,7 +16,7 @@ describe Was::Registrar::RegisterCrawlObject do
       hash = { 'source_id' => 'aaa', 'collection_id' => 'druid:gz033bg3146', 'rights' => 'world' }
       registrar = Was::Registrar::RegisterCrawlObject.new
       allow(registrar).to receive(:register_object_using_web_service).and_return('druid:aa111aa1111')
-      expect { registrar.register hash }.to raise_error('Missing required parameters {:object_type=>"item", :admin_policy=>nil, :source_id=>"aaa", :label=>nil, :collection=>"druid:gz033bg3146", :initiate_workflow=>"wasCrawlPreassemblyWF", :rights=>"dark"}')
+      expect { registrar.register hash }.to raise_error('Missing required parameters {:object_type=>"item", :admin_policy=>nil, :source_id=>"aaa", :label=>nil, :collection=>"druid:gz033bg3146", :rights=>"dark"}')
     end
   end
 
@@ -29,7 +29,6 @@ describe Was::Registrar::RegisterCrawlObject do
       expect(params[:source_id]).to eq('aaa')
       expect(params[:collection]).to eq('druid:gz033bg3146')
       expect(params[:label]).to eq('jobs/directory')
-      expect(params[:initiate_workflow]).to eq('wasCrawlPreassemblyWF')
       expect(params[:rights]).to eq('dark')
     end
 
@@ -41,7 +40,6 @@ describe Was::Registrar::RegisterCrawlObject do
       expect(params[:source_id]).to eq('aaa')
       expect(params[:collection]).to eq('druid:gz033bg3146')
       expect(params[:label]).to be_nil
-      expect(params[:initiate_workflow]).to eq('wasCrawlPreassemblyWF')
       expect(params[:rights]).to eq('dark')
     end
 
@@ -53,7 +51,6 @@ describe Was::Registrar::RegisterCrawlObject do
       expect(params[:source_id]).to eq('aaa')
       expect(params[:collection]).to eq('druid:gz033bg3146')
       expect(params[:label]).to eq('jobs/directory')
-      expect(params[:initiate_workflow]).to eq('wasCrawlPreassemblyWF')
       expect(params[:rights]).to eq('dark')
       expect(params[:embargo]).to be_nil
     end

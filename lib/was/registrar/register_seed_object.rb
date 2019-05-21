@@ -11,8 +11,7 @@ module Was
                             source_id: seed_item_hash['source_id'],
                             collection: seed_item_hash['collection_id'],
                             label: seed_item_hash['title'].presence || seed_item_hash['uri'],
-                            admin_policy: seed_item_hash['apo_id'].presence || Settings.seed_apo,
-                            initiate_workflow: 'wasSeedPreassemblyWF' }
+                            admin_policy: seed_item_hash['apo_id'].presence || Settings.seed_apo }
         register_params[:rights] = seed_item_hash['rights'].presence
 
         register_params

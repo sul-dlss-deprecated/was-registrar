@@ -6,6 +6,7 @@ gem 'rails', '~> 5.2.2'
 
 gem 'coffee-rails'
 gem 'config' # rails environment specific configs
+gem 'dor-workflow-client', '~> 3.1'
 gem 'honeybadger' # for exception reporting
 gem 'jbuilder', '~> 2.0'
 gem 'jquery-rails'

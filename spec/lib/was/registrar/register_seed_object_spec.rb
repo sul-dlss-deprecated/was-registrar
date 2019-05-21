@@ -43,7 +43,6 @@ describe Was::Registrar::RegisterSeedObject do
       expect(params[:source_id]).to eq('aaa')
       expect(params[:collection]).to eq('druid:gz033bg3146')
       expect(params[:label]).to eq('http://www.slac.stanford.edu')
-      expect(params[:initiate_workflow]).to eq('wasSeedPreassemblyWF')
       expect(params[:rights]).to eq('world')
     end
 
@@ -58,7 +57,6 @@ describe Was::Registrar::RegisterSeedObject do
       expect(params[:source_id]).to eq('aaa')
       expect(params[:collection]).to be_nil
       expect(params[:label]).to eq('http://www.slac.stanford.edu')
-      expect(params[:initiate_workflow]).to eq('wasSeedPreassemblyWF')
       expect(params[:rights]).to eq('world')
     end
 
@@ -75,7 +73,6 @@ describe Was::Registrar::RegisterSeedObject do
       expect(params[:source_id]).to eq('aaa')
       expect(params[:collection]).to eq('druid:gz033bg3146')
       expect(params[:label]).to eq('http://www.slac.stanford.edu')
-      expect(params[:initiate_workflow]).to eq('wasSeedPreassemblyWF')
       expect(params[:rights]).to eq('world')
       expect(params[:embargo]).to be_nil
     end
@@ -92,7 +89,6 @@ describe Was::Registrar::RegisterSeedObject do
       expect(params[:source_id]).to eq('aaa')
       expect(params[:collection]).to eq('druid:gz033bg3146')
       expect(params[:label]).to eq('http://www.slac.stanford.edu')
-      expect(params[:initiate_workflow]).to eq('wasSeedPreassemblyWF')
       expect(params[:rights]).to eq('world')
     end
 
@@ -108,7 +104,6 @@ describe Was::Registrar::RegisterSeedObject do
       expect(params[:source_id]).to eq('aaa')
       expect(params[:collection]).to eq('druid:gz033bg3146')
       expect(params[:label]).to eq('test seed uri')
-      expect(params[:initiate_workflow]).to eq('wasSeedPreassemblyWF')
       expect(params[:rights]).to eq('world')
     end
 
@@ -123,7 +118,6 @@ describe Was::Registrar::RegisterSeedObject do
       expect(params[:source_id]).to eq('aaa')
       expect(params[:collection]).to eq('druid:gz033bg3146')
       expect(params[:label]).to be_nil
-      expect(params[:initiate_workflow]).to eq('wasSeedPreassemblyWF')
       expect(params[:rights]).to eq('world')
     end
   end

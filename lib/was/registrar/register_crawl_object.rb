@@ -13,7 +13,6 @@ module Was
                             source_id: crawl_item_hash['source_id'],
                             label: crawl_item_hash['job_directory'],
                             collection: crawl_item_hash['collection_id'],
-                            initiate_workflow: 'wasCrawlPreassemblyWF',
                             rights: 'dark' }
         register_params
       end
