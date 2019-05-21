@@ -13,14 +13,10 @@ module Was
       # @raise [Error] if there is a missing parameters
       # @return [String] the druid id as returned from the registering object
       def register(item_hash)
-        druid = nil
         register_params = convert_column_to_params(item_hash)
-        if is_valid?(register_params)
-          druid = register_object_using_web_service register_params
-        else
-          raise "Missing required parameters #{register_params}"
-        end
-        druid
+        raise "Missing required parameters #{register_params}" unless is_valid?(register_params)
+
+        register_object_using_web_service register_params
       end
 
       # Registers the object using dor-services REST API
