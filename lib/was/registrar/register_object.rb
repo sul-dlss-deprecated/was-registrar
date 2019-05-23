@@ -25,25 +25,15 @@ module Was
 
       # Registers the object using dor-services REST API
       # @param [Hash] params is hash representing the registration informatino
-      # @raise [Error] if there is a network problem in registering the object
-      # @raise [Error] if the returned value is not a valid druid
+      # @raise [Dor::Services::Client::Error] if there is a network problem in registering the object
+      # @raise [StandardError] if the returned value is not a valid druid
       # @return [String] druid_id is the DRUID id as retreived from registeration service
       def register_object_using_web_service(register_params)
         Rails.logger.debug "Registering an object with params #{register_params}"
-        begin
-          response = Dor::Services::Client.objects.register(params: register_params)
-        rescue StandardError => e
-          Rails.logger.error 'Error in registering the object. ' + e.message
-          Honeybadger.notify(e)
-          raise
-        end
+        response = Dor::Services::Client.objects.register(params: register_params)
+        raise "Error in registering the object. Invalid druid returned: `#{response[:pid]}''" unless valid_druid?(response[:pid])
 
-        druid = response[:pid]
-        if valid_druid?(druid)
-          return druid
-        else
-          raise 'Error in registering the object. Invalid druid returned ' + druid
-        end
+        response[:pid]
       end
 
       # @return [Regexp] matches druid:aa111aa1111 or aa111aa1111
