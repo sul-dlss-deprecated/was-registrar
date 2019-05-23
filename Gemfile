@@ -4,7 +4,6 @@ source 'https://rubygems.org'
 
 gem 'rails', '~> 5.2.2'
 
-gem 'coffee-rails'
 gem 'config' # rails environment specific configs
 gem 'honeybadger' # for exception reporting
 gem 'jbuilder', '~> 2.0'
