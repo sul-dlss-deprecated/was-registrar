@@ -18,3 +18,5 @@ coverage/
 
 # Ignore the db files
 db/*.sqlite3
+
+workflow_service.log
