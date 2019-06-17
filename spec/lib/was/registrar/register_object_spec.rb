@@ -14,7 +14,6 @@ describe Was::Registrar::RegisterSeedObject do
           source_id: 'was:baa',
           label: 'registrar_test',
           collection: 'druid:kg698nv1738',
-          initiate_workflow: 'wasSeedPreassemblyWF',
           rights: 'world'
         }
       end
@@ -47,7 +46,6 @@ describe Was::Registrar::RegisterSeedObject do
         source_id: 'aaa',
         label: 'job/directory',
         collection: 'druid:gz033bg3146',
-        initiate_workflow: 'wasCrawlPreassemblyWF',
         rights: 'dark'
       }
     end
