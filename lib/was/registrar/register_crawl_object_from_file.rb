@@ -1,8 +1,5 @@
 # frozen_string_literal: true
 
-# workaround for https://github.com/sul-dlss/dor-workflow-client/issues/109
-require 'dor/workflow/client/version'
-
 module Was
   module Registrar
     # Registers a set of crawl objects defined by an input file
