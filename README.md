@@ -2,7 +2,9 @@
 
 [![GitHub version](https://badge.fury.io/gh/sul-dlss%2Fwas-registrar.svg)](https://badge.fury.io/gh/sul-dlss%2Fwas-registrar)
 
-# was-registrar
+# was-registrar (DEPRECATED)
+
+__Replaced by [was-registrar-app](https://github.com/sul-dlss/was-registrar-app)__
 
 Rails app for registering web archiving service (was) objects, seeds and crawls, in the Stanford Digital Repository.
 
